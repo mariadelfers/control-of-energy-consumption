@@ -40,3 +40,20 @@ BEGIN
 SELECT username, name, email FROM user WHERE username = username;
 END ;;
 DELIMITER ;
+
+--Insertar un nuevo stage
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertStage`
+(IN id_stage INT, IN name VARCHAR(45), IN admin VARCHAR(20))
+INSERT INTO stage
+(id_stage, name, admin_id_admin) 
+VALUES(id_stage, name, admin) ;;
+DELIMITER ;;
+
+--Buscar stage dado un id_stage
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `buscarStage`(IN id_stage VARCHAR(20))
+BEGIN
+SELECT id_stage, name FROM stage WHERE id_stage = id_stage;
+END ;;
+DELIMITER ;
