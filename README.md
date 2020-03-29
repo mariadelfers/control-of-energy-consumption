@@ -1,3 +1,5 @@
+##Electric comsuption project
+
 ## Backend
 
 API creada para la conexión a la base de datos SQL, desarrollada en pyhton.
@@ -7,11 +9,11 @@ Lo requerimientos para que la base de datos pueda funcionar son:
 * Flask_Cors == 3.0.7
 * Flask == 1.0.2
 * mysql-connector-python == 8.0.13
-* MariaDB == 10.0.17
+* mariaDB == 10.0.17
 
-Hay un archivo IotDB.sql para crear la base de datos.
-Un archivo IotPA.sql para los procedimientos almacenados.
-Y un archivo inputEjemplos.sql para llenar la base de datos.
+Hay un archivo IotDB.sql para crear la base de datos. Este archivo se carga a Mysql y automaticamente crea las tablas.
+Un archivo IotPA.sql para los procedimientos almacenados, este es necesario para que la API funcione correctamente y por cuestiones de seguridad. 
+Y un archivo InputData.sql que contiene datos dummies para llenar la base de datos.
 
 Para obtener informacion de la API se debe de realizar una peticion GET hacia cualquiera de las rutas disponibles con sus respectivos parametros:
 
