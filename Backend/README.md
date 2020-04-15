@@ -1,5 +1,3 @@
-##Electric comsuption project
-
 ## Backend
 
 API creada para la conexión a la base de datos SQL, desarrollada en pyhton.
