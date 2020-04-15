@@ -15,7 +15,7 @@ Y un archivo InputData.sql que contiene datos dummies para llenar la base de dat
 
 Para obtener informacion de la API se debe de realizar una peticion GET hacia cualquiera de las rutas disponibles con sus respectivos parametros:
 
-#Administrador / Usuarios
+> Administrador / Usuarios
 
 ###### /login?username=&contrasena=
 ###### /insert?name=&email=&username=&password=&date_register=&admin=
@@ -24,30 +24,30 @@ Para obtener informacion de la API se debe de realizar una peticion GET hacia cu
 ###### /search?username=
 ###### /showAllUser
 
-#Espacios
+ Espacios
 
-Stage
+> Stage
 ###### /insertStage?id_stage=&name=&user=&admin=
 ###### /deleteStage?id_stage= 
 ###### /searchStage?id_stage=
 ###### /modifyStage?id_stage=&name=
 ###### /showAllStage
 
-Floor
+> Floor
 ###### /insertFloor?id_floor=&name=&id_stage=
 ###### /deleteFloor?id_floor= 
 ###### /searchFloor?id_floor=
 ###### /modify?id_floor=&name=
 ###### /showAllFloor
 
-Room
+> Room
 ###### /insertRoom?id_room=&name=&id_floor=&id_scenario=
 ###### /deleteRoom?id_room= 
 ###### /searchRoom?id_room=
 ###### /modify?id_room=&name=&id_scenario=
 ###### /showAllRoom
 
-#Dispositvos
+> Dispositvos
 
 ###### /insertProduct?id_product=&name=&description=&os=&id_device=&status=&brand=&model=&x=&y=&id_room=
 
