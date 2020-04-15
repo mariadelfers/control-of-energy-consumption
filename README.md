@@ -10,11 +10,11 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 
 _Instalar flask_
 ```
-$ pip install -U flask-cors
+$ pip install Flask
 ```
 _Instalar flask cors_
 ```
-$ pip install Flask
+$ pip install -U flask-cors
 ```
 _Instalar Mysql connector_
 ```
@@ -31,6 +31,7 @@ _Instalar React_
 _Instalar Storybook_
 ```
 > npx -p @storybook/cli sb init
+> npm install @storybook/react --save-dev
 ```
 ### Instalación 🔧
 
