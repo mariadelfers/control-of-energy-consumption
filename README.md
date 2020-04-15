@@ -70,9 +70,9 @@ _Iniciar interfaz_
 
 ## Autores ✒️
 
-* **Maria Fernanda Hernández** - *Backend* - [FerEnriquez](https://github.com/FerEnriquez)
-* **Benny Ruíz** - *Frontend* 
-* **Erick Ceredo** - *Frontend* 
+* **Maria Fernanda Hernández** - [FerEnriquez](https://github.com/FerEnriquez)
+* **Benny Ruíz** -
+* **Erick Ceredo** - 
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
 
