@@ -1,4 +1,4 @@
-# Control of electricity consumption
+# Control del consumo eléctrico
 
 _Proyecto desarrollado por estudiantes del Tec de Monterrey para el control del consumo eléctrico de tus aparatos eléctricos dentro de tu casa u oficina._
 
