@@ -37,7 +37,6 @@ _Instalar React_
 _Instalar Storybook_
 ```
 > npx -p @storybook/cli sb init
-> npm install @storybook/react --save-dev
 ```
 _Agregar dependencias_
 ```
@@ -52,10 +51,13 @@ _Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener 
 _Crear la base de datos dentro del entorno de MariaDB_
 
 ```
-mysql -u username -p < IotDB.sql
+> mysql -u username -p < IotDB.sql
 ```
 
-_Si deseas llenarla con datos dummies_
+_Iniciar interfaz_
+```
+> npm run storybook
+```
 
 
 ## Construido con 🛠️
