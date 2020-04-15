@@ -8,6 +8,13 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 
 ### Pre-requisitos 📋
 
+_Instalar mariaDB_
+```
+$ pip pip install mariadb
+```
+
+###### Entorno python
+
 _Instalar flask_
 ```
 $ pip install Flask
@@ -20,10 +27,9 @@ _Instalar Mysql connector_
 ```
 $ pip install mysql-connector-python
 ```
-_Instalar mariaDB_
-```
-$ pip pip install mariadb
-```
+
+###### Entorno NodeJS
+
 _Instalar React_
 ```
 > npm install --save react
@@ -32,6 +38,12 @@ _Instalar Storybook_
 ```
 > npx -p @storybook/cli sb init
 > npm install @storybook/react --save-dev
+```
+_Agregar dependencias_
+```
+> npm install @storybook/react --save-dev
+> npm install react react-dom --save
+> npm install babel-loader @babel/core --save-dev
 ```
 ### Instalación 🔧
 
