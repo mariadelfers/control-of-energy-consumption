@@ -8,6 +8,13 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 
 ### Pre-requisitos 📋
 
+_Instalar mariaDB_
+```
+$ pip pip install mariadb
+```
+
+###### Entorno python
+
 _Instalar flask_
 ```
 $ pip install Flask
@@ -20,10 +27,9 @@ _Instalar Mysql connector_
 ```
 $ pip install mysql-connector-python
 ```
-_Instalar mariaDB_
-```
-$ pip pip install mariadb
-```
+
+###### Entorno NodeJS
+
 _Instalar React_
 ```
 > npm install --save react
@@ -31,7 +37,12 @@ _Instalar React_
 _Instalar Storybook_
 ```
 > npx -p @storybook/cli sb init
+```
+_Agregar dependencias_
+```
 > npm install @storybook/react --save-dev
+> npm install react react-dom --save
+> npm install babel-loader @babel/core --save-dev
 ```
 ### Instalación 🔧
 
@@ -40,10 +51,13 @@ _Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener 
 _Crear la base de datos dentro del entorno de MariaDB_
 
 ```
-mysql -u username -p < IotDB.sql
+> mysql -u username -p < IotDB.sql
 ```
 
-_Si deseas llenarla con datos dummies_
+_Iniciar interfaz_
+```
+> npm run storybook
+```
 
 
 ## Construido con 🛠️
@@ -56,9 +70,9 @@ _Si deseas llenarla con datos dummies_
 
 ## Autores ✒️
 
-* **Maria Fernanda Hernández** - *Backend* - [FerEnriquez](https://github.com/FerEnriquez)
-* **Benny Ruíz** - *Frontend* 
-* **Erick Ceredo** - *Frontend* 
+* **Maria Fernanda Hernández** - [FerEnriquez](https://github.com/FerEnriquez)
+* **Benny Ruíz** -
+* **Erick Ceredo** - 
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
 
