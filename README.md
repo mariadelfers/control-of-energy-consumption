@@ -24,6 +24,10 @@ _Instalar mariaDB_
 ```
 $ pip pip install mariadb
 ```
+_Instalar React_
+```
+> npm install --save react
+```
 
 ### Instalación 🔧
 
@@ -41,6 +45,9 @@ _Si deseas llenarla con datos dummies_
 ## Construido con 🛠️
 
 * [Anaconda](https://www.anaconda.com/) - Ambiente de python
+* [NodeJS](https://nodejs.org/es/download/) - Entorno
+* [React](https://es.reactjs.org/docs/getting-started.html) - Biblioteca JS
+* [Storybooks](https://storybook.js.org/docs/guides/guide-react/) - Componentes UI 
 * [Xampp](https://www.apachefriends.org/index.html) - Gestión de bases de datos
 
 ## Autores ✒️
