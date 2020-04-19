@@ -6,17 +6,18 @@ import Device from './Device';
 
 export const device = {
   id: '1',
+  type: 'Luz',
   name: 'Test Device',
   state: 'DEVICE_INBOX',
   updatedAt: new Date(2018, 0, 1, 9, 0),
 };
 
 export const actions = {
-  onPinDevice: action('onPinDevice'),
-  onArchiveDevice: action('onArchiveDevice'),
+  offDevice: action('offDevice'),
+  disabledDevice: action('disabledDevice'),
 };
 
 storiesOf('Device', module)
   .add('default', () => <Device device={device} {...actions} />)
-  .add('pinned', () => <Device device={{ ...device, state: 'DEVICE_PINNED' }} {...actions} />)
-  .add('archived', () => <Device device={{ ...device, state: 'DEVICE_ARCHIVED' }} {...actions} />);
+  .add('off', () => <Device device={{ ...device, state: 'DEVICE_OFF' }} {...actions} />)
+  .add('disable', () => <Device device={{ ...device, state: 'DEVICE_DISABLE' }} {...actions} />);

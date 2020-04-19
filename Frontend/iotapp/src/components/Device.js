@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Foco from '../icons/foco.png';
+import { action } from '@storybook/addon-actions';
 
-export default function Device({ device: { id, type, name, state }, onArchiveDevice, onPinDevice }) {
+export default function Device({ device: { id, type, name, state }, offDevice, disabledDevice }) {
   return (
-    <div className={`device-item ${state}`}>
+    <div className={`device-item ${state}`} onClick={action("Clicked")}>
 
       <div>
         <img className="device-icon" src={Foco}/>
@@ -25,6 +26,6 @@ Device.propTypes = {
       name: PropTypes.string.isRequired,
       state: PropTypes.string.isRequired,
     }),
-    onArchiveDevice: PropTypes.func,
-    onPinDevice: PropTypes.func,
+    offDevice: PropTypes.func,
+    disabledDevice: PropTypes.func,
   };
