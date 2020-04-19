@@ -13,7 +13,9 @@ code {
 }
 
 
-/* DEVICE */
+/**************** 
+*     DEVICE    * 
+****************/
 .device-item {
   background:    #ffffff;
   border-left:   4px solid #253854;
@@ -50,3 +52,4 @@ code {
   border-left:   4px solid #ffffff;
   color: white;
 }
+/*******************************/
