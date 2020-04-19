@@ -11,3 +11,79 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* DEVICE */
+.device-item {
+  background:    #ffffff;
+  border:        4px solid #000000;
+  border-radius: 8px;
+  padding:       10px 10px;
+  color:         #000000;
+  display:       inline-block;
+  font:          normal bold 26px/1 "Open Sans", sans-serif;
+  text-align:    center;
+}
+.device-icon {
+  vertical-align: middle;
+  height: 40px;
+  width: 40px;
+  padding: 5%;
+}
+.device-item .device-name {
+  
+
+}
+
+
+.list-item input[type="text"] {
+  background: transparent;
+  width: 100%;
+}
+.list-item input[type="text"]:focus {
+  cursor: text;
+}
+.list-item .actions {
+  transition: all 200ms ease-in;
+  padding-right: 20px;
+}
+.list-item .actions a {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  color: #eee;
+}
+.list-item .actions a:hover {
+  color: #2cc5d2;
+}
+.list-item .actions a:active {
+  color: #555;
+}
+.list-item .actions [class^="icon-"] {
+  font-size: 16px;
+  line-height: 24px;
+  line-height: 3rem;
+  text-align: center;
+}
+.list-item.DEVICE_PINNED .icon-star {
+  color: #2cc5d2;
+}
+.list-item.DEVICE_ARCHIVED input[type="text"] {
+  color: #aaa;
+}
+.list-item:hover {
+  background-image: linear-gradient(to bottom, #e5f9f7 0%, #f0fffd 100%);
+}
+.list-item:hover .checkbox {
+  cursor: pointer;
+}
+.list-item + .list-item {
+  border-top: 1px solid #f0f9fb;
+}
+.list-item.checked input[type="text"] {
+  color: #ccc;
+  text-decoration: line-through;
+}
+.list-item.checked .delete-item {
+  display: inline-block;
+}

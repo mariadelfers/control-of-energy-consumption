@@ -1,29 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Foco from '../icons/foco.png';
 
-export default function Device({ device: { id, title, state }, onArchiveDevice, onPinDevice }) {
+export default function Device({ device: { id, type, name, state }, onArchiveDevice, onPinDevice }) {
   return (
-    <div className={`list-item ${state}`}>
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          defaultChecked={state === 'DEVICE_ARCHIVED'}
-          disabled={true}
-          name="checked"
-        />
-        <span className="checkbox-custom" onClick={() => onArchiveDevice(id)} />
-      </label>
-      <div className="title">
-        <input type="text" value={title} readOnly={true} placeholder="Input title" />
+    <div className={`device-item ${state}`}>
+
+      <div>
+        <img className="device-icon" src={Foco}/>
       </div>
 
-      <div className="actions" onClick={event => event.stopPropagation()}>
-        {state !== 'DEVICE_ARCHIVED' && (
-          <a onClick={() => onPinDevice(id)}>
-            <span className={`icon-star`} />
-          </a>
-        )}
+      <div className="device-name">
+        <h2> {name} </h2>
       </div>
+
     </div>
   );
 }
@@ -31,7 +21,8 @@ export default function Device({ device: { id, title, state }, onArchiveDevice, 
 Device.propTypes = {
     device: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       state: PropTypes.string.isRequired,
     }),
     onArchiveDevice: PropTypes.func,

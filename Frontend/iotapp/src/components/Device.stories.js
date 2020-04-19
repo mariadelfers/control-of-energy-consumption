@@ -6,7 +6,7 @@ import Device from './Device';
 
 export const device = {
   id: '1',
-  title: 'Test Device',
+  name: 'Test Device',
   state: 'DEVICE_INBOX',
   updatedAt: new Date(2018, 0, 1, 9, 0),
 };
