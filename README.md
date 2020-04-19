@@ -48,7 +48,10 @@ Pruebas automatizadas
 yarn add --dev @storybook/addon-storyshots react-test-renderer
 
 Para almacenar datos
-yarn add react-redux redux
+yarn add react-redux redux\
+
+librería React Router
+npm install react-router-dom --save
 ```
 _Instalar Material UI
 ```
