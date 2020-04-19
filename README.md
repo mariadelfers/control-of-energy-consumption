@@ -43,6 +43,12 @@ _Agregar dependencias_
 > npm install @storybook/react --save-dev
 > npm install react react-dom --save
 > npm install babel-loader @babel/core --save-dev
+
+Pruebas automatizadas
+yarn add --dev @storybook/addon-storyshots react-test-renderer
+
+Para almacenar datos
+yarn add react-redux redux
 ```
 _Instalar Material UI
 ```
