@@ -44,6 +44,10 @@ _Agregar dependencias_
 > npm install react react-dom --save
 > npm install babel-loader @babel/core --save-dev
 ```
+_Instalar Material UI
+```
+> npm install @material-ui/icons
+```
 ### Instalación 🔧
 
 _Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
@@ -63,6 +67,7 @@ _Iniciar interfaz_
 ## Construido con 🛠️
 
 * [Anaconda](https://www.anaconda.com/) - Ambiente de python
+* [Material-UI](https://material-ui.com/es/components/icons/) - Iconos
 * [NodeJS](https://nodejs.org/es/download/) - Entorno
 * [React](https://es.reactjs.org/docs/getting-started.html) - Biblioteca JS
 * [Storybooks](https://storybook.js.org/docs/guides/guide-react/) - Componentes UI 
