@@ -16,6 +16,7 @@ export const defaultDevices = [
 export const withOffDevices = [
   ...defaultDevices.slice(0, 5),
   { id: '6', name: 'Device 6 (off)', state: 'DEVICE_OFF' },
+  { id: '1', name: 'Device 1 (off)', state: 'DEVICE_OFF' },
 ];
 
 storiesOf('DeviceList', module)

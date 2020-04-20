@@ -13,33 +13,49 @@ code {
 }
 
 
-/**************** 
-*     DEVICE    * 
-****************/
+/********************************* 
+*                                *
+*            DEVICE              *
+*                                *
+*********************************/
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
 .device-item {
-  background:    #ffffff;
-  border-left:   4px solid #253854;
-  border-radius: 0px;
-  padding:       10px 10px;
+  background:    #dff3ff;
+  /* border-right:   4px solid #253854; */
+  border-radius:  0px;
+  padding:        10px 10px;
+  margin:         10px;
   color:         #253854;
   display:       inline-block;
-  text-align: center;
-  box-shadow: 10px 10px 5px grey;
+  text-align:   center;
+  box-shadow:   0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07),
+                0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
+                0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
+  height:       70px;
+  width:        70px;
 }
 .device-item:hover {
-  cursor: pointer;
+  cursor:       pointer;
   background: #d1d1d1c7;
 }
 .device-icon {
   vertical-align: middle;
-  height: 40px;
-  width: 40px;
-  padding: 5%;
-  align-items: center;
+  height:         30px;
+  width:          30px;
+  padding:        5%;
+  align-items:    center;
 }
 .device-item .device-name {
-  color: #253854;
-  font:  normal bold 26px/1 "Open Sans", sans-serif;
+  color:    #253854;
+  font:       normal bold 8px/1 Tahoma, Geneva, sans-serif;
   text-align: center;
 }
 .device-item.DEVICE_OFF {
@@ -49,7 +65,68 @@ code {
 .device-item.DEVICE_DISABLE {
   background: rgb(0, 0, 0);
   box-shadow: 10px 10px 5px rgba(255, 255, 255, 0);
-  border-left:   4px solid #ffffff;
-  color: white;
+  border-left:4px solid #ffffff;
+  color:    white;
 }
+
+.device-list{
+  background:    #dff3ff;
+  padding:        10px;
+  height: 400px;
+  width: 400px;
+}
+
+.loading-device {
+  padding: 10px 10px;
+  background: #dff3ff;
+  align-items: center;
+  padding-left: 10px;
+}
+.loading-device span {
+  animation: glow 1.5s ease-in-out infinite;
+  background: rgb(156, 207, 248);
+  color: transparent;
+  cursor: progress;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+}
+.device-item-empty {
+  background:    #dff3ff;
+  border-radius:  0px;
+  padding:        10px 10px;
+  margin:         10px;
+  color:         #253854;
+  display:       inline-block;
+  text-align:   center;
+  height:       70px;
+  width:        70px;
+}
+.empty-message {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  bottom: auto;
+  width: auto;
+  height: auto;
+  transform: translate3d(0, -50%, 0);
+  text-align: center;
+}
+.empty-message .title-message {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  color: #555;
+}
+.empty-message .subtitle-message {
+  font-size: 14px;
+  line-height: 20px;
+  color: #666;
+}
+.empty-message .subtitle-message:hover {
+  cursor:       pointer;
+  color: #5d8ebbc7;
+}
+
 /*******************************/

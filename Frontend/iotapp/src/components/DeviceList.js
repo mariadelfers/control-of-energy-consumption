@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Device from './Device';
 import { connect } from 'react-redux';
 import { offDevice, disableDevice } from '../lib/redux_device';
+import { action } from '@storybook/addon-actions';
 
 export function PureDeviceList({ loading, devices, offDevice, disableDevice }) {
   const events = {
@@ -11,34 +12,28 @@ export function PureDeviceList({ loading, devices, offDevice, disableDevice }) {
   };
 
   const LoadingRow = (
-    <div className="loading-item">
-      <span className="glow-checkbox" />
-      <span className="glow-text">
-        <span>Loading</span> <span>cool</span> <span>state</span>
+    <div className="device-item-empty">
+      <span className="loading-device">
+        <span>Loading</span>
       </span>
     </div>
   );
 
   if (loading) {
     return (
-      <div className="device-items">
-        {LoadingRow}
-        {LoadingRow}
-        {LoadingRow}
-        {LoadingRow}
-        {LoadingRow}
-        {LoadingRow}
+      <div className="device-list">
+        {LoadingRow}{LoadingRow}{LoadingRow}
+        {LoadingRow}{LoadingRow}{LoadingRow}
       </div>
     );
   }
 
   if (devices.length === 0) {
     return (
-      <div className="device-items">
-        <div className="wrapper-message">
-          <span className="icon-check" />
-          <div className="title-message">You have no tasks</div>
-          <div className="subtitle-message">Sit back and relax</div>
+      <div className="device-list">
+        <div className="empty-message">
+          <div className="title-message">No tienes dispositivos agregados</div>
+          <div className="subtitle-message" onClick={action("Clicked")}>¿Deseas agregar uno?</div>
         </div>
       </div>
     );
@@ -50,10 +45,12 @@ export function PureDeviceList({ loading, devices, offDevice, disableDevice }) {
   ];
 
   return (
-    <div className="device-items">
-      {devicesInOrder.map(device => (
-        <Device key={device.id} device={device} {...events} />
-      ))}
+    <div className="device-list">
+        <div className="device-items">
+        {devicesInOrder.map(device => (
+            <Device key={device.id} device={device} {...events} />
+        ))}
+        </div>
     </div>
   );
 }
