@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-
+import { action, decorate } from '@storybook/addon-actions';
+import { withKnobs, text, boolean, number} from "@storybook/addon-knobs";
 import Device from './Device';
 
 export const device = {
@@ -18,6 +18,6 @@ export const actions = {
 };
 
 storiesOf('Device', module)
-  .add('default', () => <Device device={device} {...actions} />)
+  .add('default', () => <Device device={{ ...device, decorators: [withKnobs]}} {...actions} />)
   .add('off', () => <Device device={{ ...device, state: 'DEVICE_OFF' }} {...actions} />)
   .add('disable', () => <Device device={{ ...device, state: 'DEVICE_DISABLE' }} {...actions} />);
