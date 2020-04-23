@@ -18,6 +18,7 @@ export const actions = {
 };
 
 storiesOf('Device', module)
-  .add('default', () => <Device device={{ ...device, decorators: [withKnobs]}} {...actions} />)
+  .add('default', () => <Device device={{ ...device, name: text("Name device", "Test device"),
+    decorators: [withKnobs]}} {...actions} />)
   .add('off', () => <Device device={{ ...device, state: 'DEVICE_OFF' }} {...actions} />)
   .add('disable', () => <Device device={{ ...device, state: 'DEVICE_DISABLE' }} {...actions} />);
