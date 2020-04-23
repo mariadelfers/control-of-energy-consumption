@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 
 import DeviceList from './DeviceList';
 
-export function PureMainScreen({ error }) {
+export function PureScreen({ error }) {
   if (error) {
     return (
       <div className="page lists-show">
-        <div className="wrapper-message">
-          <span className="icon-face-sad" />
+        <div className="empty-message">
           <div className="title-message">Oh no!</div>
-          <div className="subtitle-message">Something went wrong</div>
+          <div className="message">Something went wrong</div>
         </div>
       </div>
     );
@@ -21,7 +20,7 @@ export function PureMainScreen({ error }) {
     <div className="page lists-show">
       <nav>
         <h1 className="title-page">
-          <span className="title-wrapper">Taskbox</span>
+          <span className="empty-message">Device box</span>
         </h1>
       </nav>
       <DeviceList />
@@ -29,12 +28,12 @@ export function PureMainScreen({ error }) {
   );
 }
 
-PureMainScreen.propTypes = {
+PureScreen.propTypes = {
   error: PropTypes.string,
 };
 
-PureMainScreen.defaultProps = {
+PureScreen.defaultProps = {
   error: null,
 };
 
-export default connect(({ error }) => ({ error }))(PureMainScreen);
+export default connect(({ error }) => ({ error }))(PureScreen);
