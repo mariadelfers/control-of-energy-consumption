@@ -43,16 +43,22 @@ _Agregar dependencias_
 > npm install @storybook/react --save-dev
 > npm install react react-dom --save
 > npm install babel-loader @babel/core --save-dev
+> npm install react-bootstrap bootstrap
 ```
-Pruebas automatizadas
+_Paquetes de storybook_
+```
+> npm i -D @storybook/addon-actions
+> yarn add @storybook/addon-knobs --dev
+```
+_Pruebas automatizadas_
 ```
 yarn add --dev @storybook/addon-storyshots react-test-renderer
 ```
-Para almacenar datos
+_Para almacenar datos_
 ```
 yarn add react-redux redux\
 ```
-Librería React Router
+_Librería React Router_
 ```
 npm install react-router-dom --save
 ```
