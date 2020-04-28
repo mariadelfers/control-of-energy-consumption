@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { PureDeviceScreen } from './DeviceScreen';
 import { defaultDevices } from './DeviceList.stories';
 
-// Un mock super simple de un store de redux
 const store = {
   getState: () => {
     return {

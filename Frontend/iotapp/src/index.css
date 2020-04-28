@@ -68,14 +68,13 @@ code {
   border-left:4px solid #ffffff;
   color:    white;
 }
-
+/******************************
+*          List device        *
+******************************/
 .device-list{
   background:    #dff3ff;
-  padding:        10px;
   height: 400px;
-  width: 400px;
 }
-
 .loading-device {
   padding: 10px 10px;
   background: #dff3ff;
@@ -103,9 +102,10 @@ code {
   width:        70px;
 }
 .empty-message {
+  background:    #dff3ff;
   position: absolute;
   top: 50%;
-  left: 10%;
+  left: 40%;
   bottom: auto;
   width: auto;
   height: auto;
@@ -117,17 +117,20 @@ code {
   line-height: 24px;
   font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
+  text-align: center;
   color: #555;
 }
 .empty-message .subtitle-message {
   font-size: 14px;
   line-height: 20px;
   color: #666;
+  text-align: center;
 }
 .empty-message .message {
   font-size: 14px;
   line-height: 20px;
   color: #666;
+  text-align: center;
 }
 .empty-message .subtitle-message:hover {
   cursor:       pointer;
@@ -135,40 +138,35 @@ code {
 }
 
 /******************************
-*            SCREEN           *
+*        Screen device        *
 ******************************/
 
-.page.lists-show {
-  min-height: 100vh;
-  background: white;
+.screen-error-device {
+  padding: 20px;
+  background:#dff3ff;
+  width: 1060px;
+  height: 400px;
 }
-.page.lists-show nav {
-  background: #d3edf4;
-  padding: 1.5rem 1.25rem;
-  text-align: center;
+.screen-device {
+  padding: 20px;
+  background: rgb(255, 255, 255);
 }
-@media screen and (min-width: 40em) {
-  .page.lists-show nav {
-    text-align: left;
-  }
+.screen-device nav {
+  background: #6fb2ffcc;
+  padding: 1px;
+  text-align: left;
 }
-.page.lists-show nav .title-page {
-  font-size: 20px;
-  line-height: 24px;
-  line-height: 2rem;
-  cursor: pointer;
-  white-space: nowrap;
+.screen-device .screen-title {
+  line-height: 15px;
+  padding-left: 20px;
+  /* cursor: pointer; */ 
 }
-.page.lists-show nav .title-page .title-wrapper {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 800;
-  color: #1c3f53;
-  display: inline-block;
-  vertical-align: top;
-  max-width: 100%;
+.screen-device .screen-message {
+  color: #060888; 
+  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-size: 35px; 
+  font-weight: 400; 
+  letter-spacing: 1px; 
 }
 
 

@@ -7,20 +7,20 @@ import DeviceList from './DeviceList';
 export function PureDeviceScreen({ error }) {
   if (error) {
     return (
-      <div className="page lists-show">
+      <div className="screen-error-device">
         <div className="empty-message">
-          <div className="title-message">Oh no!</div>
-          <div className="message">Something went wrong</div>
+          <div className="title-message">¡Oh no!</div>
+          <div className="message">Algo salió mal.</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="page lists-show">
+    <div className="screen-device">
       <nav>
-        <h1 className="title-page">
-          <span className="empty-message">Device box</span>
+        <h1 className="screen-title">
+          <span className="screen-message">Dispositivos</span>
         </h1>
       </nav>
       <DeviceList />
