@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import DeviceList from './DeviceList';
 
-export function PureScreen({ error }) {
+export function PureDeviceScreen({ error }) {
   if (error) {
     return (
       <div className="page lists-show">
@@ -28,12 +28,12 @@ export function PureScreen({ error }) {
   );
 }
 
-PureScreen.propTypes = {
+PureDeviceScreen.propTypes = {
   error: PropTypes.string,
 };
 
-PureScreen.defaultProps = {
+PureDeviceScreen.defaultProps = {
   error: null,
 };
 
-export default connect(({ error }) => ({ error }))(PureScreen);
+export default connect(({ error }) => ({ error }))(PureDeviceScreen);

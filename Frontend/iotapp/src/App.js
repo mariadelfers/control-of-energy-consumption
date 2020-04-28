@@ -1,14 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './lib/redux';
-
-import MainScreen from './components/MainScreen';
-
+import store from './lib/redux_device';
 import './index.css';
+import DeviceScreen from './components/DeviceScreen';
+
 function App() {
   return (
     <Provider store={store}>
-      <MainScreen />
+      <DeviceScreen />
     </Provider>
   );
 }
