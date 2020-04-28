@@ -43,17 +43,20 @@ _Agregar dependencias_
 > npm install @storybook/react --save-dev
 > npm install react react-dom --save
 > npm install babel-loader @babel/core --save-dev
-
+```
 Pruebas automatizadas
+```
 yarn add --dev @storybook/addon-storyshots react-test-renderer
-
+```
 Para almacenar datos
+```
 yarn add react-redux redux\
-
-librería React Router
+```
+Librería React Router
+```
 npm install react-router-dom --save
 ```
-_Instalar Material UI
+_Instalar Material UI_
 ```
 > npm install @material-ui/icons
 ```
@@ -81,6 +84,11 @@ _Iniciar interfaz_
 * [React](https://es.reactjs.org/docs/getting-started.html) - Biblioteca JS
 * [Storybooks](https://storybook.js.org/docs/guides/guide-react/) - Componentes UI 
 * [Xampp](https://www.apachefriends.org/index.html) - Gestión de bases de datos
+
+## Documentación extra
+
+* [Balsamiq](https://balsamiq.cloud/s7tpyzs/pvvjfkp/rFA12) - Mockups
+* [Figma](https://www.figma.com/files/team/837081687303525522/ProyectoIntegrador) - Sketch UI
 
 ## Autores ✒️
 
