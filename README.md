@@ -72,7 +72,7 @@ _Crear la base de datos dentro del entorno de MariaDB_
 
 _Iniciar interfaz_
 ```
-> npm run storybook
+> npm start
 ```
 
 
