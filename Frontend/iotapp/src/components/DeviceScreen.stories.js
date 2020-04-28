@@ -6,6 +6,12 @@ import { Provider } from 'react-redux';
 import { PureDeviceScreen } from './DeviceScreen';
 import { defaultDevices } from './DeviceList.stories';
 
+export default {
+  component: PureDeviceScreen,
+  title: 'DeviceScreen',
+  decorators: [story => <Provider store={store}>{story()}</Provider>],
+};
+
 const store = {
   getState: () => {
     return {
