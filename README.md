@@ -81,6 +81,10 @@ _Iniciar interfaz_
 > npm start
 ```
 
+_Si hay problemas con las versiones_
+```
+> npm i -S core-js@2.5.7
+```
 
 ## Construido con 🛠️
 
