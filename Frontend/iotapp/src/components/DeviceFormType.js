@@ -4,18 +4,16 @@ import Device from './Device';
 
 export default function DeviceFormType({ deviceFormType: {deviceType} }) {
     return (
-      <div className="form-device">
-  
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+        <div>
         <div className="title-form-device">
           <h1 className="label-form-device">Tipo del dispositivo: </h1>
-          <input class="input-search-device" type="text" placeholder="Buscar"></input>
+          <input class="input-search-device" type="text" placeholder=" Buscar"></input>
         </div>
-
+  
+        {/* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> */}
         
         <div class="container">
             <div class="row">

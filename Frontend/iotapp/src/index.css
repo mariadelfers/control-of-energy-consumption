@@ -137,7 +137,7 @@ code {
 .empty-message .title-message {
   font-size: 16px;
   line-height: 24px;
-  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
   font-weight: 800;
   text-align: center;
   color: #295586;
@@ -189,7 +189,7 @@ code {
 }
 .screen-device .screen-message {
   color: #ffffff; 
-  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-family: 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
   font-size: 35px; 
   font-weight: 400; 
   letter-spacing: 1px; 
@@ -201,16 +201,17 @@ code {
 *                                *
 *********************************/
 .form-device{
-  background: #e2e1e1;
+  background: #46afd223;
+  padding-bottom: 30px;
 }
 
 .title-form-device{
   padding: 3px 20px 1px;
-  background: #e2e1e1;
+ 
 }
 .label-form-device{
-  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #245799;
+  font-family: 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
+  color: #34729f;
   font-size: 30px;
 }
 .input-text-device{
@@ -224,7 +225,7 @@ code {
                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
 }
 .input-search-device{
-  width: 500px;
+  width: 250px;
   height: 40px;
   margin-right: 20px;
   border-radius: 5px;
@@ -233,6 +234,9 @@ code {
                 0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
 }
-
+::placeholder{
+  font-family: 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
 
 
