@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function DeviceFormName({ deviceFormName: {deviceName}, repeatedName }) {
+export default function DeviceFormName() {
     return (
       <div className="form-device">
   

@@ -5,15 +5,11 @@ import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 
 import DeviceFormName from './DeviceFormName';
 
-export const deviceFormName = {
-  name: 'Name Device',
-  updatedAt: new Date(2018, 0, 1, 9, 0),
-};
 
 export const actions = {
   repeteadName: action('repeatedName'),
 };
 
 storiesOf('Form add: Name', module)
-  .add('default', () => <DeviceFormName deviceFormName={deviceFormName} {...actions} />)
+  .add('default', () => <DeviceFormName/>)
   

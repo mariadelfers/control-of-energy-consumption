@@ -19,7 +19,7 @@ export const device = {
     { ...device, id: '5', name: 'Laptop', type: 'laptop' },
   ];
 
-export default function DeviceFormType({ deviceFormType: {deviceType} }) {
+export default function DeviceFormType() {
     
     return (
         <div>
