@@ -1,0 +1,121 @@
+[33mcommit acb4da48a129f62dc948b412b39916b9dc5aeb54[m[33m ([m[1;36mHEAD -> [m[1;32mdevice-component[m[33m, [m[1;31morigin/device-component[m[33m)[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Tue Apr 28 18:59:06 2020 -0500
+
+    Css added on form device
+
+[33mcommit 643859ae559d7ba8e82a6ae5fb03c3ef5bcd403b[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Tue Apr 28 18:57:26 2020 -0500
+
+    Added name device component
+
+[33mcommit aedb328940ca48679a7bfb8b6407ddbd151bb430[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Tue Apr 28 13:39:47 2020 -0500
+
+    Components of device without errors
+
+[33mcommit c614711a71ff4a7f9569ac58e78ced61e7f289dc[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Tue Apr 28 13:16:47 2020 -0500
+
+    Moving css on Screen device
+
+[33mcommit 727bb5d284618a8ffd773dffde92fcefaf4048ab[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Tue Apr 28 12:24:01 2020 -0500
+
+    Screen device added on App
+
+[33mcommit d4d29d4d68f059e4a18c9c0787578c7e6d4666a9[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 22:23:53 2020 -0500
+
+    Addins css to MainScreen
+
+[33mcommit e86b4e54a7b4052cd9d6b409b843af88e9eb5cb7[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 19:49:18 2020 -0500
+
+    Main screen component and storie added
+
+[33mcommit f4810b53b30d883b28ef4c6a408ddc3f76263a87[m
+Merge: de6131b 86a6ff7
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 18:46:59 2020 -0500
+
+    Resolved merge conflict by new modules
+
+[33mcommit de6131b253f7f5bfba4d49a57d96ed336f7eba7d[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 18:43:01 2020 -0500
+
+    Some changes on default device
+
+[33mcommit 22bec1d0ecf03e94b18d90c3db078f3ea33c1cf2[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 18:40:58 2020 -0500
+
+    Continue device component
+
+[33mcommit 86a6ff769272c23d87d392905ecb16edbff01c6d[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 18:30:55 2020 -0500
+
+    Instaled addon-actions for storybook
+
+[33mcommit 4409a58cc25ff244271c021a66b7921c930dd6bf[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 17:59:08 2020 -0500
+
+    Instaled addon-knobs for storybook
+
+[33mcommit c6ae41bce0aa752f4882d373129eb4b9f975e654[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Wed Apr 22 17:54:20 2020 -0500
+
+    Instaled addon-knobs for storybook
+
+[33mcommit f7965ea5d0bf49948e1217047f8b63af615e6873[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Sun Apr 19 22:55:00 2020 -0500
+
+    Update documentation
+
+[33mcommit 11f9edec74f6deb99aa70a721a299c1e842114ff[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Sun Apr 19 20:11:34 2020 -0500
+
+    Device list css added
+
+[33mcommit 3de812bc084e413658331651967ea826adc2de6a[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Sun Apr 19 18:47:21 2020 -0500
+
+    Device list and stories
+
+[33mcommit cb192fb9ed3126fabfede58980d83fd3a604b262[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Sun Apr 19 18:16:08 2020 -0500
+
+    Format device and off/disable mode
+
+[33mcommit 3356f35993b462b6432c1c257e3718a117b937b6[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Sun Apr 19 17:34:19 2020 -0500
+
+    template device
+
+[33mcommit 281c73fc2e8812afa4ec4506e8a170d673adb389[m
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Sat Apr 18 20:10:37 2020 -0500
+
+    Added example of Device
+
+[33mcommit 0970eaf09115bdacb22fcf38712cb8d2a34211c2[m
+Merge: 66e7cc5 2dd00e8
+Author: FerEnriquez <feer.hernandez00@gmail.com>
+Date:   Sat Apr 18 19:46:00 2020 -0500
+
+    Merge branch 'master' of https://github.com/FerEnriquez/ProjectElectric-Consumption
