@@ -99,7 +99,7 @@ _Iniciar interfaz_
 ## Autores ✒️
 
 * **Maria Fernanda Hernández** - [FerEnriquez](https://github.com/FerEnriquez)
-* **Benny Ruíz** -
+* **Benny Ruíz** - [BennyRJZ](https://github.com/BennyRJZ)
 * **Erick Ceredo** - 
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
