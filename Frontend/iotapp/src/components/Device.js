@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Foco from '../icons/foco.png';
+import Foco from '../icons/bocina.svg';
 import { action } from '@storybook/addon-actions';
 
 export default function Device({ device: { id, type, name, state }, offDevice, disabledDevice }) {

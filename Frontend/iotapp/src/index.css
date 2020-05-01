@@ -37,12 +37,11 @@ code {
   }
 }
 .device-item {
-  background:    #dff3ff;
+  background-image: linear-gradient(25deg, #295586, #34729f, #3d90b8, #46afd2);
   /* border-right:   4px solid #253854; */
-  border-radius:  0px;
+  border-radius:  10px;
   padding:        10px 10px;
   margin:         10px;
-  color:         #253854;
   display:       inline-block;
   text-align:   center;
   box-shadow:   0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07),
@@ -53,7 +52,7 @@ code {
 }
 .device-item:hover {
   cursor:       pointer;
-  background: #d1d1d1c7;
+  background-image: linear-gradient(25deg, #3268a7, #4490c7, #53c2fa, #55d3fd);
 }
 .device-icon {
   vertical-align: middle;
@@ -63,13 +62,16 @@ code {
   align-items:    center;
 }
 .device-item .device-name {
-  color:    #253854;
+  color:    #ffffff;
   font:       normal bold 8px/1 Tahoma, Geneva, sans-serif;
   text-align: center;
 }
 .device-item.DEVICE_OFF {
-  background: rgb(146, 144, 144);
+  background-image: linear-gradient(25deg, #193453, #254e6b, #245168, #2d6c81);
   box-shadow: 10px 10px 5px rgba(255, 255, 255, 0);
+}
+.device-item.DEVICE_OFF .device-name{
+  color: #9c9c9c;
 }
 .device-item.DEVICE_DISABLE {
   background: rgb(0, 0, 0);
@@ -81,7 +83,7 @@ code {
 *          List device        *
 ******************************/
 .device-list{
-  background:    #dff3ff;
+  background:    #ffffff;
   height: 400px;
 }
 .loading-device {
