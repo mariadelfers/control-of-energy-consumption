@@ -56,14 +56,15 @@ code {
 }
 .device-icon {
   vertical-align: middle;
-  height:         30px;
-  width:          30px;
+  height:         40px;
+  width:          40px;
   padding:        5%;
   align-items:    center;
 }
 .device-item .device-name {
   color:    #ffffff;
-  font:       normal bold 8px/1 Tahoma, Geneva, sans-serif;
+  font:      7px Tahoma, Geneva, sans-serif;
+  font-weight: 100;
   text-align: center;
 }
 .device-item.DEVICE_OFF {

@@ -5,12 +5,12 @@ import { PureDeviceList } from './DeviceList';
 import { device, actions } from './Device.stories';
 
 export const defaultDevices = [
-  { ...device, id: '1', name: 'Device 1' },
-  { ...device, id: '2', name: 'Device 2' },
-  { ...device, id: '3', name: 'Device 3' },
-  { ...device, id: '4', name: 'Device 4' },
-  { ...device, id: '5', name: 'Device 5' },
-  { ...device, id: '6', name: 'Device 6' },
+  { ...device, id: '1', name: 'Device 1', type: 'foco' },
+  { ...device, id: '2', name: 'Device 2', type: 'coffee' },
+  { ...device, id: '3', name: 'Device 3', type: 'bocina' },
+  { ...device, id: '4', name: 'Device 4', type: 'tv' },
+  { ...device, id: '5', name: 'Device 5', type: 'foco' },
+  { ...device, id: '6', name: 'Device 6', type: 'foco' },
 ];
 
 export const withOffDevices = [
