@@ -13,7 +13,7 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
     <div className={`device-item ${state}`} onClick={action("Clicked")}>
 
       <div>
-        <img className="device-icon" src={require('../icons/'+ icon_type +'.svg')} alt="Icon"/>
+        <img className={`device-icon ${state}`} src={require('../icons/'+ icon_type +'.svg')} alt="Icon"/>
       </div>
 
       <div className="device-name">

@@ -61,6 +61,15 @@ code {
   padding:        5%;
   align-items:    center;
 }
+.device-icon.DEVICE_OFF {
+  vertical-align: middle;
+  height:         40px;
+  width:          40px;
+  padding:        5%;
+  align-items:    center;
+  opacity: 30%;
+  filter: grayscale(100%);
+}
 .device-item .device-name {
   color:    #ffffff;
   font:      7px Tahoma, Geneva, sans-serif;
@@ -81,7 +90,7 @@ code {
   color:    white;
 }
 /******************************
-*          List device        *
+*        List device          *
 ******************************/
 .device-list{
   background:    #ffffff;
@@ -89,21 +98,22 @@ code {
 }
 .loading-device {
   padding: 10px 10px;
-  background: #dff3ff;
   align-items: center;
   padding-left: 10px;
+  
 }
 .loading-device span {
   animation: glow 1.5s ease-in-out infinite;
-  background: rgb(156, 207, 248);
+  background-image: linear-gradient(25deg, #3269a773, #4490c780, #53c2fa6e, #55d3fd7a);
   color: transparent;
   cursor: progress;
   display: inline-block;
   height: 100px;
   width: 100px;
+  border-radius:  10px;
 }
 .device-item-empty {
-  background:    #dff3ff;
+  opacity: 50%;
   border-radius:  0px;
   padding:        10px 10px;
   margin:         10px;
@@ -114,7 +124,7 @@ code {
   width:        70px;
 }
 .empty-message {
-  background:    #dff3ff;
+  background:    #ffffff;
   position: absolute;
   top: 50%;
   left: 40%;
@@ -130,7 +140,7 @@ code {
   font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
   text-align: center;
-  color: #555;
+  color: #295586;
 }
 .empty-message .subtitle-message {
   font-size: 14px;
@@ -155,7 +165,7 @@ code {
 
 .screen-error-device {
   padding: 20px;
-  background:#dff3ff;
+  background:#ffffff;
   width: 1060px;
   height: 400px;
 }
@@ -164,17 +174,21 @@ code {
   background: rgb(255, 255, 255);
 }
 .screen-device nav {
-  background: #6fb2ffcc;
+  background: #34729f;
   padding: 1px;
   text-align: left;
+  box-shadow:   0 3px 2px rgb(0, 0, 0),0 2px 4px rgba(0,0,0,0.07),
+                0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
+                0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(52, 115, 159, 0.635);
 }
 .screen-device .screen-title {
   line-height: 15px;
   padding-left: 20px;
+  
   /* cursor: pointer; */ 
 }
 .screen-device .screen-message {
-  color: #060888; 
+  color: #ffffff; 
   font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, sans-serif; 
   font-size: 35px; 
   font-weight: 400; 
