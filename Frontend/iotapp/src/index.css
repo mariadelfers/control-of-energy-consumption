@@ -47,8 +47,8 @@ code {
   box-shadow:   0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07),
                 0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
-  height:       70px;
-  width:        70px;
+  height:       80px;
+  width:        80px;
 }
 .device-item:hover {
   cursor:       pointer;
@@ -99,8 +99,6 @@ code {
 .loading-device {
   padding: 10px 10px;
   align-items: center;
-  padding-left: 10px;
-  
 }
 .loading-device span {
   animation: glow 1.5s ease-in-out infinite;
@@ -111,12 +109,13 @@ code {
   height: 100px;
   width: 100px;
   border-radius:  10px;
+  padding-right: 10px;
 }
 .device-item-empty {
   opacity: 50%;
   border-radius:  0px;
-  padding:        10px 10px;
-  margin:         10px;
+  padding:        15px 15px;
+  margin:         20px;
   color:         #253854;
   display:       inline-block;
   text-align:   center;
@@ -239,4 +238,38 @@ code {
   font-size: 20px;
 }
 
+/********************************* 
+*                                *
+*         CAROUSEL LIST          *
+*                                *
+*********************************/
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
+.gallery {
+  background: #EEE;
+}
+
+.gallery-cell {
+  width: 28%;
+  height: 200px;
+  margin-right: 10px;
+  background: #8C8;
+  counter-increment: gallery-cell;
+}
+
+.gallery-cell.is-selected {
+  background: #ED2;
+}
+
+/* cell number */
+.gallery-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(gallery-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+}
