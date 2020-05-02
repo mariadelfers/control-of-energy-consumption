@@ -43,17 +43,26 @@ _Agregar dependencias_
 > npm install @storybook/react --save-dev
 > npm install react react-dom --save
 > npm install babel-loader @babel/core --save-dev
-
-Pruebas automatizadas
+> npm install react-bootstrap bootstrap
+```
+_Paquetes de storybook_
+```
+> npm i -D @storybook/addon-actions
+> yarn add @storybook/addon-knobs --dev
+```
+_Pruebas automatizadas_
+```
 yarn add --dev @storybook/addon-storyshots react-test-renderer
-
-Para almacenar datos
+```
+_Para almacenar datos_
+```
 yarn add react-redux redux\
-
-librería React Router
+```
+_Librería React Router_
+```
 npm install react-router-dom --save
 ```
-_Instalar Material UI
+_Instalar Material UI_
 ```
 > npm install @material-ui/icons
 ```
@@ -69,9 +78,13 @@ _Crear la base de datos dentro del entorno de MariaDB_
 
 _Iniciar interfaz_
 ```
-> npm run storybook
+> npm start
 ```
 
+_Si hay problemas con las versiones_
+```
+> npm i -S core-js@2.5.7
+```
 
 ## Construido con 🛠️
 
@@ -82,10 +95,15 @@ _Iniciar interfaz_
 * [Storybooks](https://storybook.js.org/docs/guides/guide-react/) - Componentes UI 
 * [Xampp](https://www.apachefriends.org/index.html) - Gestión de bases de datos
 
+## Documentación extra
+
+* [Balsamiq](https://balsamiq.cloud/s7tpyzs/pvvjfkp/rFA12) - Mockups
+* [Figma](https://www.figma.com/files/team/837081687303525522/ProyectoIntegrador) - Sketch UI
+
 ## Autores ✒️
 
 * **Maria Fernanda Hernández** - [FerEnriquez](https://github.com/FerEnriquez)
-* **Benny Ruíz** -
+* **Benny Ruíz** - [BennyRJZ](https://github.com/BennyRJZ)
 * **Erick Ceredo** - 
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
