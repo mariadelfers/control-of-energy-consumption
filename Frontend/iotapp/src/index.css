@@ -82,6 +82,9 @@ code {
 }
 .device-item.DEVICE_OFF .device-name{
   color: #9c9c9c;
+  font:      7px Tahoma, Geneva, sans-serif;
+  font-weight: 100;
+  text-align: center;
 }
 .device-item.DEVICE_DISABLE {
   background: rgb(0, 0, 0);
@@ -244,33 +247,7 @@ code {
 *         CAROUSEL LIST          *
 *                                *
 *********************************/
-* {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.gallery {
-  background: #EEE;
-}
-
-.gallery-cell {
-  width: 28%;
-  height: 200px;
-  margin-right: 10px;
-  background: #8C8;
-  counter-increment: gallery-cell;
-}
-
-.gallery-cell.is-selected {
-  background: #ED2;
-}
-
-/* cell number */
-.gallery-cell:before {
-  display: block;
-  text-align: center;
-  content: counter(gallery-cell);
-  line-height: 200px;
-  font-size: 80px;
-  color: white;
+.device-complete-form{
+  height: 600px;
+  width: 400px;
 }

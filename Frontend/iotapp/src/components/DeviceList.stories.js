@@ -6,7 +6,7 @@ import { device, actions } from './Device.stories';
 
 export const defaultDevices = [
   { ...device, id: '1', name: 'Foco', type: 'foco' },
-  { ...device, id: '2', name: 'Cafetera', type: 'coffee' },
+  { ...device, id: '2', name: 'Cafetera', type: 'cafe' },
   { ...device, id: '3', name: 'Mi bocina', type: 'bocina' },
   { ...device, id: '4', name: 'Tv', type: 'tv' },
   { ...device, id: '5', name: 'Lámpara', type: 'foco' },

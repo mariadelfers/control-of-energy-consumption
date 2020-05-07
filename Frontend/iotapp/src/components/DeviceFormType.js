@@ -13,10 +13,21 @@ export const device = {
 
   export const defaultDevices = [
     { ...device, id: '1', name: 'Foco', type: 'foco' },
-    { ...device, id: '2', name: 'Cafetera', type: 'coffee' },
-    { ...device, id: '3', name: 'Bocinas', type: 'bocina' },
-    { ...device, id: '4', name: 'Tv', type: 'tv' },
-    { ...device, id: '5', name: 'Laptop', type: 'laptop' },
+    { ...device, id: '2', name: 'Aire', type: 'aire-acondicionado' },
+    { ...device, id: '3', name: 'Asistente', type: 'alexa' },
+    { ...device, id: '4', name: 'Camara', type: 'security-camara' },
+
+    { ...device, id: '5', name: 'Bocinas', type: 'bocina' },
+    { ...device, id: '6', name: 'Tv', type: 'tv' },
+    { ...device, id: '7', name: 'Laptop', type: 'laptop' },
+    { ...device, id: '8', name: 'Impresora', type: 'impresora' },
+    { ...device, id: '9', name: 'Consola', type: 'juego' },
+    { ...device, id: '10', name: 'Tableta', type: 'tablet' },
+
+    
+    { ...device, id: '11', name: 'Cafetera', type: 'cafe' },
+    { ...device, id: '12', name: 'Refrigerador', type: 'refrigerador' },
+    
   ];
 
 export default function DeviceFormType() {

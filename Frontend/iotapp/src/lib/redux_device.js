@@ -43,7 +43,7 @@ export const reducer = (state, action) => {
 const defaultDevices = [
   { id: '1', type: 'foco', name: 'Foco', state: 'DEVICE_INBOX' },
   { id: '2', type: 'laptop', name: 'Laptop', state: 'DEVICE_INBOX' },
-  { id: '3', type: 'coffee', name: 'Cafe', state: 'DEVICE_INBOX' },
+  { id: '3', type: 'cafe', name: 'Cafe', state: 'DEVICE_INBOX' },
   { id: '4', type: 'tv', name: 'TV', state: 'DEVICE_INBOX' },
   { id: '5', type: 'bocina', name: 'Bocina', state: 'DEVICE_INBOX' },
 ];

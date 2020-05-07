@@ -9,7 +9,7 @@ import { action } from '@storybook/addon-actions';
 export default function DeviceForm({ device_id, device_name, device_type  }) {
     
   return (
-    <div className="device-list">
+    <div className="device-complete-form">
         <DeviceFormName />
        
         <DeviceFormType />
