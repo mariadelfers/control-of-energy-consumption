@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { PureDeviceList } from './DeviceList';
-import { device, actions } from './Device.stories';
+import { device, actions } from './Room.stories';
 
 export const defaultDevices = [
   { ...device, id: '1', name: 'Foco', type: 'foco' },
