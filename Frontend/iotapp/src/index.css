@@ -11,6 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face{
+  font-family: 'Raleway';
+  src: url('fonts/Raleway/Raleway-Regular.ttf');
+}
+@font-face{
+  font-family: 'Roboto';
+  src: url('fonts/Roboto/Roboto-Regular.ttf');
+}
 /********************************* 
 *                                *
 *             A_P_P              *
@@ -27,6 +36,14 @@ code {
 *            DEVICE              *
 *                                *
 *********************************/
+.terms {
+  display: flex;
+}
+
+.terms > img {
+  margin: 0;
+}
+
 @keyframes glow {
   0%,
   100% {
@@ -37,29 +54,34 @@ code {
   }
 }
 .device-item {
-  background-image: linear-gradient(25deg, #295586, #34729f, #3d90b8, #46afd2);
-  /* border-right:   4px solid #253854; */
+ /* background-image: linear-gradient(25deg, #295586, #34729f, #3d90b8, #46afd2);
+  border-right:   4px solid #253854; */
   border-radius:  10px;
+  border: #000000;
   padding:        10px 10px;
-  margin:         10px;
-  display:       inline-block;
-  text-align:   center;
+  margin:         15px;
+  margin-top: 20px;
   box-shadow:   0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07),
                 0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
-  height:       80px;
-  width:        80px;
+  height:       60px;
+  width:        250px;
 }
 .device-item:hover {
   cursor:       pointer;
   background-image: linear-gradient(25deg, #3268a7, #4490c7, #53c2fa, #55d3fd);
 }
 .device-icon {
-  vertical-align: middle;
-  height:         40px;
-  width:          40px;
-  padding:        5%;
-  align-items:    center;
+  height:         50px;
+  width:          50px;
+  padding: 8px;
+}
+.device-item .device-name {
+  color:    rgb(187, 187, 187);
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 30px;
+  margin-left: 30px;
+  margin-top: 0.5px;
 }
 .device-icon.DEVICE_OFF {
   vertical-align: middle;
@@ -69,12 +91,6 @@ code {
   align-items:    center;
   opacity: 30%;
   filter: grayscale(100%);
-}
-.device-item .device-name {
-  color:    #ffffff;
-  font:      7px Tahoma, Geneva, sans-serif;
-  font-weight: 100;
-  text-align: center;
 }
 .device-item.DEVICE_OFF {
   background-image: linear-gradient(25deg, #193453, #254e6b, #245168, #2d6c81);
@@ -97,7 +113,7 @@ code {
 ******************************/
 .device-list{
   background:    #ffffff;
-  height: 400px;
+  height: 800px;
 }
 .loading-device {
   padding: 10px 10px;
@@ -176,12 +192,8 @@ code {
   background: rgb(255, 255, 255);
 }
 .screen-device nav {
-  background: #34729f;
+  background: #ffffff;
   padding: 1px;
-  text-align: left;
-  box-shadow:   0 3px 2px rgb(0, 0, 0),0 2px 4px rgba(0,0,0,0.07),
-                0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
-                0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(52, 115, 159, 0.635);
 }
 .screen-device .screen-title {
   line-height: 15px;
@@ -190,13 +202,19 @@ code {
   /* cursor: pointer; */ 
 }
 .screen-device .screen-message {
-  color: #ffffff; 
-  font-family: 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
+  color: #000000; 
+  font-family: 'Raleway', Fallback, sans-serif;
   font-size: 35px; 
   font-weight: 400; 
   letter-spacing: 1px; 
 }
-
+.screen-device .screen-place {
+  color: #006dff; 
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 25px; 
+  font-weight: 400; 
+  letter-spacing: 1px; 
+}
 /********************************* 
 *                                *
 *       FORM ADD DEVICE          *

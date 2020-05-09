@@ -21,6 +21,7 @@ export function PureDeviceScreen({ error }) {
       <nav>
         <h1 className="screen-title">
           <span className="screen-message">Dispositivos</span>
+          <span className="screen-place">   [ Sala de medios ]</span>
         </h1>
       </nav>
       <DeviceList />
