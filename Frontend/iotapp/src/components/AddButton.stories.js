@@ -5,12 +5,8 @@ import { withKnobs, text, boolean, number} from "@storybook/addon-knobs";
 import AddButton from './AddButton';
 
 export const addButton = {
-  id: '1',
-  type: 'otro',
-  name: 'Otro cuarto',
-  updatedAt: new Date(2018, 0, 1, 9, 0),
+   name: 'Nuevo cuarto',
 };
 
 storiesOf('Add Button', module)
-  .add('default', () => <AddButton addButton={{ ...addButton, name: text("Name device", "Test device"),
-    decorators: [withKnobs]}}/>)
+  .add('default', () => <AddButton addButton={{ ...addButton}} />)

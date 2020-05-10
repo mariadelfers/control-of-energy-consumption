@@ -44,6 +44,14 @@ code {
   margin: 0;
 }
 
+.terms2 {
+  display: flex;
+}
+
+.terms2 > p {
+  margin: 8px;
+}
+
 @keyframes glow {
   0%,
   100% {
@@ -66,6 +74,7 @@ code {
                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
   height:       60px;
   width:        250px;
+  position: -webkit-sticky;
 }
 .device-item:hover {
   cursor:       pointer;
@@ -77,11 +86,14 @@ code {
   padding: 8px;
 }
 .device-item .device-name {
-  color:    rgb(187, 187, 187);
+  color:    rgb(151, 151, 151);
   font-family: 'Raleway', Fallback, sans-serif;
   font-size: 30px;
   margin-left: 30px;
   margin-top: 0.5px;
+}
+.device-item.device-name:hover {
+  color: #000000;
 }
 .device-icon.DEVICE_OFF {
   vertical-align: middle;
@@ -113,6 +125,10 @@ code {
 ******************************/
 .device-list{
   background:    #ffffff;
+  height: 800px;
+}
+.room-list{
+  background:rgb(212, 212, 212);
   height: 800px;
 }
 .loading-device {
@@ -188,8 +204,11 @@ code {
   height: 400px;
 }
 .screen-device {
-  padding: 20px;
+  padding: 10px;
   background: rgb(255, 255, 255);
+  margin-top: 100px;
+  margin-left: 180px;
+  width: 800px;
 }
 .screen-device nav {
   background: #ffffff;
@@ -215,6 +234,50 @@ code {
   font-weight: 400; 
   letter-spacing: 1px; 
 }
+
+/******************************
+*        Screen room          *
+******************************/
+
+.screen-error-room {
+  padding: 20px;
+  background:#ffffff;
+  width: 1060px;
+  height: 400px;
+}
+.screen-room {
+  position: fixed;
+  top: 1px;
+  left: 1000px;
+  padding: 20px;
+  background: rgb(212, 212, 212);
+  width: 300px;
+}
+.screen-room nav {
+  background: rgb(212, 212, 212);
+  padding: 1px;
+}
+.screen-room .screen-title {
+  line-height: 15px;
+  padding-left: 20px;
+  
+  /* cursor: pointer; */ 
+}
+.screen-room .screen-message {
+  color: #000000; 
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 35px; 
+  font-weight: 400; 
+  letter-spacing: 1px; 
+}
+.screen-room .screen-place {
+  color: #006dff; 
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 25px; 
+  font-weight: 400; 
+  letter-spacing: 1px; 
+}
+
 /********************************* 
 *                                *
 *       FORM ADD DEVICE          *
@@ -262,10 +325,13 @@ code {
 
 /********************************* 
 *                                *
-*         CAROUSEL LIST          *
+*           COMPONENT            *
 *                                *
 *********************************/
-.device-complete-form{
-  height: 600px;
-  width: 400px;
+.device-component{
+ border-color: #e04141;
+ border-left: 40px;
+}
+.room-component{
+  
 }

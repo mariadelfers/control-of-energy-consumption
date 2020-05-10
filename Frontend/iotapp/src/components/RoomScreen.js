@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import RoomList from './RoomList';
 
-export function PureRoomsScreen({ error }) {
+export function PureRoomScreen({ error }) {
   if (error) {
     return (
       <div className="screen-error-device">
@@ -17,10 +17,10 @@ export function PureRoomsScreen({ error }) {
   }
 
   return (
-    <div className="screen-device">
+    <div className="screen-room">
       <nav>
         <h1 className="screen-title">
-          <span className="screen-message">Salas registradas</span>
+          <span className="screen-message">Salas</span>
         </h1>
       </nav>
       <RoomList />
@@ -28,12 +28,12 @@ export function PureRoomsScreen({ error }) {
   );
 }
 
-PureRoomsScreen.propTypes = {
+PureRoomScreen.propTypes = {
   error: PropTypes.string,
 };
 
-PureRoomsScreen.defaultProps = {
+PureRoomScreen.defaultProps = {
   error: null,
 };
 
-export default connect(({ error }) => ({ error }))(PureRoomsScreen);
+export default connect(({ error }) => ({ error }))(PureRoomScreen);

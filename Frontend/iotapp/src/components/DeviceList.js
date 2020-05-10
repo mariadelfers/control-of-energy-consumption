@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Device from './Device';
+import AddButton from './AddButton';
 import { connect } from 'react-redux';
 import { offDevice, disableDevice } from '../lib/redux_device';
 import { action } from '@storybook/addon-actions';
 
-export function PureDeviceList({ loading, devices, offDevice, disableDevice }) {
+export function PureDeviceList({ loading, devices, offDevice, disableDevice, addButton }) {
   const events = {
     offDevice,
     disableDevice,
@@ -46,12 +47,15 @@ export function PureDeviceList({ loading, devices, offDevice, disableDevice }) {
 
   return (
     <div className="device-list">
-        <div className="device-items">
+       
         {devicesInOrder.map(device => (
             <Device key={device.id} device={device} {...events} />
         ))}
-        </div>
+        <AddButton addButton={addButton} />
+        
+        
     </div>
+
   );
 }
 
