@@ -6,24 +6,38 @@ import { action } from '@storybook/addon-actions';
 
 export const addDevice = {
   id: '1',
-  type: 'Luces',
+  type: 'Sala',
   name: 'Foco',
   updatedAt: new Date(2018, 0, 1, 9, 0),
 };
 
 export const defaultDevices = [
-  { ...addDevice, id: '1', name: 'Luz', type: 'Luces' },
-  { ...addDevice, id: '2', name: 'TV', type: 'TV' },
-  { ...addDevice, id: '3', name: 'Juego', type: 'Consolas' },
-  { ...addDevice, id: '4', name: 'Bocina', type: 'Speaker' },
+  { ...addDevice, id: '1', name: 'Baña', type: 'bano' },
+  { ...addDevice, id: '2', name: 'Biblioteca', type: 'biblioteca' },
+  { ...addDevice, id: '3', name: 'Closet', type: 'closet' },
+  { ...addDevice, id: '4', name: 'Cocina', type: 'cocina' },
 ];
 
 export const defaultDevices2 = [
-  { ...addDevice, id: '1', name: 'Luz', type: 'Luces' },
-  { ...addDevice, id: '2', name: 'TV', type: 'TV' },
-  { ...addDevice, id: '3', name: 'Juego', type: 'Consolas' },
-  { ...addDevice, id: '4', name: 'Bocina', type: 'Speaker' },
+  { ...addDevice, id: '1', name: 'Comedor', type: 'comedor' },
+  { ...addDevice, id: '2', name: 'Cuarto', type: 'cuarto' },
+  { ...addDevice, id: '3', name: 'Escaleras', type: 'escaleras' },
+  { ...addDevice, id: '4', name: 'Escritorio', type: 'escritorio' },
 ];
+
+export const defaultDevices3 = [
+  { ...addDevice, id: '1', name: 'Estudio', type: 'estudio' },
+  { ...addDevice, id: '2', name: 'Gym', type: 'Home gym' },
+  { ...addDevice, id: '3', name: 'Hospital', type: 'hospital' },
+  { ...addDevice, id: '4', name: 'Jardín', type: 'jardin' },
+]
+
+export const defaultDevices4 = [
+  { ...addDevice, id: '1', name: 'Jardín trasero', type: 'jardintrasero' },
+  { ...addDevice, id: '2', name: 'Regadera', type: 'regadera' },
+  { ...addDevice, id: '3', name: 'Sala', type: 'sala' },
+  { ...addDevice, id: '4', name: 'Otro', type: 'otro' },
+]
 
 
 export default function AddButton({ addButton: name }) {
@@ -53,6 +67,8 @@ export default function AddButton({ addButton: name }) {
               </div>
               <PureAddDeviceList addDevices={defaultDevices}/>
               <PureAddDeviceList addDevices={defaultDevices2}/>
+              <PureAddDeviceList addDevices={defaultDevices3}/>
+              <PureAddDeviceList addDevices={defaultDevices4}/>
             </div>
 
             <div className="title-form-device">

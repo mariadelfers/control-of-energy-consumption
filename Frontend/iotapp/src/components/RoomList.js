@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Room from './Room';
 import { room } from './Room.stories';
-import AddButton from './AddButton';
+import AddButtonRoom from './AddButtonRoom';
 import { connect } from 'react-redux';
 import { action } from '@storybook/addon-actions';
 
-export function PureRoomList({ roomms, addButton }) {
+export function PureRoomList({ roomms, addButtonRoom }) {
 
   const rooms = [
     { ...room, id: '1', name: 'Sala', type: 'sala' },
@@ -32,7 +32,7 @@ export function PureRoomList({ roomms, addButton }) {
         {rooms.map(room => (
             <Room key={room.id} room={room} />
         ))}
-        <AddButton addButton={addButton} />
+        <AddButtonRoom addButtonRoom={addButtonRoom} />
         </div>
     </div>
   );
