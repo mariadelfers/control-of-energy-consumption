@@ -24,8 +24,8 @@ USE `IotDB` ;
 DROP TABLE IF EXISTS `IotDB`.`type` ;
 
 CREATE TABLE IF NOT EXISTS `IotDB`.`type` (
-  `idtype` INT NOT NULL,
-  `nametype` VARCHAR(45) NULL,
+  `id_type` INT NOT NULL,
+  `name_type` VARCHAR(45) NULL,
   PRIMARY KEY (`idtype`))
 ENGINE = InnoDB;
 
@@ -151,7 +151,7 @@ DROP TABLE IF EXISTS `IotDB`.`scenario` ;
 
 CREATE TABLE IF NOT EXISTS `IotDB`.`scenario` (
   `id_scenario` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `name_scenario` VARCHAR(45) NULL,
   PRIMARY KEY (`id_scenario`))
 ENGINE = InnoDB;
 

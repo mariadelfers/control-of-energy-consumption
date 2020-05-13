@@ -16,7 +16,9 @@ CORS(app)
 
 
 ############################
-# ADMINISTRADOR / USER     #
+#                          #
+#   ADMINISTRADOR / USER   #
+#                          #
 ############################
 
 
@@ -165,10 +167,13 @@ def ShowAll():
 
 
 ############################
+#                          #
 #        ESPACIOS          #       
+#                          #
 ############################
 
-'''>>>>    STAGE  <<<<'''
+
+#############################  STAGE   #################################
 
 @app.route("/insertStage", methods=['GET'])
 def InsertStage():
@@ -267,7 +272,7 @@ def ShowAllStage():
 
 	return jsonify(stage), 200
 
-'''>>>>   FLOOR   <<<<'''
+#############################  FLOOR   #################################
 
 @app.route("/insertFloor", methods=['GET'])
 def InsertFloor():
@@ -370,7 +375,7 @@ def ShowAllFloor():
 
 	return jsonify(floor), 200
 
-'''>>>>   Room   <<<<'''
+#############################  ROOM   #################################
 
 @app.route("/insertRoom", methods=['GET'])
 def InsertRoom():
@@ -479,7 +484,9 @@ def ShowAllRoom():
 
 
 ############################
-#      DISPOSITIVOS        #       
+#                          #
+#      DISPOSITIVOS        #
+#                          #       
 ############################
 
 @app.route("/insertProduct", methods=['GET'])
