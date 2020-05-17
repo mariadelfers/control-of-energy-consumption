@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
-import { action } from '@storybook/addon-actions';
 
 export default function Room({ room: { id, type, name} }) {
   let icon_type = JSON.stringify(type);

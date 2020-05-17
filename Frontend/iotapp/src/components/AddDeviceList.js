@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AddDevice from './AddDevice';
 import { connect } from 'react-redux';
-import { action } from '@storybook/addon-actions';
 
 export function PureAddDeviceList({addDevices}) {
 

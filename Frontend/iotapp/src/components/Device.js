@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, object } from '@storybook/addon-knobs/react';
 
 export default function Device({ device: { id, type, name, state }, offDevice, disabledDevice }) {
   let icon_type = JSON.stringify(type);

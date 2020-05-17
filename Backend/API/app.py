@@ -491,9 +491,10 @@ def InsertProduct():
 	mycursor = mydb.cursor()
 	name_device = request.args.get('name_device')
 	type_idtype = request.args.get('type_idtype')
+	status = '1'
 
 	try:
-		sql = "INSERT INTO device (name_device, status, type_idtype) VALUES (%s,1,%s,%s)"
+		sql = "INSERT INTO device (name_device, status, type_idtype) VALUES (%s,%s,%s)"
 		val = (name_device, status, type_idtype)
 		mycursor.execute(sql, val)
 	except mysql.connector.IntegrityError:
@@ -645,10 +646,8 @@ def ShowAllDevice():
 	device = {}
 	while row is not None:
 		id_device = {}
-		id_device["brand"] = row[2]
-		id_device["model"] = row[3]
-		id_device["x"] = row[9]
-		id_device["y"] = row[10]
+		id_device["name_device"] = row[1]
+		id_device["type_idtype"] = row[2]
 		device[row[0]] = id_device
 		row = mycursor.fetchone()
 
