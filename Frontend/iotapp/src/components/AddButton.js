@@ -2,35 +2,25 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
-import { PureAddDeviceList } from './AddDeviceList';
-
-
-export const addDevice = {
-  id: '1',
-  type: 'Luces',
-  name: 'Foco',
-  updatedAt: new Date(2018, 0, 1, 9, 0),
-};
-
-export const defaultDevices = [
-  { ...addDevice, id: '1', name: 'Luz', type: 'Luces' },
-  { ...addDevice, id: '2', name: 'TV', type: 'TV' },
-  { ...addDevice, id: '3', name: 'Juego', type: 'Consolas' },
-  { ...addDevice, id: '4', name: 'Bocina', type: 'Speaker' },
-];
+import AddDevice from './AddDevice';
 
 class GenerateDevice extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      type: '1'
+      type: ''
     };
     this.changeText = this.changeText.bind(this);
+    this.changeRadio = this.changeRadio.bind(this);
   }
 
   changeText(event) {
     this.setState({name: event.target.value});
+  }
+
+  changeRadio(event) {
+    this.setState({type: event.target.value});
   }
 
   createDevice(name, type) {
@@ -74,8 +64,24 @@ class GenerateDevice extends React.Component{
                     <p className="requirement">*</p>
                     <h1 className="label-form-device"> TIPO DE DISPOSITIVO </h1>
                   </div>
-                  <PureAddDeviceList addDevices={defaultDevices}/>
-                  
+
+                  <div>
+                  <input type="radio" value="1" checked={this.state.type === '1'} onChange={this.changeRadio}></input>
+                    <AddDevice addDevice={{id: '1',type: 'Luces', name: 'Luz'}}/>
+                  </div>
+                  <div>
+                  <input type="radio" value="2" checked={this.state.type === '2'} onChange={this.changeRadio}></input>
+                    <label>Bocina</label>
+                  </div>
+                  <div>
+                  <input type="radio" value="3" checked={this.state.type === '3'} onChange={this.changeRadio}></input>
+                    <label>Tv</label>
+                  </div>
+                  <div>
+                  <input type="radio" value="4" checked={this.state.type === '4'} onChange={this.changeRadio}></input>
+                    <label>Laptop</label>
+                  </div>
+
                 </div>
 
                 <div className="title-form-device">
@@ -91,7 +97,7 @@ class GenerateDevice extends React.Component{
                 
               </div>
               <div className="actions">
-                <button onClick={() => {this.createDevice(this.state.name)}} className="crear"> CREAR </button>
+                <button onClick={() => {this.createDevice(this.state.name, this.state.type)}} className="crear"> CREAR </button>
                 <div class="terms3">
                     <p className="requirementc">*</p>
                     <p className="campos">Campos obligatorios.</p>

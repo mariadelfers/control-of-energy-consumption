@@ -1,61 +1,49 @@
-import React from 'react';
+import React, {Component} from 'react';
+import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Device from './Device';
 import AddButton from './AddButton';
 import { connect } from 'react-redux';
 import { offDevice, disableDevice } from '../lib/redux_device';
-import { action } from '@storybook/addon-actions';
+
+class GenerateDeviceList extends React.Component{
+  
+  constructor(props){
+    super(props)
+    this.devices = {}
+  }
+  getDevices() {
+    fetch('http://localhost:5000/showAllDevice')
+      .then((response) => {
+        return response.json()
+      })
+      .then((devices) => {
+         devices = devices 
+      })  
+  }
+
+  render() {
+    return (
+      <div className="device-list">
+         <button onClick={this.getDevices} className="crear"> Get devices </button>
+        {/* {devices.map(device => (
+            <Device key={device.id} device={device} />
+        ))} */}
+        <AddButton addButton={{}} />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <GenerateDeviceList />,
+  document.getElementById('root')
+);
+
 
 export function PureDeviceList({ loading, devices, offDevice, disableDevice, addButton }) {
-  const events = {
-    offDevice,
-    disableDevice,
-  };
-
-  const LoadingRow = (
-    <div className="device-item-empty">
-      <span className="loading-device">
-        <span>Loading</span>
-      </span>
-    </div>
-  );
-
-  if (loading) {
-    return (
-      <div className="device-list">
-        {LoadingRow}{LoadingRow}{LoadingRow}
-        {LoadingRow}{LoadingRow}{LoadingRow}
-      </div>
-    );
-  }
-
-  if (devices.length === 0) {
-    return (
-      <div className="device-list">
-        <div className="empty-message">
-          <div className="title-message">No tienes dispositivos agregados</div>
-          <div className="subtitle-message" onClick={action("Clicked")}>¿Deseas agregar uno?</div>
-        </div>
-      </div>
-    );
-  }
-
-  const devicesInOrder = [
-    ...devices.filter(d => d.state === 'DEVICE_OFF'),
-    ...devices.filter(d => d.state !== 'DEVICE_OFF'),
-  ];
-
   return (
-    <div className="device-list">
-       
-        {devicesInOrder.map(device => (
-            <Device key={device.id} device={device} {...events} />
-        ))}
-        <AddButton addButton={addButton} />
-        
-        
-    </div>
-
+    <GenerateDeviceList />
   );
 }
 
