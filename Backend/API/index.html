@@ -94,7 +94,7 @@
     <script>
         function myFunction11() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertStage?id_stage=1&name=nameStage&user=mariaTest&admin=1';
+            const url='http://localhost:5000/insertStage?name=nameStage&user=mariaTest&admin=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
@@ -160,7 +160,7 @@
     <script>
         function myFunction21() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertFloor?id_floor=1&name=nameFloor&id_stage=1';
+            const url='http://localhost:5000/insertFloor?name=nameFloor&id_stage=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
@@ -226,7 +226,7 @@
     <script>
         function myFunction31() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertRoom?id_room=1&name=nameRoom&id_floor=1&id_scenario=1';
+            const url='http://localhost:5000/insertRoom?name=nameRoom&id_floor=1&id_scenario=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
@@ -293,7 +293,7 @@
     <script>
         function myFunction10() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertProduct?id_product=1&name=nameProduct&description=desproducto&os=system&id_device=1&status=1&brand=marca&model=modelo&x=1&y=1&id_room=1';
+            const url='http://localhost:5000/insertDevice?name_device=Laptop&id_room=1&type_idtype=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{

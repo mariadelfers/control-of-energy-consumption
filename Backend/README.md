@@ -49,7 +49,7 @@ Para obtener informacion de la API se debe de realizar una peticion GET hacia cu
 
 > Dispositvos
 
-###### /insertProduct?id_product=&name=&description=&os=&id_device=&status=&brand=&model=&x=&y=&id_room=
+###### /insertDevice?name_device=&id_room=&type_idtype=
 
 ###### /insertSensor?id_sensor=&type=&firmware=&clasification=&id_device=&status=&brand=&model=&x=&y=&id_room=
 
