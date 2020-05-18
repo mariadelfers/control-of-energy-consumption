@@ -7,31 +7,68 @@ import { connect } from 'react-redux';
 import { offDevice, disableDevice } from '../lib/redux_device';
 
 class GenerateDeviceList extends React.Component{
-  
-  constructor(props){
-    super(props)
-    this.devices = {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
   }
-  getDevices() {
-    fetch('http://localhost:5000/showAllDevice')
-      .then((response) => {
-        return response.json()
-      })
-      .then((devices) => {
-         devices = devices 
-      })  
+
+  componentDidMount() {
+    fetch("http://localhost:5000/showAllDevice")
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          items: result.items
+        });
+        console.log(result);
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
   }
 
   render() {
-    return (
-      <div className="device-list">
-         <button onClick={this.getDevices} className="crear"> Get devices </button>
-        {/* {devices.map(device => (
-            <Device key={device.id} device={device} />
-        ))} */}
-        <AddButton addButton={{}} />
-      </div>
-    );
+    const { error, isLoaded, items } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <ul>
+          {items.map(item => (
+            <li key={item.id}>
+              {item.name} {item.type}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    
+
+      // <div className="device-list">
+      //   <button onClick={this.getDevices} className="crear"> Get devices </button>    
+      //   <div>
+      //     {this.devices.map(d => (
+      //       <div key={d.id}>
+      //         <div>{d.name}</div>
+      //         <div>{d.type}</div>>
+      //       </div>
+      //     ))}
+      //   </div>
+      //   <div className="device-items">
+      //     <AddButton addButton={{}} />
+      //   </div>
+      // </div>
   }
 }
 

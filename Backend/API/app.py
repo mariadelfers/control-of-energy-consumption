@@ -643,12 +643,27 @@ def ShowAllDevice():
 	
 	row = mycursor.fetchone()
 	print(mycursor.rowcount,"record inserted.")
-	device = {}
+	items = {}
+	device = []
 	while row is not None:
 		id_device = {}
-		id_device["name_device"] = row[1]
-		id_device["type_idtype"] = row[2]
-		device[row[0]] = id_device
+		id_device["id"] = row[0]
+		id_device["name"] = row[1]
+		id_device["type"] = row[2]
+		device.append(id_device)
 		row = mycursor.fetchone()
 
-	return jsonify(device), 200
+	items["items"] = device
+	return jsonify(items), 200
+
+
+# row = mycursor.fetchone()
+# 	print(mycursor.rowcount,"record inserted.")
+# 	room = {}
+# 	while row is not None:
+# 		id_room = {}
+# 		id_room["name"] = row[1]
+# 		id_room["floor"] = row[2]
+# 		id_room["scenario"] = row[3]
+# 		room[row[0]] = id_room
+# 		row = mycursor.fetchone()
