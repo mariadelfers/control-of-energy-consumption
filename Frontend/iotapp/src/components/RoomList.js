@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
+import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Room from './Room';
 import { room } from './Room.stories';
@@ -6,35 +7,72 @@ import AddButtonRoom from './AddButtonRoom';
 import { connect } from 'react-redux';
 import { action } from '@storybook/addon-actions';
 
-export function PureRoomList({ roomms, addButtonRoom }) {
-
-  const rooms = [
-    { ...room, id: '1', name: 'Sala', type: 'sala' },
-    { ...room, id: '2', name: 'Baño', type: 'bano' },
-    { ...room, id: '3', name: 'Cocina', type: 'cocina' },
-    { ...room, id: '4', name: 'Mi cuarto', type: 'cuarto' },
-  ];
-
-  if (rooms.length === 0) {
-    return (
-      <div className="device-list">
-        <div className="empty-message">
-          <div className="title-message">No tienes dispositivos agregados</div>
-          <div lcassName="subtitle-message" onClick={action("Clicked")}>¿Deseas agregar uno?</div>
-        </div>
-      </div>
-    );
+class GenerateRoomList extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
   }
 
-  return (
-    <div className="room-list">
-        <div className="device-items">
-        {rooms.map(room => (
-            <Room key={room.id} room={room} />
-        ))}
-        <AddButtonRoom addButtonRoom={addButtonRoom} />
+  componentDidMount() {
+    fetch("http://localhost:5000/showAllRoom")
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          items: result.items
+        });
+        console.log(result);
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+  }
+
+  render() {
+    const { error, isLoaded, items } = this.state;
+
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } 
+    else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } 
+    else {
+
+      return (
+        <div className="room-list"> 
+          <div className="device-items">
+          {items.map(item => (
+              <Room room={item}/>
+            ))}
+            <AddButtonRoom addButtonRoom={{}} />
+          </div>
         </div>
-    </div>
+       
+      );
+
+    }
+  }
+}
+
+ReactDOM.render(
+  <GenerateRoomList />,
+  document.getElementById('root')
+);
+
+
+export function PureRoomList({ loading, devices, offDevice, disableDevice, addButton }) {
+  return (
+    <GenerateRoomList />
   );
 }
 

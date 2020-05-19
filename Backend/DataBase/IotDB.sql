@@ -38,8 +38,8 @@ DROP TABLE IF EXISTS `IotDB`.`device` ;
 CREATE TABLE IF NOT EXISTS `IotDB`.`device` (
   `id_device` INT NOT NULL AUTO_INCREMENT,
   `name_device` VARCHAR(45) NULL,
-  `status` TINYBLOB NOT NULL,
   `type_idtype` INT NOT NULL,
+  `status` TINYBLOB NOT NULL,
   PRIMARY KEY (`id_device`),
   CONSTRAINT `fk_device_type1`
     FOREIGN KEY (`type_idtype`)

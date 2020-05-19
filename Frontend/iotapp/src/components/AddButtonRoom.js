@@ -1,104 +1,192 @@
-import React from 'react';
+import React, {Component} from 'react';
+import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
 import { PureAddDeviceList } from './AddDeviceList';
 import { action } from '@storybook/addon-actions';
 
-export const addDevice = {
-  id: '1',
-  type: 'Sala',
-  name: 'Foco',
-  updatedAt: new Date(2018, 0, 1, 9, 0),
-};
+class GenerateRoom extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      type: ''
+    };
+    this.changeText = this.changeText.bind(this);
+    this.changeRadio = this.changeRadio.bind(this);
+  }
 
-export const defaultDevices = [
-  { ...addDevice, id: '1', name: 'Baña', type: 'bano' },
-  { ...addDevice, id: '2', name: 'Biblioteca', type: 'biblioteca' },
-  { ...addDevice, id: '3', name: 'Closet', type: 'closet' },
-  { ...addDevice, id: '4', name: 'Cocina', type: 'cocina' },
-];
+  changeText(event) {
+    this.setState({name: event.target.value});
+  }
 
-export const defaultDevices2 = [
-  { ...addDevice, id: '1', name: 'Comedor', type: 'comedor' },
-  { ...addDevice, id: '2', name: 'Cuarto', type: 'cuarto' },
-  { ...addDevice, id: '3', name: 'Escaleras', type: 'escaleras' },
-  { ...addDevice, id: '4', name: 'Escritorio', type: 'escritorio' },
-];
+  changeRadio(event) {
+    this.setState({type: event.target.value});
+  }
 
-export const defaultDevices3 = [
-  { ...addDevice, id: '1', name: 'Estudio', type: 'estudio' },
-  { ...addDevice, id: '2', name: 'Gym', type: 'Home gym' },
-  { ...addDevice, id: '3', name: 'Hospital', type: 'hospital' },
-  { ...addDevice, id: '4', name: 'Jardín', type: 'jardin' },
-]
+  createRoom(name, type) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = (e) => {
+      if (request.readyState !== 4) {
+        return;
+      }
+      if (request.status === 200) {
+        console.log('success', request.responseText);
+      } else {
+        console.warn('error');
+      }
+    };
+    request.open('GET', 'http://localhost:5000/insertRoom?name='+ name +'&id_scenario='+ type);
+    request.send();  
+  }
 
-export const defaultDevices4 = [
-  { ...addDevice, id: '1', name: 'Jardín trasero', type: 'jardintrasero' },
-  { ...addDevice, id: '2', name: 'Regadera', type: 'regadera' },
-  { ...addDevice, id: '3', name: 'Sala', type: 'sala' },
-  { ...addDevice, id: '4', name: 'Otro', type: 'otro' },
-]
+  render() {
+    return (
+      <div>
+        <Popup trigger={
+          <button className={`device-item`} >
+          <div class="terms">
+            <img className={`device-icon`} src={require('../icons/otro.png')} alt="Icon"/>
+            <h2 className="device-name"> Agregar </h2>
+          </div>
+        </button>
+        } modal>
+          {close => (
+            <div className="modal">
+              <a className="close" onClick={close}>
+                &times;
+              </a>           
+              <div className="header"> AÑADIR NUEVA SALA </div>
+              <div className="content">
+
+                <div className="title-form-device">
+                  <div class="terms3">
+                    <p className="requirement">*</p>
+                    <h1 className="label-form-device"> TIPO DE SALA </h1>
+                  </div>
+
+                  <div class="section over-hide z-bigger">
+                    <input class="checkbox" type="checkbox" name="general" id="general"></input>
+
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-1" 
+                            value="2" checked={this.state.type === "2"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-1">
+                            <img src={require('../icons/salas/bano.png')} alt="Icon"/>
+                            Baño
+                            </label>
+                            
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-2"
+                            value="3" checked={this.state.type === "3"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-2">
+                            <img src={require('../icons/salas/biblioteca.png')} alt="Icon"/>
+                            Biblioteca
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-3" 
+                            value="4" checked={this.state.type === "4"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-1">
+                            <img src={require('../icons/salas/cocina.png')} alt="Icon"/>
+                            Cocina
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-4"
+                            value="5" checked={this.state.type === "5"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-2">
+                            <img src={require('../icons/salas/comedor.png')} alt="Icon"/>
+                            Comedor
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-5"
+                            value="6" checked={this.state.type === "6"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-2">
+                            <img src={require('../icons/salas/cuarto.png')} alt="Icon"/>
+                            Cuarto
+                            </label>
 
 
-export default function AddButton({ addButton: name }) {
-  return (
-    <div>
+{/* 
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-6" 
+                    value="7" checked={this.state.type === "7"} onChange={this.changeRadio}></input>
+                    <label class="for-checkbox-tools" for="tool-1">
+                    <img src={require('../icons/salas/escaleras.png')} alt="Icon"/>
+                    Escaleras
+                    </label>
 
-    <Popup trigger={
-      <button className={`device-item`} >
-      <div class="terms">
-        <img className={`device-icon`} src={require('../icons/otro.png')} alt="Icon"/>
-        <h2 className="device-name"> {name} </h2>
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-7" 
+                    value="8" checked={this.state.type === "8"} onChange={this.changeRadio}></input>
+                    <label class="for-checkbox-tools" for="tool-1">
+                    <img src={require('../icons/salas/estudio.png')} alt="Icon"/>
+                    Estudio
+                    </label> */}
+
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-8" 
+                    value="9" checked={this.state.type === "9"} onChange={this.changeRadio}></input>
+                    <label class="for-checkbox-tools" for="tool-1">
+                    <img src={require('../icons/salas/gym.png')} alt="Icon"/>
+                    Gym
+                    </label>
+
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-9" 
+                    value="10" checked={this.state.type === "10"} onChange={this.changeRadio}></input>
+                    <label class="for-checkbox-tools" for="tool-1">
+                    <img src={require('../icons/salas/jardin.png')} alt="Icon"/>
+                    Jardín
+                    </label>
+
+                    <input class="checkbox-tools" type="radio" name="tools" id="tool-10" 
+                    value="11" checked={this.state.type === "11"} onChange={this.changeRadio}></input>
+                    <label class="for-checkbox-tools" for="tool-1">
+                    <img src={require('../icons/salas/sala.png')} alt="Icon"/>
+                    Sala
+                    </label>
+
+                  </div>		
+
+                </div>
+
+                <div className="title-form-device">
+                  <p></p><p></p>
+                  <div class="terms3">
+                    <p className="requirement">*</p>
+                    <h1 className="label-form-device">NOMBRE DE LA SALA</h1>
+                  </div>
+                </div>
+                <div>
+                  <input class="input-text-device" type="text" value={this.state.name} onChange={this.changeText}></input>
+                </div>
+                
+              </div>
+              <div className="actions">
+                <button onClick={() => {this.createRoom(this.state.name, this.state.type); close();}} className="crear"> CREAR </button>
+                <div class="terms3">
+                    <p className="requirementc">*</p>
+                    <p className="campos">Campos obligatorios.</p>
+                  </div>
+              </div>
+            </div>
+          )}
+        </Popup>
+
       </div>
-    </button>
-    } modal>
-      {close => (
-        <div className="modal">
-          <a className="close" onClick={close}>
-            &times;
-          </a>           
-          <div className="header"> AÑADIR NUEVO DISPOSITIVO </div>
-          <div className="content">
+    );
+  }
+}
 
-            <div className="title-form-device">
-              <div class="terms3">
-                <p className="requirement">*</p>
-                <h1 className="label-form-device"> TIPO DE DISPOSITIVO </h1>
-              </div>
-              <PureAddDeviceList addDevices={defaultDevices}/>
-              <PureAddDeviceList addDevices={defaultDevices2}/>
-              <PureAddDeviceList addDevices={defaultDevices3}/>
-              <PureAddDeviceList addDevices={defaultDevices4}/>
-            </div>
+ReactDOM.render(
+  <GenerateRoom />,
+  document.getElementById('root')
+);
 
-            <div className="title-form-device">
-              <p></p><p></p>
-              <div class="terms3">
-                <p className="requirement">*</p>
-                <h1 className="label-form-device">NOMBRE DEL DISPOSITIVO</h1>
-              </div>
-            </div>
-            <div>
-              <input class="input-text-device" type="text"></input>
-            </div>
-            
-          </div>
-          <div className="actions">
-            <button className="crear"> CREAR </button>
-            <div class="terms3">
-                <p className="requirementc">*</p>
-                <p className="campos">Campos obligatorios.</p>
-              </div>
-          </div>
-        </div>
-      )}
-    </Popup>
-    </div>
+
+export default function AddButtonRoom() {
+
+  return (
+    <GenerateRoom />
   );
 }
 
-AddButton.propTypes = {
-    addButton: PropTypes.shape({
+AddButtonRoom.propTypes = {
+    addButtonRoom: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }),
   };

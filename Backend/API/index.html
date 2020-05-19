@@ -226,7 +226,7 @@
     <script>
         function myFunction31() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertRoom?name=nameRoom&id_floor=1&id_scenario=1';
+            const url='http://localhost:5000/insertRoom?name=nameRoom&id_scenario=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
@@ -373,6 +373,19 @@
         function myFunction70() {
             const Http = new XMLHttpRequest();
             const url='http://localhost:5000/showAllDevice';
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange=(e)=>{
+                console.log(Http.responseText)
+            }
+        }
+    </script>
+
+    <button onclick="myFunction71()">Check type</button>
+    <script>
+        function myFunction71() {
+            const Http = new XMLHttpRequest();
+            const url='http://localhost:5000/checkType?id_type=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{

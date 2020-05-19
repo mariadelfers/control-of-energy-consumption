@@ -379,7 +379,7 @@ def InsertRoom():
 
 	mycursor = mydb.cursor()
 	name = request.args.get('name')
-	id_floor = request.args.get('id_floor')
+	id_floor = '1'
 	id_scenario = request.args.get('id_scenario')
 
 	try:
@@ -466,16 +466,18 @@ def ShowAllRoom():
 	
 	row = mycursor.fetchone()
 	print(mycursor.rowcount,"record inserted.")
-	room = {}
+	items = {}
+	room = []
 	while row is not None:
 		id_room = {}
+		id_room["id"] = row[0]
 		id_room["name"] = row[1]
-		id_room["floor"] = row[2]
-		id_room["scenario"] = row[3]
-		room[row[0]] = id_room
+		id_room["type"] = row[3]
+		room.append(id_room)
 		row = mycursor.fetchone()
 
-	return jsonify(room), 200
+	items["items"] = room
+	return jsonify(items), 200
 
 
 ############################
@@ -491,6 +493,7 @@ def InsertProduct():
 	mycursor = mydb.cursor()
 	name_device = request.args.get('name_device')
 	type_idtype = request.args.get('type_idtype')
+	id_room = request.args.get('id_room')
 	status = '1'
 
 	try:
@@ -499,6 +502,14 @@ def InsertProduct():
 		mycursor.execute(sql, val)
 	except mysql.connector.IntegrityError:
 		return "409"
+
+	# try:
+	# 	sql = "INSERT INTO device_has_room (device_id_device, room_id_room) VALUES (%s,%s)"
+	# 	val = (id_room)
+	# 	mycursor.execute(sql, val)
+	# except mysql.connector.IntegrityError:
+	# 	return "409"
+
 		
 	print("entro a insert")
 	mydb.commit()
@@ -656,14 +667,28 @@ def ShowAllDevice():
 	items["items"] = device
 	return jsonify(items), 200
 
+#################################
+#                               #
+#      TIPO DE DISPOSITIVO      #
+#                               #       
+#################################
+@app.route("/checkType", methods=['GET'])
+def CheckType():
 
-# row = mycursor.fetchone()
-# 	print(mycursor.rowcount,"record inserted.")
-# 	room = {}
-# 	while row is not None:
-# 		id_room = {}
-# 		id_room["name"] = row[1]
-# 		id_room["floor"] = row[2]
-# 		id_room["scenario"] = row[3]
-# 		room[row[0]] = id_room
-# 		row = mycursor.fetchone()
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	id_type = request.args.get('id_type')
+
+	val = (id_type,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT name_type FROM type WHERE id_type = %s;"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	type_device = {}
+	if row is not None:
+		type_device["type"] = row[0]
+
+	
+	return jsonify(type_device)

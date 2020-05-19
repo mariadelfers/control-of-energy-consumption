@@ -38,37 +38,28 @@ class GenerateDeviceList extends React.Component{
 
   render() {
     const { error, isLoaded, items } = this.state;
+
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    } 
+    else if (!isLoaded) {
       return <div>Loading...</div>;
-    } else {
-      return (
-        <ul>
-          {items.map(item => (
-            <li key={item.id}>
-              {item.name} {item.type}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    
+    } 
+    else {
 
-      // <div className="device-list">
-      //   <button onClick={this.getDevices} className="crear"> Get devices </button>    
-      //   <div>
-      //     {this.devices.map(d => (
-      //       <div key={d.id}>
-      //         <div>{d.name}</div>
-      //         <div>{d.type}</div>>
-      //       </div>
-      //     ))}
-      //   </div>
-      //   <div className="device-items">
-      //     <AddButton addButton={{}} />
-      //   </div>
-      // </div>
+      return (
+        <div className="device-list"> 
+          <div className="device-items">
+          {items.map(item => (
+              <Device device={item}/>
+            ))}
+            <AddButton addButton={{}} />
+          </div>
+        </div>
+       
+      );
+
+    }
   }
 }
 
