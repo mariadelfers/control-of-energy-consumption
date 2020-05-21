@@ -685,5 +685,46 @@ code {
   border-left: 40px;
  }
  .room-component{
-   
+
  }
+
+
+/*********************************** 
+*                                  *
+*             STATES               *
+*                                  *
+************************************/
+.error{
+  padding: 10px 5px;
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 25px;
+  text-align: center;
+}
+
+.error-icon {
+  height:         80px;
+  width:          80px;
+  padding:         8px;
+}
+
+.load{
+  padding: 10px 5px;
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 25px;
+  text-align: center;
+}
+.loader {
+  margin-left: 320px;
+  margin-bottom: 20px;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

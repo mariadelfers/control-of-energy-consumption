@@ -84,21 +84,21 @@ class GenerateRoom extends React.Component{
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-3" 
                             value="4" checked={this.state.type === "4"} onChange={this.changeRadio}></input>
-                            <label class="for-checkbox-tools" for="tool-1">
+                            <label class="for-checkbox-tools" for="tool-3">
                             <img src={require('../icons/salas/cocina.png')} alt="Icon"/>
                             Cocina
                             </label>
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-4"
                             value="5" checked={this.state.type === "5"} onChange={this.changeRadio}></input>
-                            <label class="for-checkbox-tools" for="tool-2">
+                            <label class="for-checkbox-tools" for="tool-4">
                             <img src={require('../icons/salas/comedor.png')} alt="Icon"/>
                             Comedor
                             </label>
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-5"
                             value="6" checked={this.state.type === "6"} onChange={this.changeRadio}></input>
-                            <label class="for-checkbox-tools" for="tool-2">
+                            <label class="for-checkbox-tools" for="tool-5">
                             <img src={require('../icons/salas/cuarto.png')} alt="Icon"/>
                             Cuarto
                             </label>
@@ -121,21 +121,21 @@ class GenerateRoom extends React.Component{
 
                     <input class="checkbox-tools" type="radio" name="tools" id="tool-8" 
                     value="9" checked={this.state.type === "9"} onChange={this.changeRadio}></input>
-                    <label class="for-checkbox-tools" for="tool-1">
+                    <label class="for-checkbox-tools" for="tool-8">
                     <img src={require('../icons/salas/gym.png')} alt="Icon"/>
                     Gym
                     </label>
 
                     <input class="checkbox-tools" type="radio" name="tools" id="tool-9" 
                     value="10" checked={this.state.type === "10"} onChange={this.changeRadio}></input>
-                    <label class="for-checkbox-tools" for="tool-1">
+                    <label class="for-checkbox-tools" for="tool-9">
                     <img src={require('../icons/salas/jardin.png')} alt="Icon"/>
                     Jardín
                     </label>
 
                     <input class="checkbox-tools" type="radio" name="tools" id="tool-10" 
                     value="11" checked={this.state.type === "11"} onChange={this.changeRadio}></input>
-                    <label class="for-checkbox-tools" for="tool-1">
+                    <label class="for-checkbox-tools" for="tool-10">
                     <img src={require('../icons/salas/sala.png')} alt="Icon"/>
                     Sala
                     </label>

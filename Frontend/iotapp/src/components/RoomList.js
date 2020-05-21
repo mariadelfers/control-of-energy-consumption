@@ -41,7 +41,8 @@ class GenerateRoomList extends React.Component{
     const { error, isLoaded, items } = this.state;
 
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div className="Error">Error: Sin conexión</div>;
+      
     } 
     else if (!isLoaded) {
       return <div>Loading...</div>;

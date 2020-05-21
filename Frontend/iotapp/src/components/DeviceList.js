@@ -40,10 +40,17 @@ class GenerateDeviceList extends React.Component{
     const { error, isLoaded, items } = this.state;
 
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div className="error">
+        <img className="error-icon" src={require('../icons/sadface.png')} alt="Icon"/>
+        <br></br>Error 
+        <br></br>Sin conexión
+        </div>;
     } 
     else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div className="load">
+        <div class="loader"></div>
+        Cargando...
+        </div>;
     } 
     else {
 
