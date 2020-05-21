@@ -83,14 +83,14 @@ class GenerateDevice extends React.Component{
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-3"
                             value="3" checked={this.state.type === "3"} onChange={this.changeRadio}></input>
-                            <label class="for-checkbox-tools" for="tool-2">
+                            <label class="for-checkbox-tools" for="tool-3">
                             <img src={require('../icons/dispositivos/Luz.png')} alt="Icon"/>
                             Luz
                             </label>
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-4"
                             value="4" checked={this.state.type === "4"} onChange={this.changeRadio}></input>
-                            <label class="for-checkbox-tools" for="tool-2">
+                            <label class="for-checkbox-tools" for="tool-4">
                             <img src={require('../icons/dispositivos/TV.png')} alt="Icon"/>
                             Televisión
                             </label>

@@ -6,23 +6,21 @@ INSERT INTO admin (id_admin, name, email, password) VALUES(1,"nombre_admin_test"
 
 -- SCENARIO ROOMS
 INSERT INTO `scenario` (`name_scenario`) VALUES
+('Otro'),
 ('Bano'),
-('Sala'),
-('Comedor'),
-('Estudio'),
-('Jardin'),
-('Cuarto'),
+('Biblioteca'),
 ('Cocina'),
-('Otro');
+('Comedor'),
+('Cuarto'),
+('Gym'),
+('Jardín'),
+('Sala');
 -- TYPE DEVICES
 INSERT INTO `type` (`name_type`) VALUES
-('Luz'),
 ('Bocina'),
+('Consola'),
+('Luz'),
 ('Tv'),
-('Laptop'),
-('Refrigerador'),
-('Microondas'),
-('Lavadora'),
 ('Otro');
 
 -- STAGE
