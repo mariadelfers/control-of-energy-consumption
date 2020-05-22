@@ -25,10 +25,8 @@ INSERT INTO `type` (`name_type`) VALUES
 
 -- STAGE
 INSERT INTO stage (name, admin_id_admin) VALUES("Default stage", 1);
---FLOOR
-INSERT INTO floor (name, stage_id_stage) VALUES("Default floor", 1);
 -- ROOM
-INSERT INTO room (name, floor_id_floor, scenario_id_scenario) VALUES("Default room", 1, 1);
+INSERT INTO room (name, scenario_id_scenario, stage_id_stage) VALUES("Default room", 1, 1);
 
 
 

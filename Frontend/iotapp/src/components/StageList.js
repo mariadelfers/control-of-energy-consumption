@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
-import Room from './Room';
-import { room } from './Room.stories';
-import AddButtonRoom from './AddRoom';
+import Stage from './Stage';
 import { connect } from 'react-redux';
-import { action } from '@storybook/addon-actions';
 
-class GenerateRoomList extends React.Component{
+class GenerateStageList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +15,7 @@ class GenerateRoomList extends React.Component{
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/showAllRoom")
+    fetch("http://localhost:5000/showAllStage")
     .then(res => res.json())
     .then(
       (result) => {
@@ -41,21 +38,20 @@ class GenerateRoomList extends React.Component{
     const { error, isLoaded, items } = this.state;
 
     if (error) {
-      return <div className="Error">Error</div>;
+      return <div className="error">Error</div>;
       
     } 
     else if (!isLoaded) {
-      return <div>Cargando cuartos...</div>;
+      return <div className="load">Cargando espacios...</div>;
     } 
     else {
 
       return (
-        <div className="room-list"> 
-          <div className="device-items">
+        <div className="stage-list"> 
+          <div className="stage-items">
           {items.map(item => (
-              <Room room={item}/>
+              <Stage stage={item}/>
             ))}
-            <AddButtonRoom addButtonRoom={{}} />
           </div>
         </div>
        
@@ -66,28 +62,28 @@ class GenerateRoomList extends React.Component{
 }
 
 ReactDOM.render(
-  <GenerateRoomList />,
+  <GenerateStageList />,
   document.getElementById('root')
 );
 
 
-export function PureRoomList({ loading, devices, offDevice, disableDevice, addButton }) {
+export function PureStageList() {
   return (
-    <GenerateRoomList />
+    <GenerateStageList />
   );
 }
 
-PureRoomList.propTypes = {
-    rooms: PropTypes.arrayOf(Room.propTypes.room).isRequired,
+PureStageList.propTypes = {
+    stages: PropTypes.arrayOf(Stage.propTypes.stage).isRequired,
   };
   
-  PureRoomList.defaultProps = {
+  PureStageList.defaultProps = {
     loading: false,
   };
   
   export default connect(
-    ({ rooms }) => ({
-      rooms: rooms,
+    ({ stages }) => ({
+      stages: stages,
     }),
 
-  )(PureRoomList);
+  )(PureStageList);

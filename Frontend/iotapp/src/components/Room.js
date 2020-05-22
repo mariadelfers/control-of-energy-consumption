@@ -112,6 +112,7 @@ export default function Room({ room: { id, type, name} }) {
       <div class="terms">
         <img className={`device-icon`} src={require('../icons/salas/'+ icon_type +'.png')} alt="Icon"/>
         <h2 className="device-name"> {name} </h2>
+        <h2 className="device-count"> Dispositivos </h2>
       </div>
     </button>
     } modal>

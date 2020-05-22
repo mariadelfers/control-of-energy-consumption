@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Device from './Device';
-import AddButton from './AddButton';
+import AddButton from './AddDevice';
 import { connect } from 'react-redux';
 import { offDevice, disableDevice } from '../lib/redux_device';
 
@@ -49,7 +49,7 @@ class GenerateDeviceList extends React.Component{
     else if (!isLoaded) {
       return <div className="load">
         <div class="loader"></div>
-        Cargando...
+        Cargando dispositivos
         </div>;
     } 
     else {

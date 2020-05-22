@@ -21,8 +21,8 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertUser`
 (IN username VARCHAR(20), IN name VARCHAR(45), IN email VARCHAR(45), IN encriptado VARCHAR(255), admin VARCHAR(20))
 INSERT INTO user 
-(username, name, email, password, status, date_register, date_unsubscribe, admin_id_admin) 
-VALUES(username, name, email, encriptado, TRUE, NULL, NULL, admin) ;;
+(username, name, email, password, status, admin_id_admin) 
+VALUES(username, name, email, encriptado, TRUE, admin) ;;
 DELIMITER ;;
 
 --Mostrar todos los usuarios
