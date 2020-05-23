@@ -48,11 +48,11 @@ class GenerateStageList extends React.Component{
 
       return (
         <div className="stage-list"> 
-          <div className="stage-items">
+        
           {items.map(item => (
               <Stage stage={item}/>
             ))}
-          </div>
+        
         </div>
        
       );

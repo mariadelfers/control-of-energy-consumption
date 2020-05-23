@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import DeviceList from './DeviceList';
 
-export function PureDeviceScreen({ error }) {
+export function PureDeviceScreen({ error, room }) {
+  var id_room = JSON.stringify(room)
+  var str_room = id_room.toString(id_room);
+  str_room =  str_room.substring(8, str_room.length-1);
   if (error) {
     return (
       <div className="screen-error-device">
@@ -21,10 +24,10 @@ export function PureDeviceScreen({ error }) {
       <nav>
         <h1 className="screen-title">
           <span className="screen-message">Dispositivos</span>
-          <span className="screen-place">   [ Sala de medios ]</span>
+          <span className="screen-place">{str_room} [ Sala de medios ]</span>
         </h1>
       </nav>
-      <DeviceList />
+      <DeviceList room={str_room}/>
     </div>
   );
 }

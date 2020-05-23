@@ -2,15 +2,14 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
-import { PureAddDeviceList } from './AddDeviceList';
-import { action } from '@storybook/addon-actions';
 
 class GenerateRoom extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      type: ''
+      type: '',
+      stage: '1'
     };
     this.changeText = this.changeText.bind(this);
     this.changeRadio = this.changeRadio.bind(this);
@@ -24,7 +23,7 @@ class GenerateRoom extends React.Component{
     this.setState({type: event.target.value});
   }
 
-  createRoom(name, type) {
+  createRoom(name, type, stage) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
       if (request.readyState !== 4) {
@@ -36,7 +35,7 @@ class GenerateRoom extends React.Component{
         console.warn('error');
       }
     };
-    request.open('GET', 'http://localhost:5000/insertRoom?name='+ name +'&id_scenario='+ type);
+    request.open('GET', 'http://localhost:5000/insertRoom?name='+ name +'&id_scenario='+ type +'&id_stage='+ stage);
     request.send();  
   }
 
@@ -157,7 +156,7 @@ class GenerateRoom extends React.Component{
                 
               </div>
               <div className="actions">
-                <button onClick={() => {this.createRoom(this.state.name, this.state.type); close();}} className="crear"> CREAR </button>
+                <button onClick={() => {this.createRoom(this.state.name, this.state.type, this.state.stage); close();}} className="crear"> CREAR </button>
                 <div class="terms3">
                     <p className="requirementc">*</p>
                     <p className="campos">Campos obligatorios.</p>

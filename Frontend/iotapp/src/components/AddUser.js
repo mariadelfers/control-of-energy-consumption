@@ -42,7 +42,6 @@ class GenerateUser extends React.Component{
         <Popup trigger={
             <button >
                 <img className={`device-icon`} src={require('../icons/otro.png')} alt="Icon"/>
-                <h2 className="device-name"> Agregar usuario</h2>
             </button>
         } modal>
           {close => (

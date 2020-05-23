@@ -9,7 +9,8 @@ class GenerateDevice extends React.Component{
     super(props);
     this.state = {
       name: '',
-      type: ''
+      type: '',
+      room: '1'
     };
     this.changeText = this.changeText.bind(this);
     this.changeRadio = this.changeRadio.bind(this);
@@ -23,7 +24,7 @@ class GenerateDevice extends React.Component{
     this.setState({type: event.target.value});
   }
 
-  createDevice(name, type) {
+  createDevice(name, type, room) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
       if (request.readyState !== 4) {
@@ -33,9 +34,9 @@ class GenerateDevice extends React.Component{
         console.log('success', request.responseText);
       } else {
         console.warn('error');
-      }
+      } 
     };
-    request.open('GET', 'http://localhost:5000/insertDevice?name_device='+ name +'&id_room=1&type_idtype='+ type);
+    request.open('GET', 'http://localhost:5000/insertDevice?name_device='+name+'&id_room='+room+'&type_idtype='+type);
     request.send();  
   }
 
@@ -111,7 +112,7 @@ class GenerateDevice extends React.Component{
                 
               </div>
               <div className="actions">
-                <button onClick={() => {this.createDevice(this.state.name, this.state.type);  close();}} className="crear"> CREAR </button>
+                <button onClick={() => {this.createDevice(this.state.name, this.state.type, this.state.room);  close();}} className="crear"> CREAR </button>
                 <div class="terms3">
                     <p className="requirementc">*</p>
                     <p className="campos">Campos obligatorios.</p>

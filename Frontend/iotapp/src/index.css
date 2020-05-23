@@ -86,7 +86,10 @@ code {
 }
 .device-item:hover {
   cursor:       pointer;
-  background-image: linear-gradient(25deg, #3268a7, #4490c7, #53c2fa, #55d3fd);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-width: 3px;
+  border-color: #8a8a8a;
+  border-style: solid;
 }
 .device-icon {
   height:         50px;
@@ -96,14 +99,17 @@ code {
 .device-item .device-name {
   color:    rgb(151, 151, 151);
   font-family: 'Raleway', Fallback, sans-serif;
-  font-size: 30px;
-  margin-left: 30px;
+  font-size: 25px;
+  margin-left: 10px;
   margin-top: 0.5px;
 }
-.device-item .device-count{
+.device-count{
   color: #006dff; 
   font-family: 'Raleway', Fallback, sans-serif;
   font-size: 15px;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flexbox;
 }
 .device-item.device-name:hover {
   color: #000000;
@@ -139,6 +145,7 @@ code {
 .device-list{
   background:    #ffffff;
   height: 800px;
+  display: flex;
 }
 .room-list{
   background:rgb(212, 212, 212);
@@ -264,7 +271,7 @@ code {
   left: 1000px;
   padding: 20px;
   background: rgb(212, 212, 212);
-  width: 300px;
+  width: 322px;
 }
 .screen-room nav {
   background: rgb(212, 212, 212);
@@ -799,7 +806,7 @@ code {
                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
   height:       80px;
   width:        250px;
-  position: -webkit-stick
+
 }
 .stage-name{
   padding: 10px;
@@ -819,4 +826,5 @@ code {
 .stage-list{
   margin-left: 200px;
   height: 150px;
+  display: flex;
 }

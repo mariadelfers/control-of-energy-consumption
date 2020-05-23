@@ -14,7 +14,7 @@ export default function Homepage({ user: { id, type } }) {
       <div>
             <Profile user={{id: "1", type: "1", name: "Fer"}} />
             <StageList />          
-            <DeviceScreen />
+            <DeviceScreen room={{room:'1'}}/>
             <RoomScreen />
       </div>
   

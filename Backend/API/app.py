@@ -255,20 +255,21 @@ def ShowAllStage():
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
 
-	#mycursor.callproc('showUser')
 	sql = "SELECT * FROM stage"
 	mycursor.execute(sql)
-	
 	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
-	stage = {}
+	
+	items = {}
+	stage = []
 	while row is not None:
 		id_stage = {}
+		id_stage["id"] = row[0]
 		id_stage["name"] = row[1]
-		stage[row[0]] = id_stage
+		stage.append(id_stage)
 		row = mycursor.fetchone()
 
-	return jsonify(stage), 200
+	items["items"] = stage
+	return jsonify(items), 200
 
 
 #############################  ROOM   #################################
@@ -369,13 +370,37 @@ def ShowAllRoom():
 		id_room = {}
 		id_room["id"] = row[0]
 		id_room["name"] = row[1]
-		id_room["type"] = row[3]
+		id_room["type"] = row[2]
 		room.append(id_room)
 		row = mycursor.fetchone()
 
 	items["items"] = room
 	return jsonify(items), 200
 
+@app.route("/countDevices", methods=['GET'])
+def CountDevices():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	id_room = request.args.get('id_room')
+
+	val = (id_room,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT count(*) FROM device WHERE room_id_room = %s"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	items = {}
+	room = []
+
+	while row is not None:
+		id_room = {}
+		id_room["count"] = row[0]
+		room.append(id_room)
+		row = mycursor.fetchone()
+
+	items["items"] = room
+	return jsonify(items), 200
 
 ############################
 #                          #
@@ -472,12 +497,12 @@ def ShowAllDevice():
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
 
-	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM device WHERE status = 1"
-	mycursor.execute(sql)
+	id_room = request.args.get('id_room')
+	val = (id_room,)
+	sql = "SELECT * FROM device WHERE status = 1 AND room_id_room = %s"
+	mycursor.execute(sql,val)
 	
 	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
 	items = {}
 	device = []
 	while row is not None:

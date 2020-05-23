@@ -7,17 +7,28 @@ import { connect } from 'react-redux';
 import { offDevice, disableDevice } from '../lib/redux_device';
 
 class GenerateDeviceList extends React.Component{
+  
+
   constructor(props) {
     super(props);
     this.state = {
+      id_room: '',
       error: null,
       isLoaded: false,
       items: []
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      id_room: props.room, 
+    };
+  }
+
   componentDidMount() {
-    fetch("http://localhost:5000/showAllDevice")
+    var id_room = JSON.stringify(this.state.id_room)
+
+    fetch("http://localhost:5000/showAllDevice?id_room=" + id_room)
     .then(res => res.json())
     .then(
       (result) => {
@@ -76,13 +87,14 @@ ReactDOM.render(
 );
 
 
-export function PureDeviceList({ loading, devices, offDevice, disableDevice, addButton }) {
+export function PureDeviceList({ room, loading, devices, offDevice, disableDevice, addButton }) {
   return (
-    <GenerateDeviceList />
+    <GenerateDeviceList room={room}/>
   );
 }
 
 PureDeviceList.propTypes = {
+    room: PropTypes.string.isRequired,
     loading: PropTypes.bool,
     devices: PropTypes.arrayOf(Device.propTypes.device).isRequired,
     offDevice: PropTypes.func.isRequired,

@@ -220,6 +220,19 @@
         }
     </script>
 
+     <button onclick="myFunction36()">Contar</button>
+    <script>
+        function myFunction36() {
+            const Http = new XMLHttpRequest();
+            const url='http://localhost:5000/countDevices?id_room=1';
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange=(e)=>{
+                console.log(Http.responseText)
+            }
+        }
+    </script>
+
 
     <!-- DISPOSITIVOS -->
     <h1>Dispositivos</h1>
@@ -280,7 +293,7 @@
     <script>
         function myFunction70() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/showAllDevice';
+            const url='http://localhost:5000/showAllDevice?id_room=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
