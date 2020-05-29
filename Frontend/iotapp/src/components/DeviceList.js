@@ -12,7 +12,7 @@ class GenerateDeviceList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      id_room: '',
+      id: '',
       error: null,
       isLoaded: false,
       items: []
@@ -21,14 +21,13 @@ class GenerateDeviceList extends React.Component{
 
   static getDerivedStateFromProps(props, state) {
     return {
-      id_room: props.room, 
+      id: props.id_room, 
     };
   }
 
   componentDidMount() {
-    var id_room = JSON.stringify(this.state.id_room)
-
-    fetch("http://localhost:5000/showAllDevice?id_room=" + id_room)
+    console.log("[1] id room: " + this.state.id);
+    fetch("http://localhost:5000/showAllDevice?id_room=1" + this.state.id)
     .then(res => res.json())
     .then(
       (result) => {
@@ -89,7 +88,10 @@ ReactDOM.render(
 
 export function PureDeviceList({ room, loading, devices, offDevice, disableDevice, addButton }) {
   return (
-    <GenerateDeviceList room={room}/>
+    <div>
+      <GenerateDeviceList id_room={room}/>
+    </div>
+    
   );
 }
 

@@ -122,47 +122,55 @@ def Modify():
 	return "", 200
 
 #Dado un username
-@app.route("/search", methods=['GET'])
+@app.route("/searchAdmin", methods=['GET'])
 def Search():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	username = request.args.get('username')
+	id_admin = request.args.get('id_admin')
 
-	val = (username,)
+	val = (id_admin,)
 	#mycursor.callproc('buscarUser', val)
-	sql = "SELECT username, name, email FROM user WHERE username = %s;"
+	sql = "SELECT name, email FROM admin WHERE id_admin = %s;"
 	mycursor.execute(sql, val)
 	row = mycursor.fetchone()
-	username = {}
-	if row is not None:
-		username["name"] = row[1]
-		username["email"] = row[2]
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(username)
+	items = {}
+	admin = []
+	while row is not None:
+		id_admin = {}
+		id_admin["name"] = row[1]
+		id_admin["email"] = row[2]
+		admin.append(id_admin)
+		row = mycursor.fetchone()
+
+	items["items"] = admin
+	return jsonify(items), 200
 
 @app.route("/showAllUser", methods=['GET'])
 def ShowAll():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
+	id_admin = request.args.get('id_admin')
 
-	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM user WHERE status = true"
-	mycursor.execute(sql)
-	
+	val = (id_admin,)
+	#mycursor.callproc('buscarUser', val)
+	sql = "SELECT name, email FROM user WHERE admin_id_admin = %s;"
+	mycursor.execute(sql, val)
 	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
-	user = {}
+
+	items = {}
+	admin = []
 	while row is not None:
-		username = {}
-		username["name"] = row[1]
-		username["email"] = row[2]
-		user[row[0]] = username
+		id_admin = {}
+		id_admin["name"] = row[1]
+		id_admin["email"] = row[2]
+		admin.append(id_admin)
 		row = mycursor.fetchone()
 
-	return jsonify(user), 200
+	items["items"] = admin
+	return jsonify(items), 200
 
 
 ############################
@@ -395,12 +403,32 @@ def CountDevices():
 
 	while row is not None:
 		id_room = {}
-		id_room["count"] = row[0]
+		id_room[""] = row[0]
 		room.append(id_room)
 		row = mycursor.fetchone()
 
 	items["items"] = room
 	return jsonify(items), 200
+
+@app.route("/getNameRoom", methods=['GET'])
+def GetNameRoom():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	id_room = request.args.get('id_room')
+
+	val = (id_room,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT name FROM room WHERE id_room = %s"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	while row is not None:
+		id_room = {}
+		id_room["name"] = row[0]
+		row = mycursor.fetchone()
+
+	return jsonify(id_room), 200
 
 ############################
 #                          #

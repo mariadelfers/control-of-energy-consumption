@@ -4,10 +4,34 @@ import { connect } from 'react-redux';
 
 import DeviceList from './DeviceList';
 
+function getName(id){
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = (e) => {
+    if (request.readyState !== 4) {
+      return;
+    }
+    if (request.status === 200) {
+      console.log('[*]', request.responseText);
+      var device_name = request.responseText;
+      device_name = JSON.stringify(device_name);
+      device_name = device_name.toString(device_name);
+      device_name = device_name.substring(13, device_name.length-6);
+      var i = document.getElementById("name");
+      i.insertAdjacentHTML("afterbegin",
+      "<span> [ " + device_name + " ]</span>");
+    } else {
+      console.warn('error');
+    }
+  };
+  request.open('GET', 'http://localhost:5000/getNameRoom?id_room=1');
+  request.send(); 
+}
+
 export function PureDeviceScreen({ error, room }) {
   var id_room = JSON.stringify(room)
   var str_room = id_room.toString(id_room);
   str_room =  str_room.substring(8, str_room.length-1);
+
   if (error) {
     return (
       <div className="screen-error-device">
@@ -24,7 +48,8 @@ export function PureDeviceScreen({ error, room }) {
       <nav>
         <h1 className="screen-title">
           <span className="screen-message">Dispositivos</span>
-          <span className="screen-place">{str_room} [ Sala de medios ]</span>
+          {getName(str_room)}
+          <span className="screen-place" id="name"></span>
         </h1>
       </nav>
       <DeviceList room={str_room}/>

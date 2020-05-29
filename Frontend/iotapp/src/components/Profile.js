@@ -1,26 +1,47 @@
-import React from 'react';
+import React, {Component} from 'react';
+import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import AddUser from './AddUser';
 
-export default function Profile({ user: { id, type, name} }) {
+class ProfileComponent extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: []
+    };
+  }
 
-  return (
-    <div className="profile">
-        <div className="photo">
+  render() {
+    return (
+      <div>
+        <div className="profile">
+          <div className="photo">
             <img className="icon-photo" src={require('../icons/foto.png')} alt="Icon"/>
-        </div>
-        <div className="profile-name"> 
-            {name} 
+          </div>
+          <div className="profile-name"> 
+            Name 
             <p>Correo electronico</p>
-        </div>
-        <div>
+          </div>
+          <div>
             <img className="icon-decor" src={require('../icons/decor.png')} alt="Icon"/>
-        </div>
-        <div className="profile-users">
+          </div>
+          <div className="profile-users">
             Usuarios
+          </div>
+          <AddUser /> 
         </div>
-        <AddUser /> 
-    </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <ProfileComponent />,
+  document.getElementById('root')
+);
+export default function Profile({ user: { id, type, name} }) {
+  return (
+    <ProfileComponent />
   );
 }
 

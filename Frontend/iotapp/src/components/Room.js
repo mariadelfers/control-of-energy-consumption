@@ -132,7 +132,7 @@ class RoomComponent extends React.Component{
               </div>
               <div className="actions">
                 <button className="eliminar" onClick={() => { this.deleteRoom(); close();}}> Eliminar </button>
-                <button className="modificar" onClick={close}> Modificar </button>
+                <button className="ver" onClick={close}> Ver dispositivos </button>
               </div>
             </div>
           )}

@@ -452,6 +452,21 @@ code {
   cursor: pointer;
   margin-left: 350px;
 }
+.ver{
+  background: #006dff;
+  color: #ffffff;
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 17px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 25px;
+  padding-left: 25px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 300px;
+}
 /********************************* 
 *                                *
 *           ADD DEVICE           *

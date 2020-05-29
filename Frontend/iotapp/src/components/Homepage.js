@@ -12,7 +12,7 @@ export default function Homepage({ user: { id, type } }) {
   
     return (
       <div>
-            <Profile user={{id: "1", type: "1", name: "Fer"}} />
+            <Profile user={{id: "1"}} />
             <StageList />          
             <DeviceScreen room={{room:'1'}}/>
             <RoomScreen />
