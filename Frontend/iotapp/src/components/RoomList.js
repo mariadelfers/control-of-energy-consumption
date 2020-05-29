@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Room from './Room';
-import { room } from './Room.stories';
-import AddButtonRoom from './AddRoom';
 import { connect } from 'react-redux';
-import { action } from '@storybook/addon-actions';
 
 class GenerateRoomList extends React.Component{
   constructor(props) {
@@ -55,7 +52,6 @@ class GenerateRoomList extends React.Component{
           {items.map(item => (
               <Room room={item}/>
             ))}
-            <AddButtonRoom addButtonRoom={{}} />
           </div>
         </div>
        

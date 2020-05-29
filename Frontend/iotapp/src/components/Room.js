@@ -106,10 +106,10 @@ class RoomComponent extends React.Component{
         <div>
 
         <Popup trigger={
-          <button className={`device-item`} >
+          <button className={`room-item`} >
           <div class="terms">
-            <img className={`device-icon`} src={require('../icons/salas/'+ this.getType() +'.png')} alt="Icon"/>
-            <h2 className="device-name">{this.state.name}
+            <img className={`room-icon`} src={require('../icons/salas/'+ this.getType() +'.png')} alt="Icon"/>
+            <h2 className="room-name">{this.state.name}
               <h1 className="device-count"> {this.format()} Dispositivos </h1>
             </h2>
           </div>

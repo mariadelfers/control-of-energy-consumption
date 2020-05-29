@@ -43,10 +43,10 @@ class GenerateRoom extends React.Component{
     return (
       <div>
         <Popup trigger={
-          <button className={`device-item`} >
+          <button className={`room-item`} >
           <div class="terms">
-            <img className={`device-icon`} src={require('../icons/otro.png')} alt="Icon"/>
-            <h2 className="device-name"> Agregar </h2>
+            <img className={`room-icon`} src={require('../icons/otro.png')} alt="Icon"/>
+            <h2 className="room-name"> Agregar </h2>
           </div>
         </button>
         } modal>

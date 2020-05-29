@@ -103,14 +103,6 @@ code {
   margin-left: 10px;
   margin-top: 0.5px;
 }
-.device-count{
-  color: #006dff; 
-  font-family: 'Raleway', Fallback, sans-serif;
-  font-size: 15px;
-  margin-top: 10px;
-  margin-left: 10px;
-  display: flexbox;
-}
 .device-item.device-name:hover {
   color: #000000;
 }
@@ -144,12 +136,12 @@ code {
 ******************************/
 .device-list{
   background:    #ffffff;
-  height: 800px;
+  height: 340px;
   display: flex;
 }
 .room-list{
-  background:rgb(212, 212, 212);
-  height: 800px;
+  background:rgb(235, 234, 234);
+  height: 500px;
 }
 .user-list{
   background:rgb(255, 255, 255);
@@ -230,9 +222,9 @@ code {
 .screen-device {
   padding: 10px;
   background: #ffffff;
-  margin-top: 10px;
+  margin-top: 1px;
   margin-left: 180px;
-  width: 800px;
+  width: 900px;
 }
 .screen-device nav {
   background: #ffffff;
@@ -258,6 +250,55 @@ code {
   font-weight: 400; 
   letter-spacing: 1px; 
 }
+/******************************
+*            ROOM             *
+******************************/
+.room-item {
+  /* background-image: linear-gradient(25deg, #295586, #34729f, #3d90b8, #46afd2);
+   border-right:   4px solid #253854; */
+   border-radius:  10px;
+   border: #000000;
+   padding:        5px 5px;
+   margin:         2px;
+   margin-top: 20px;
+   box-shadow:   0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07),
+                 0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
+                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
+   height:       60px;
+   width:        220px;
+   position: -webkit-sticky;
+   background-color: #ececec;
+ }
+
+ .device-count{
+  color: #006dff; 
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 5px;
+  display: flexbox;
+}
+
+.room-icon {
+  height:         40px;
+  width:          40px;
+  padding: 5px;
+}
+.room-item .room-name {
+  color:    rgb(151, 151, 151);
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-top: 0.5px;
+}
+
+.room-item:hover {
+  cursor:       pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border-width: 3px;
+  border-color: #8a8a8a;
+  border-style: solid;
+}
 
 /******************************
 *        Screen room          *
@@ -272,13 +313,13 @@ code {
 .screen-room {
   position: fixed;
   top: 1px;
-  left: 1000px;
+  left: 1100px;
   padding: 20px;
-  background: rgb(212, 212, 212);
+  background: rgb(235, 234, 234);
   width: 322px;
 }
 .screen-room nav {
-  background: rgb(212, 212, 212);
+  background: rgb(235, 234, 234);
   padding: 1px;
 }
 .screen-room .screen-title {
@@ -520,6 +561,10 @@ code {
   width: 100px;
   display: flex;
   margin-bottom: 40px;
+}
+.add-device{
+  margin-top: 1px;
+  display: block;
 }
 /*************************************************************/
 /**********  RADIO BUTTON  ***********************************/
@@ -803,27 +848,37 @@ code {
   padding-left: 10px;
 }
 .add-img {
-  height:         30px;
-  width:          50px;
+  height:         20px;
+  width:          35px;
+  padding-left:   10px;
+  margin-top:    20px;
 }
 .add-user{
-  height:         30px;
-  width:          50px;
+  font-size: 25px;
+  font-family: 'Raleway', Fallback, sans-serif;
+  padding-left: 10px;
   border: none;
   background-color: #ffffff;
   display: inline-block;
+  cursor: pointer;
 }
 .profile-users{
   padding: 10px 5px;
   font-family: 'Raleway', Fallback, sans-serif;
-  font-size: 15px;
-  text-align: center;
+  font-size: 16px;
+  margin-left: 10px;
 }
 .profile-users p {
   font-size: 15px;
   color: #8b8b8b;
   font-family: 'Raleway', Fallback, sans-serif;
   text-align: center;
+}
+.user-photo {
+  height:         20px;
+  width:          20px;
+  padding-left:   10px;
+  padding-right:  5px;
 }
 
 /*********************************** 

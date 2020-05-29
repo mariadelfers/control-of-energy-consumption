@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default function User({ user: { name, email } }){
   return (
     <div>
+        <img className="user-photo" src={require('../icons/user3.png')} alt="Icon"/>
         {name}
     </div>
   );

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Device from './Device';
-import AddButton from './AddDevice';
 import { connect } from 'react-redux';
 import { offDevice, disableDevice } from '../lib/redux_device';
 
@@ -70,7 +69,6 @@ class GenerateDeviceList extends React.Component{
           {items.map(item => (
               <Device device={item}/>
             ))}
-            <AddButton addButton={{}} />
           </div>
         </div>
        

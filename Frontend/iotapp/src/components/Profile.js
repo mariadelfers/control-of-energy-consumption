@@ -70,7 +70,7 @@ class ProfileComponent extends React.Component{
         <div>
         <div className="profile">
           <div className="photo">
-            <img className="icon-photo" src={require('../icons/foto.png')} alt="Icon"/>
+            <img className="icon-photo" src={require('../icons/user2.png')} alt="Icon"/>
           </div>
           <div> 
           {user.map(u => (
@@ -84,14 +84,12 @@ class ProfileComponent extends React.Component{
             <img className="icon-decor" src={require('../icons/decor.png')} alt="Icon"/>
           </div>
           <div className="users-title">
-          Usuarios
           <AddUser /> 
           </div>
           <div className="profile-users">           
               {items.map(item => (
                   <User user={item}/>
                 ))}
-              
           </div>
         </div>
       </div>

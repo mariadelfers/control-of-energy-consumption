@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import AddButton from './AddDevice';
 import DeviceList from './DeviceList';
 
 function getName(id){
@@ -53,6 +53,7 @@ export function PureDeviceScreen({ error, room }) {
         </h1>
       </nav>
       <DeviceList room={str_room}/>
+      <AddButton addButton={{}} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import AddButtonRoom from './AddRoom';
 import RoomList from './RoomList';
 
 export function PureRoomScreen({ error }) {
@@ -24,6 +24,7 @@ export function PureRoomScreen({ error }) {
         </h1>
       </nav>
       <RoomList />
+      <AddButtonRoom addButtonRoom={{}} />
     </div>
   );
 }
