@@ -2,7 +2,7 @@
 --This information HAVE TO be in the DB to be connected to the front end.
 
 -- ADMINISTRADOR
-INSERT INTO admin (id_admin, name, email, password) VALUES(1,"nombre_admin_test","email_admin_test", "password_test");
+INSERT INTO admin (id_admin, name, email, password) VALUES(1,"Admin","email_admin_test", "password_test");
 
 -- SCENARIO ROOMS
 INSERT INTO `scenario` (`name_scenario`) VALUES

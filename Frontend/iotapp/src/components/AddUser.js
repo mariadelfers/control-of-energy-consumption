@@ -40,8 +40,8 @@ class GenerateUser extends React.Component{
     return (
       <div>
         <Popup trigger={
-            <button >
-                <img className={`device-icon`} src={require('../icons/otro.png')} alt="Icon"/>
+            <button className="add-user" >
+                <img className="add-img" src={require('../icons/flecha_abajo.png')} alt="Icon"/>
             </button>
         } modal>
           {close => (

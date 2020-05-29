@@ -68,7 +68,6 @@ def Insert():
 	mycursor = mydb.cursor()
 	name = request.args.get('name')
 	email = request.args.get('email')
-	username = request.args.get('username')
 	password = request.args.get('password')
 	admin = request.args.get('admin')
 
@@ -78,7 +77,7 @@ def Insert():
 	encriptado = hashlib.md5(b).hexdigest()
 
 	try:
-		args = (username, name, email, encriptado, admin)
+		args = (name, email, encriptado, admin)
 		mycursor.callproc('insertUser', args)
 	except mysql.connector.IntegrityError:
 		return "409"
@@ -135,17 +134,17 @@ def Search():
 	mycursor.execute(sql, val)
 	row = mycursor.fetchone()
 
-	items = {}
+	user = {}
 	admin = []
 	while row is not None:
 		id_admin = {}
-		id_admin["name"] = row[1]
-		id_admin["email"] = row[2]
+		id_admin["name"] = row[0]
+		id_admin["email"] = row[1]
 		admin.append(id_admin)
 		row = mycursor.fetchone()
 
-	items["items"] = admin
-	return jsonify(items), 200
+	user["user"] = admin
+	return jsonify(user), 200
 
 @app.route("/showAllUser", methods=['GET'])
 def ShowAll():
@@ -163,15 +162,14 @@ def ShowAll():
 	items = {}
 	admin = []
 	while row is not None:
-		id_admin = {}
-		id_admin["name"] = row[1]
-		id_admin["email"] = row[2]
-		admin.append(id_admin)
+		user = {}
+		user["name"] = row[0]
+		user["email"] = row[1]
+		admin.append(user)
 		row = mycursor.fetchone()
 
 	items["items"] = admin
 	return jsonify(items), 200
-
 
 ############################
 #                          #

@@ -151,6 +151,10 @@ code {
   background:rgb(212, 212, 212);
   height: 800px;
 }
+.user-list{
+  background:rgb(255, 255, 255);
+  height: 100px;
+}
 .loading-device {
   padding: 10px 10px;
   align-items: center;
@@ -771,14 +775,16 @@ code {
 .icon-photo{
   height:         130px;
   width:          130px;
-  padding:         30px;
+  padding-left:    30px;
+  padding-top:    30px;
+  padding-right:    30px;
   border-radius:  100px;
 }
 .profile-name{
-  padding: 10px 5px;
   font-family: 'Raleway', Fallback, sans-serif;
   font-size: 25px;
-  text-align: center;
+  text-align: left;
+  margin-left: 1px;
 }
 .profile-name p {
   font-size: 15px;
@@ -787,15 +793,30 @@ code {
   text-align: center;
 }
 .icon-decor{
-  height:         150px;
-  width:          150px;
-  padding:         10px;
-  margin-left:     12px;
+  height:         130px;
+  width:          130px;
+  margin-left:    38px;
+}
+.users-title{
+  font-size: 25px;
+  font-family: 'Raleway', Fallback, sans-serif;
+  padding-left: 10px;
+}
+.add-img {
+  height:         30px;
+  width:          50px;
+}
+.add-user{
+  height:         30px;
+  width:          50px;
+  border: none;
+  background-color: #ffffff;
+  display: inline-block;
 }
 .profile-users{
   padding: 10px 5px;
   font-family: 'Raleway', Fallback, sans-serif;
-  font-size: 25px;
+  font-size: 15px;
   text-align: center;
 }
 .profile-users p {

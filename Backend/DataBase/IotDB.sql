@@ -141,13 +141,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `IotDB`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `IotDB`.`user` (
-  `username` VARCHAR(20) NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
+  `id_user` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `status` TINYBLOB NULL,
   `admin_id_admin` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`username`, `admin_id_admin`),
+  PRIMARY KEY (`id_user`, `admin_id_admin`),
   CONSTRAINT `fk_user_admin1`
     FOREIGN KEY (`admin_id_admin`)
     REFERENCES `IotDB`.`admin` (`id_admin`))
@@ -160,17 +160,17 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `IotDB`.`user_has_stage` ;
 
 CREATE TABLE IF NOT EXISTS `IotDB`.`user_has_stage` (
-  `user_username` VARCHAR(20) NOT NULL,
+  `user_id_user` INT NOT NULL,
+  `user_admin_id_admin` VARCHAR(20) NOT NULL,
   `stage_id_stage` INT NOT NULL,
-  PRIMARY KEY (`user_username`, `stage_id_stage`),
+  PRIMARY KEY (`user_id_user`, `user_admin_id_admin`, `stage_id_stage`),
   CONSTRAINT `fk_user_has_stage_user1`
-    FOREIGN KEY (`user_username`)
-    REFERENCES `IotDB`.`user` (`username`),
+    FOREIGN KEY (`user_id_user` , `user_admin_id_admin`)
+    REFERENCES `IotDB`.`user` (`id_user` , `admin_id_admin`),
   CONSTRAINT `fk_user_has_stage_stage1`
     FOREIGN KEY (`stage_id_stage`)
     REFERENCES `IotDB`.`stage` (`id_stage`))
 ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
