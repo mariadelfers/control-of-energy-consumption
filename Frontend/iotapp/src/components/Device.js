@@ -41,6 +41,7 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
       }
       if (request.status === 200) {
         console.log('deleted', request.responseText);
+        refreshPage();
       } else {
         console.warn('error');
       }
@@ -69,6 +70,9 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
         break;
     }
     return icon_type;
+  }
+  function refreshPage(){
+    window.location.reload(false);
   }
   return (
     <div>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
-import AddDevice from './AddDevice';
+
 
 class GenerateDevice extends React.Component{
   constructor(props) {

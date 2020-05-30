@@ -223,21 +223,26 @@ def SearchStage():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	id_stage = request.args.get('id_stage')
+	id_admin = request.args.get('id_admin')
 
-	val = (id_stage,)
+	val = (id_admin,)
 	#mycursor.callproc('buscarStage', val)
 
-	sql = "SELECT id_stage, name FROM stage WHERE id_stage = %s;"
+	sql = "SELECT id_stage, name FROM stage WHERE admin_id_admin = %s;"
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
-	id_stage = {}
-	if row is not None:
+	items = {}
+	stage = []
+	while row is not None:
+		id_stage = {}
+		id_stage["id"] = row[0]
 		id_stage["name"] = row[1]
+		stage.append(id_stage)
+		row = mycursor.fetchone()
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(id_stage)
+	items["items"] = stage
+	return jsonify(items), 200
 
 
 @app.route("/modifyStage", methods=['GET'])
@@ -324,22 +329,23 @@ def SearchRoom():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	id_room = request.args.get('id_room')
+	name_room = request.args.get('id_room')
 
-	val = (id_room,)
+	val = (name_room,)
 	#mycursor.callproc('buscarStage', val)
 
-	sql = "SELECT id_room, name, scenario_id_scenario FROM room WHERE id_room = %s;"
+	sql = "SELECT name FROM room WHERE name = %s;"
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
 	id_room = {}
-	if row is not None:
-		id_room["name"] = row[1]
-		id_room["scenario"] = row[3]
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(id_room)
+	while row is not None:
+		id_room = {}
+		id_room["name"] = row[0]
+		row = mycursor.fetchone()
+
+	return jsonify(id_room), 200
 
 
 @app.route("/modifyRoom", methods=['GET'])
@@ -489,7 +495,6 @@ def SearchDevice():
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
-	print(row)
 	
 	while row is not None:
 		id_device = {}

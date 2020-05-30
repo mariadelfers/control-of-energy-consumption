@@ -45,6 +45,7 @@ class RoomComponent extends React.Component{
       }
       if (request.status === 200) {
         console.log('deleted', request.responseText);
+        this.refreshPage();
       } else {
         console.warn('error');
       }
@@ -94,6 +95,11 @@ class RoomComponent extends React.Component{
     return icon_type;
   }
 
+  refreshPage(){
+    window.location.reload(false);
+  }
+  ret
+  
   render() {
     const { items } = this.state;
       return (

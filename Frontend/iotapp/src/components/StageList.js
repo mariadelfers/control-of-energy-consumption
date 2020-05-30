@@ -15,7 +15,7 @@ class GenerateStageList extends React.Component{
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/showAllStage")
+    fetch("http://localhost:5000/searchStage?id_admin=1")
     .then(res => res.json())
     .then(
       (result) => {

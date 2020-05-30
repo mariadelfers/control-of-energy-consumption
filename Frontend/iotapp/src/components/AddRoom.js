@@ -22,6 +22,24 @@ class GenerateRoom extends React.Component{
   changeRadio(event) {
     this.setState({type: event.target.value});
   }
+  
+  checkName(name, type, stage) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = (e) => {
+      if (request.readyState !== 4) {
+        return;
+      }
+      if (request.status === 200) {
+        console.log('success', request.responseText);
+        this.showAlertRepeatedName();
+      } else {
+        console.warn('error');
+        this.createRoom(name, type, stage);
+      } 
+    };
+    request.open('GET', 'http://localhost:5000/searchRoom?name_room=' + name);
+    request.send(); 
+  }
 
   createRoom(name, type, stage) {
     var request = new XMLHttpRequest();
@@ -31,12 +49,55 @@ class GenerateRoom extends React.Component{
       }
       if (request.status === 200) {
         console.log('success', request.responseText);
+        this.refreshPage();
       } else {
         console.warn('error');
       }
     };
     request.open('GET', 'http://localhost:5000/insertRoom?name='+ name +'&id_scenario='+ type +'&id_stage='+ stage);
     request.send();  
+  }
+
+  showAlertType() {
+    const alert = document.getElementById("missing_type");
+    alert.insertAdjacentHTML("beforeend",
+    "<p id='alert'> ¡Es necesario elegir un tipo de cuarto! </p>");;
+  }
+  showAlertName(){
+    var i = document.getElementById("missing_name");
+    i.insertAdjacentHTML("beforeend",
+    "<p id='alert'> ¡Es necesario escribir un nombre! </p>");
+  }
+  showAlertRepeatedName(){
+    var i = document.getElementById("missing_name");
+    i.insertAdjacentHTML("beforeend",
+    "<p id='alert'> ¡Ese nombre ya existe! </p>");
+  }
+
+  deleteAlert(){
+    var alert = document.getElementById("alert");
+    if(alert != null){
+      alert.remove(alert);
+    }
+  }
+
+  insertRoom(name, type, stage){
+    this.deleteAlert();
+      if(type != ''){
+        if(name != ''){
+          this.checkName(name, type, stage);
+        }
+        else{
+          this.showAlertName();
+        }
+      }
+      else{
+        this.showAlertType();
+      }
+  }
+
+  refreshPage(){
+    window.location.reload(false);
   }
 
   render() {
@@ -62,6 +123,7 @@ class GenerateRoom extends React.Component{
                   <div class="terms3">
                     <p className="requirement">*</p>
                     <h1 className="label-form-device"> TIPO DE SALA </h1>
+                    <p className="missing-name" id="missing_type"></p>
                   </div>
 
                   <div class="section over-hide z-bigger">
@@ -146,6 +208,7 @@ class GenerateRoom extends React.Component{
                   <div class="terms3">
                     <p className="requirement">*</p>
                     <h1 className="label-form-device">NOMBRE DE LA SALA</h1>
+                    <span className="missing-name" id="missing_name"></span>
                   </div>
                 </div>
                 <div>
@@ -154,7 +217,7 @@ class GenerateRoom extends React.Component{
                 
               </div>
               <div className="actions">
-                <button onClick={() => {this.createRoom(this.state.name, this.state.type, this.state.stage); close();}} className="crear"> CREAR </button>
+              <button onClick={() => {this.insertRoom(this.state.name, this.state.type, this.state.stage);}} className="crear"> CREAR </button>
                 <div class="terms3">
                     <p className="requirementc">*</p>
                     <p className="campos">Campos obligatorios.</p>

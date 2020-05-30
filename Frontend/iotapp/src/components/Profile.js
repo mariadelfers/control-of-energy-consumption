@@ -3,12 +3,14 @@ import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import AddUser from './AddUser';
 import User from './User';
+import StageList from './StageList';
 import { connect } from 'react-redux';
 
 class ProfileComponent extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
       error: null,
       isLoaded: false,
       items: [],
@@ -16,8 +18,14 @@ class ProfileComponent extends React.Component{
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      id: props.user_id, 
+    };
+  }
+
   componentDidMount() {
-    fetch("http://localhost:5000/showAllUser?id_admin=1")
+    fetch("http://localhost:5000/showAllUser?id_admin=" +  this.state.id)
     .then(res => res.json())
     .then(
       (result) => {
@@ -35,7 +43,7 @@ class ProfileComponent extends React.Component{
       }
     )
 
-    fetch("http://localhost:5000/searchAdmin?id_admin=1")
+    fetch("http://localhost:5000/searchAdmin?id_admin=" + this.state.id)
     .then(res => res.json())
     .then(
       (result) => {
@@ -92,8 +100,8 @@ class ProfileComponent extends React.Component{
                 ))}
           </div>
         </div>
+        
       </div>
-       
       );
 
     }
@@ -106,9 +114,9 @@ ReactDOM.render(
 );
 
 
-export function Profile({user}) {
+export function Profile({user_id}) {
   return (
-    <ProfileComponent/>
+    <ProfileComponent user_id={user_id}/>
   );
 }
 

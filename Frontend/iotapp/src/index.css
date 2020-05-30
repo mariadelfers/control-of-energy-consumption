@@ -149,7 +149,6 @@ code {
 }
 .device-items{
   display: inline-flex;
-  position: fixed;
 }
 .room-list{
   background:rgb(235, 234, 234);
