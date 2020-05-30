@@ -8,14 +8,22 @@ class GenerateRoomList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      id_stage: '',
       error: null,
       isLoaded: false,
       items: []
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      id_stage: props.id_stage, 
+    };
+  }
+
   componentDidMount() {
-    fetch("http://localhost:5000/showAllRoom")
+    console.log("ID stage: ", this.state.id_stage);
+    fetch("http://localhost:5000/searchRoom?id_stage=" + this.state.id_stage)
     .then(res => res.json())
     .then(
       (result) => {
@@ -35,7 +43,7 @@ class GenerateRoomList extends React.Component{
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items, id_stage } = this.state;
 
     if (error) {
       return <div className="Error">Error</div>;
@@ -47,12 +55,13 @@ class GenerateRoomList extends React.Component{
     else {
 
       return (
-        <div className="room-list"> 
-          {items.map(item => (
-              <Room room={item}/>
-            ))}
+        <div>
+          <div className="room-list"> 
+            {items.map(item => (
+                <Room room={item}/>
+              ))}
+          </div>
         </div>
-       
       );
 
     }
@@ -65,9 +74,9 @@ ReactDOM.render(
 );
 
 
-export function PureRoomList({ loading, devices, offDevice, disableDevice, addButton }) {
+export function PureRoomList({ id_stage }) {
   return (
-    <GenerateRoomList />
+    <GenerateRoomList id_stage={id_stage}/>
   );
 }
 

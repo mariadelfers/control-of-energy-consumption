@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 import AddButtonRoom from './AddRoom';
 import RoomList from './RoomList';
 
-export function PureRoomScreen({ error }) {
-  if (error) {
-    return (
-      <div className="screen-error-device">
-        <div className="empty-message">
-          <div className="title-message">¡Oh no!</div>
-          <div className="message">Algo salió mal.</div>
-        </div>
-      </div>
-    );
-  }
+export function PureRoomScreen({id_stage}) {
+  // if (error) {
+  //   return (
+  //     <div className="screen-error-device">
+  //       <div className="empty-message">
+  //         <div className="title-message">¡Oh no!</div>
+  //         <div className="message">Algo salió mal.</div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="screen-room">
@@ -23,7 +23,7 @@ export function PureRoomScreen({ error }) {
           <span className="screen-message">Salas</span>
         </h1>
       </nav>
-      <RoomList />
+      <RoomList id_stage={id_stage}/>
       <AddButtonRoom addButtonRoom={{}} />
     </div>
   );

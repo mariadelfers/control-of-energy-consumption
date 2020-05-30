@@ -2,20 +2,29 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Stage from './Stage';
+import RoomScreen from './RoomScreen';
 import { connect } from 'react-redux';
 
 class GenerateStageList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      id_stage:'',
+      id_admin: '',
       error: null,
       isLoaded: false,
       items: []
     };
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      id_admin: props.user_id, 
+    };
+  }
+
   componentDidMount() {
-    fetch("http://localhost:5000/searchStage?id_admin=1")
+    fetch("http://localhost:5000/searchStage?id_admin=" + this.state.id_admin)
     .then(res => res.json())
     .then(
       (result) => {
@@ -30,6 +39,17 @@ class GenerateStageList extends React.Component{
           isLoaded: true,
           error
         });
+      }
+    )
+
+    fetch("http://localhost:5000/getStage?id_admin=" + this.state.id_admin)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          id_stage: result.id
+        });
+        console.log(result);
       }
     )
   }
@@ -47,14 +67,14 @@ class GenerateStageList extends React.Component{
     else {
 
       return (
-        <div className="stage-list"> 
-        
-          {items.map(item => (
-              <Stage stage={item}/>
-            ))}
-        
+        <div>
+          <div className="stage-list"> 
+            {items.map(item => (
+                <Stage stage={item}/>
+              ))}
+          </div>
+          <RoomScreen  id_stage={this.state.id_stage}/>
         </div>
-       
       );
 
     }
@@ -67,17 +87,17 @@ ReactDOM.render(
 );
 
 
-export function PureStageList() {
+export function StageList({user_id}) {
   return (
-    <GenerateStageList />
+    <GenerateStageList user_id={user_id} />
   );
 }
 
-PureStageList.propTypes = {
+StageList.propTypes = {
     stages: PropTypes.arrayOf(Stage.propTypes.stage).isRequired,
   };
   
-  PureStageList.defaultProps = {
+  StageList.defaultProps = {
     loading: false,
   };
   
@@ -86,4 +106,4 @@ PureStageList.propTypes = {
       stages: stages,
     }),
 
-  )(PureStageList);
+  )(StageList);

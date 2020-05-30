@@ -13,7 +13,7 @@ export default function Homepage({ user: { id, type } }) {
     return (
       <div>
             <Profile user_id={"1"} />
-            {/* <StageList />          
+            {/*           
             <DeviceScreen room={{room:'1'}}/>
             <RoomScreen /> */}
       </div>

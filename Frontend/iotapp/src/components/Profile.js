@@ -100,7 +100,7 @@ class ProfileComponent extends React.Component{
                 ))}
           </div>
         </div>
-        
+        <StageList  user_id={this.state.id}/>
       </div>
       );
 

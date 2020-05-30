@@ -29,9 +29,6 @@ function getName(id){
 
 export function PureDeviceScreen({ error, room }) {
   var id_room = JSON.stringify(room)
-  var str_room = id_room.toString(id_room);
-  str_room =  str_room.substring(8, str_room.length-1);
-
   if (error) {
     return (
       <div className="screen-error-device">
@@ -48,11 +45,11 @@ export function PureDeviceScreen({ error, room }) {
       <nav>
         <h1 className="screen-title">
           <span className="screen-message">Dispositivos</span>
-          {getName(str_room)}
+          {getName(id_room)}
           <span className="screen-place" id="name"></span>
         </h1>
       </nav>
-      <DeviceList room={str_room}/>
+      <DeviceList room={id_room}/>
       <AddButton addButton={{}} />
     </div>
   );
