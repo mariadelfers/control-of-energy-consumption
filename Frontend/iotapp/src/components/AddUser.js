@@ -7,20 +7,26 @@ class GenerateUser extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
       name: '',
       email: '',
       password: ''
     };
-    this.changeText = this.changeText.bind(this);
+    this.changeTextName = this.changeTextName.bind(this);
+    this.changeTextEmail = this.changeTextEmail.bind(this);
+    this.changeTextPassword = this.changeTextPassword.bind(this);
   }
 
-  changeText(event) {
+  changeTextName(event) {
     this.setState({name: event.target.value});
   }
+  changeTextEmail(event) {
+    this.setState({email: event.target.value});
+  }
+  changeTextPassword(event) {
+    this.setState({password: event.target.value});
+  }
 
-
-  createUser(username, name, email, password) {
+  createUser(name, email, password) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
       if (request.readyState !== 4) {
@@ -32,7 +38,7 @@ class GenerateUser extends React.Component{
         console.warn('error');
       }
     };
-    request.open('GET', 'http://localhost:5000/insert?name='+ name +'&email='+ email +'&username='+ username +'&password='+ password +'&admin=1');
+    request.open('GET', 'http://localhost:5000/insert?name='+ name +'&email='+ email +'&password='+ password +'&admin=1');
     request.send();  
   }
 
@@ -50,14 +56,18 @@ class GenerateUser extends React.Component{
               <a className="close" onClick={close}>
                 &times;
               </a>           
-              <div className="header"> AÑADIR NUEVO USUARIO </div>
+              <div className="header"> CREAR USUARIO </div>
               <div className="content">
 
                 <div className="title-form-device">
                   <div class="terms3">
                     <p className="requirement">*</p>
-                    <h1 className="label-form-device"> TIPO DE SALA </h1>
+                    <h1 className="label-form-device"> CORREO </h1>
                   </div>
+                </div>
+                <div>
+                  <input class="input-text-device" type="text" value={this.state.email}
+                   onChange={this.changeTextEmail}></input>
                 </div>
 
    
@@ -65,16 +75,29 @@ class GenerateUser extends React.Component{
                   <p></p><p></p>
                   <div class="terms3">
                     <p className="requirement">*</p>
-                    <h1 className="label-form-device">NOMBRE DE LA SALA</h1>
+                    <h1 className="label-form-device"> NOMBRE </h1>
                   </div>
                 </div>
                 <div>
-                  <input class="input-text-device" type="text" value={this.state.name} onChange={this.changeText}></input>
+                  <input class="input-text-device" type="text" value={this.state.name} 
+                  onChange={this.changeTextName}></input>
+                </div>
+
+                <div className="title-form-device">
+                  <p></p><p></p>
+                  <div class="terms3">
+                    <p className="requirement">*</p>
+                    <h1 className="label-form-device"> CONTRASEÑA </h1>
+                  </div>
+                </div>
+                <div>
+                  <input class="input-text-device" type="text" value={this.state.password} 
+                  onChange={this.changeTextPassword}></input>
                 </div>
                 
               </div>
               <div className="actions">
-                <button onClick={() => {this.createUser(this.state.name, this.state.type); close();}} className="crear"> CREAR </button>
+                <button onClick={() => {this.createUser(this.state.name, this.state.type, this.state.password); close();}} className="crear"> CREAR </button>
                 <div class="terms3">
                     <p className="requirementc">*</p>
                     <p className="campos">Campos obligatorios.</p>

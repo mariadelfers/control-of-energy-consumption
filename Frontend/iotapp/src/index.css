@@ -55,6 +55,16 @@ code {
 .terms3 > p {
   margin: 0px;
 }
+
+.terms4 {
+  display: inline-flex;
+  position: absolute;
+}
+
+.terms4 > Device {
+  margin: 0px;
+}
+
 /********************************* 
 *                                *
 *            DEVICE              *
@@ -70,8 +80,6 @@ code {
   }
 }
 .device-item {
- /* background-image: linear-gradient(25deg, #295586, #34729f, #3d90b8, #46afd2);
-  border-right:   4px solid #253854; */
   border-radius:  10px;
   border: #000000;
   padding:        10px 10px;
@@ -82,7 +90,6 @@ code {
                 0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
   height:       80px;
   width:        250px;
-  position: -webkit-sticky;
 }
 .device-item:hover {
   cursor:       pointer;
@@ -96,12 +103,12 @@ code {
   width:          50px;
   padding: 8px;
 }
-.device-item .device-name {
+.device-name {
   color:    rgb(151, 151, 151);
   font-family: 'Raleway', Fallback, sans-serif;
   font-size: 25px;
   margin-left: 10px;
-  margin-top: 0.5px;
+  margin-top: 10px;
 }
 .device-item.device-name:hover {
   color: #000000;
@@ -137,7 +144,12 @@ code {
 .device-list{
   background:    #ffffff;
   height: 340px;
-  display: flex;
+  width: 900px;
+  display: block;
+}
+.device-items{
+  display: inline-flex;
+  position: fixed;
 }
 .room-list{
   background:rgb(235, 234, 234);
@@ -273,11 +285,17 @@ code {
  .device-count{
   color: #006dff; 
   font-family: 'Raleway', Fallback, sans-serif;
-  font-size: 12px;
-  margin-top: 10px;
-  margin-left: 5px;
-  display: flexbox;
+  font-size: 16px;
+  margin-top: 1px;
+  margin-left: 1px;
+  display: inline-block;
 }
+
+.device-count p {
+  font-size: 12px;
+  display: inline-flex;
+}
+
 
 .room-icon {
   height:         40px;
@@ -554,7 +572,6 @@ code {
  .add-item.add-name:hover {
   color: #ffffff;
  }
-
  .add-list{
   background:    #ffffff;
   height: 50px;
@@ -565,7 +582,36 @@ code {
 .add-device{
   margin-top: 1px;
   display: block;
+  border-radius:  10px;
+  border: #000000;
+  padding:        10px 10px;
+  margin:         15px;
+  margin-top: 20px;
+  box-shadow:   0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07),
+                0 4px 8px rgba(0,0,0,0.07),0 8px 16px rgba(0,0,0,0.07),
+                0 16px 32px rgba(0,0,0,0.07),0 32px 64px rgba(0,0,0,0.07);
+  height:       80px;
+  width:        250px;
 }
+.add-device:hover {
+  cursor:       pointer;
+  border-width: 3px;
+  border-color: #8a8a8a;
+  border-style: solid;
+}
+
+/*********************************** 
+*                                  *
+*           CHECK INPUTS           *
+*                                  *
+************************************/
+.missing-name{
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 20px;
+  color: #ff0000;
+  background-color: #ffffff;
+}
+
 /*************************************************************/
 /**********  RADIO BUTTON  ***********************************/
 /*************************************************************/
@@ -637,7 +683,7 @@ code {
 .checkbox-tools:not(:checked) + label{
 	position: relative;
 	display: inline-block;
-	padding: 20px;
+	padding: 5px;
 	width: 110px;
 	font-size: 14px;
 	line-height: 20px;

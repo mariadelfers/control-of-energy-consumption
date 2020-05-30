@@ -29,7 +29,7 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
       icon_type = "TV";
       break;  
     default:
-      icon_type = "otro";
+      icon_type = "blank";
       break;
   }
 
@@ -65,7 +65,7 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
         icon_type = "TV";
         break;  
       default:
-        icon_type = "otro";
+        icon_type = "blank";
         break;
     }
     return icon_type;
@@ -75,7 +75,7 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
     <Popup trigger={
       <button className={`device-item ${state}`} >
       <div class="terms">
-        <img className={`device-icon ${state}`} src={require('../icons/dispositivos/'+ icon_type +'.png')} alt="Icon"/>
+        <img className={`device-icon ${state}`} src={require('../icons/dispositivos/' + icon_type + '.png')} alt="Icon"/>
         <h2 className="device-name"> {name} </h2>
       </div>
     </button>

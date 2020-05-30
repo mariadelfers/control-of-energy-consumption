@@ -70,7 +70,7 @@ class ProfileComponent extends React.Component{
         <div>
         <div className="profile">
           <div className="photo">
-            <img className="icon-photo" src={require('../icons/user2.png')} alt="Icon"/>
+            <img className="icon-photo" src={require('../icons/user1.png')} alt="Icon"/>
           </div>
           <div> 
           {user.map(u => (

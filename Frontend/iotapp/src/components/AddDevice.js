@@ -10,7 +10,8 @@ class GenerateDevice extends React.Component{
     this.state = {
       name: '',
       type: '',
-      room: '1'
+      room: '1',
+      attempts: '0',
     };
     this.changeText = this.changeText.bind(this);
     this.changeRadio = this.changeRadio.bind(this);
@@ -24,6 +25,24 @@ class GenerateDevice extends React.Component{
     this.setState({type: event.target.value});
   }
 
+  checkName(name, type, room) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = (e) => {
+      if (request.readyState !== 4) {
+        return;
+      }
+      if (request.status === 200) {
+        console.log('success', request.responseText);
+        this.showAlertRepeatedName();
+      } else {
+        console.warn('error');
+        this.createDevice(name, type, room);
+      } 
+    };
+    request.open('GET', 'http://localhost:5000/searchDevice?name_device=' + name);
+    request.send(); 
+  }
+
   createDevice(name, type, room) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
@@ -32,19 +51,62 @@ class GenerateDevice extends React.Component{
       }
       if (request.status === 200) {
         console.log('success', request.responseText);
+        this.refreshPage();
       } else {
         console.warn('error');
       } 
     };
     request.open('GET', 'http://localhost:5000/insertDevice?name_device='+name+'&id_room='+room+'&type_idtype='+type);
-    request.send();  
+    request.send(); 
+  }
+
+  showAlertType() {
+    const alert = document.getElementById("missing_type");
+    alert.insertAdjacentHTML("beforeend",
+    "<p id='alert'> ¡Es necesario elegir un tipo de dispositivo! </p>");;
+  }
+  showAlertName(){
+    var i = document.getElementById("missing_name");
+    i.insertAdjacentHTML("beforeend",
+    "<p id='alert'> ¡Es necesario escribir un nombre! </p>");
+  }
+  showAlertRepeatedName(){
+    var i = document.getElementById("missing_name");
+    i.insertAdjacentHTML("beforeend",
+    "<p id='alert'> ¡Ese nombre ya existe! </p>");
+  }
+
+  deleteAlert(){
+    var alert = document.getElementById("alert");
+    if(alert != null){
+      alert.remove(alert);
+    }
+  }
+
+  insertDevice(name, type, room){
+    this.deleteAlert();
+      if(type != ''){
+        if(name != ''){
+          this.checkName(name, type, room);
+        }
+        else{
+          this.showAlertName();
+        }
+      }
+      else{
+        this.showAlertType();
+      }
+  }
+
+  refreshPage(){
+    window.location.reload(false);
   }
 
   render() {
     return (
       <div>
         <Popup trigger={
-          <button className={`device-item`} >
+          <button className={`add-device`} >
           <div class="terms">
             <img className={`device-icon`} src={require('../icons/otro.png')} alt="Icon"/>
             <h2 className="device-name"> Agregar </h2>
@@ -63,6 +125,7 @@ class GenerateDevice extends React.Component{
                   <div class="terms3">
                     <p className="requirement">*</p>
                     <h1 className="label-form-device"> TIPO DE DISPOSITIVO </h1>
+                    <p className="missing-name" id="missing_type"></p>
                   </div>
 
                   <div class="section over-hide z-bigger">
@@ -71,28 +134,28 @@ class GenerateDevice extends React.Component{
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-1" 
                             value="1" checked={this.state.type === "1"} onChange={this.changeRadio}></input>
                             <label class="for-checkbox-tools" for="tool-1">
-                            <img src={require('../icons/dispositivos/Bocina.png')} alt="Icon"/>
+                            <img className="icon-size" src={require('../icons/dispositivos/Bocina.png')} alt="Icon"/>
                             Bocina
                             </label>
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-2"
                             value="2" checked={this.state.type === "2"} onChange={this.changeRadio}></input>
                             <label class="for-checkbox-tools" for="tool-2">
-                            <img src={require('../icons/dispositivos/Consola.png')} alt="Icon"/>
+                            <img className="icon-size" src={require('../icons/dispositivos/Consola.png')} alt="Icon"/>
                             Consola
                             </label>
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-3"
                             value="3" checked={this.state.type === "3"} onChange={this.changeRadio}></input>
                             <label class="for-checkbox-tools" for="tool-3">
-                            <img src={require('../icons/dispositivos/Luz.png')} alt="Icon"/>
-                            Luz
+                            <img className="icon-size" src={require('../icons/dispositivos/Luz.png')} alt="Icon"/>
+                            <br></br>Luz
                             </label>
 
                             <input class="checkbox-tools" type="radio" name="tools" id="tool-4"
                             value="4" checked={this.state.type === "4"} onChange={this.changeRadio}></input>
                             <label class="for-checkbox-tools" for="tool-4">
-                            <img src={require('../icons/dispositivos/TV.png')} alt="Icon"/>
+                            <img className="icon-size" src={require('../icons/dispositivos/TV.png')} alt="Icon"/>
                             Televisión
                             </label>
                   </div>		
@@ -103,7 +166,8 @@ class GenerateDevice extends React.Component{
                   <p></p><p></p>
                   <div class="terms3">
                     <p className="requirement">*</p>
-                    <h1 className="label-form-device">NOMBRE DEL DISPOSITIVO</h1>
+                    <h1 className="label-form-device">NOMBRE DEL DISPOSITIVO</h1><br></br>
+                    <span className="missing-name" id="missing_name"></span>
                   </div>
                 </div>
                 <div>
@@ -112,7 +176,7 @@ class GenerateDevice extends React.Component{
                 
               </div>
               <div className="actions">
-                <button onClick={() => {this.createDevice(this.state.name, this.state.type, this.state.room);  close();}} className="crear"> CREAR </button>
+                <button onClick={() => {this.insertDevice(this.state.name, this.state.type, this.state.room);}} className="crear"> CREAR </button>
                 <div class="terms3">
                     <p className="requirementc">*</p>
                     <p className="campos">Campos obligatorios.</p>

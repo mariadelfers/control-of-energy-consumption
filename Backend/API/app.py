@@ -392,7 +392,7 @@ def CountDevices():
 	val = (id_room,)
 	#mycursor.callproc('buscarStage', val)
 
-	sql = "SELECT count(*) FROM device WHERE room_id_room = %s"
+	sql = "SELECT count(*) FROM device WHERE room_id_room = %s AND status = 1"
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
@@ -401,7 +401,7 @@ def CountDevices():
 
 	while row is not None:
 		id_room = {}
-		id_room[""] = row[0]
+		id_room["devices"] = row[0]
 		room.append(id_room)
 		row = mycursor.fetchone()
 
@@ -480,22 +480,23 @@ def SearchDevice():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	id_device = request.args.get('id_device')
+	name_device = request.args.get('name_device')
 
-	val = (id_device,)
+	val = (name_device,)
 	#mycursor.callproc('buscarStage', val)
 
-	sql = "SELECT id_device, brand, model FROM device WHERE id_device = %s;"
+	sql = "SELECT name_device FROM device WHERE name_device = %s;"
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
-	id_device = {}
-	if row is not None:
-		id_device["brand"] = row[1]
-		id_device["model"] = row[2]
+	print(row)
+	
+	while row is not None:
+		id_device = {}
+		id_device["name"] = row[0]
+		row = mycursor.fetchone()
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(id_device)
+	return jsonify(id_device), 200
 
 
 @app.route("/modifyDevice", methods=['GET'])
@@ -535,7 +536,7 @@ def ShowAllDevice():
 		id_device = {}
 		id_device["id"] = row[0]
 		id_device["name"] = row[1]
-		id_device["type"] = row[2]
+		id_device["type"] = row[3]
 		device.append(id_device)
 		row = mycursor.fetchone()
 

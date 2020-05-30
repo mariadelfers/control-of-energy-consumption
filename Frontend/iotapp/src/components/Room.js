@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
+import { connect } from 'react-redux';
 
 class RoomComponent extends React.Component{
   
@@ -35,11 +36,6 @@ class RoomComponent extends React.Component{
       }
     ) 
   }
-
-  format(){
-    var x = JSON.stringify(this.state.items[0]);
-    return x;
-  }
    
   deleteRoom(){
     var request = new XMLHttpRequest();
@@ -58,12 +54,9 @@ class RoomComponent extends React.Component{
   }
 
   getType(){
-    var icon_type = "otro"
+    var icon_type = "blank"
     var room_type = JSON.stringify(this.state.type);
     switch (room_type) {
-      case "1":
-        icon_type = "otro";
-        break;
       case "2":
         icon_type = "bano";
         break;
@@ -95,22 +88,27 @@ class RoomComponent extends React.Component{
         icon_type = "sala";
         break;
       default:
-        icon_type = "otro";
+        icon_type = "blank";
         break;
     }
     return icon_type;
   }
 
   render() {
+    const { items } = this.state;
       return (
         <div>
 
         <Popup trigger={
           <button className={`room-item`} >
           <div class="terms">
-            <img className={`room-icon`} src={require('../icons/salas/'+ this.getType() +'.png')} alt="Icon"/>
+            <img className={`room-icon`} src={require('../icons/salas/' + this.getType() + '.png')} alt="Icon"/>
             <h2 className="room-name">{this.state.name}
-              <h1 className="device-count"> {this.format()} Dispositivos </h1>
+            {items.map(d => (
+              <h1 className="device-count">
+                {d.devices} <p>Dispositivos</p> 
+              </h1>)
+            )}
             </h2>
           </div>
           
@@ -162,3 +160,4 @@ Room.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   };
+

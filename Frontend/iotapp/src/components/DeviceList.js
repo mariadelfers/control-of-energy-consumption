@@ -34,7 +34,7 @@ class GenerateDeviceList extends React.Component{
           isLoaded: true,
           items: result.items
         });
-        console.log(result);
+        console.log("Devices:", result);
       },
       (error) => {
         this.setState({
