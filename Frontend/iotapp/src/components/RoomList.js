@@ -8,7 +8,7 @@ class GenerateRoomList extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      id_stage: '',
+      id: '',
       error: null,
       isLoaded: false,
       items: []
@@ -17,13 +17,13 @@ class GenerateRoomList extends React.Component{
 
   static getDerivedStateFromProps(props, state) {
     return {
-      id_stage: props.id_stage, 
+      id: props.id_stage, 
     };
   }
 
   componentDidMount() {
-    console.log("ID stage: ", this.state.id_stage);
-    fetch("http://localhost:5000/searchRoom?id_stage=" + this.state.id_stage)
+    console.log("[ID Stage] ", this.state.id);
+    fetch("http://localhost:5000/searchRoom?id_stage=" + this.state.id)
     .then(res => res.json())
     .then(
       (result) => {
@@ -31,7 +31,7 @@ class GenerateRoomList extends React.Component{
           isLoaded: true,
           items: result.items
         });
-        console.log(result);
+        console.log("Rooms:", result);
       },
       (error) => {
         this.setState({
@@ -43,7 +43,7 @@ class GenerateRoomList extends React.Component{
   }
 
   render() {
-    const { error, isLoaded, items, id_stage } = this.state;
+    const { error, isLoaded, items } = this.state;
 
     if (error) {
       return <div className="Error">Error</div>;
@@ -56,7 +56,7 @@ class GenerateRoomList extends React.Component{
 
       return (
         <div>
-          <div className="room-list"> 
+          <div className="room-list">
             {items.map(item => (
                 <Room room={item}/>
               ))}
@@ -74,13 +74,14 @@ ReactDOM.render(
 );
 
 
-export function PureRoomList({ id_stage }) {
+export function PureRoomList({ stage }) {
   return (
-    <GenerateRoomList id_stage={id_stage}/>
+    <GenerateRoomList id_stage={stage}/>
   );
 }
 
 PureRoomList.propTypes = {
+    stage: PropTypes.string.isRequired,
     rooms: PropTypes.arrayOf(Room.propTypes.room).isRequired,
   };
   

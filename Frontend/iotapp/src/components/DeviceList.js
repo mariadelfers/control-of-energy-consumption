@@ -13,6 +13,7 @@ class GenerateDeviceList extends React.Component{
     this.state = {
       id: '',
       error: null,
+      empty: false,
       isLoaded: false,
       items: []
     };
@@ -25,8 +26,8 @@ class GenerateDeviceList extends React.Component{
   }
 
   componentDidMount() {
-    console.log("[1] id room: " + this.state.id);
-    fetch("http://localhost:5000/showAllDevice?id_room=1" + this.state.id)
+    console.log("[ID Room] " + this.state.id);
+    fetch("http://localhost:5000/showAllDevice?id_room=" + this.state.id)
     .then(res => res.json())
     .then(
       (result) => {
@@ -46,19 +47,20 @@ class GenerateDeviceList extends React.Component{
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { empty, error, isLoaded, items } = this.state;
 
-    if (error) {
-      return <div className="error">
-        <img className="error-icon" src={require('../icons/sadface.png')} alt="Icon"/>
-        <br></br>Error 
-        <br></br>Sin conexión
-        </div>;
-    } 
-    else if (!isLoaded) {
+    if (!isLoaded) {
       return <div className="load">
         <div class="loader"></div>
         Cargando dispositivos
+        </div>;
+    } 
+    else if (items.length == 0) {
+      return <div className="empty">
+        <br></br>No tienes dispositivos agregados
+        <br></br>¿Desea agregar uno?
+        <br></br>
+        <img className="empty-icon" src={require('../icons/arrow.png')} alt="Icon"/>
         </div>;
     } 
     else {

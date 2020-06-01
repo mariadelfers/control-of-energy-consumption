@@ -34,13 +34,19 @@ class GenerateUser extends React.Component{
       }
       if (request.status === 200) {
         console.log('success', request.responseText);
+        this.refreshPage();
       } else {
         console.warn('error');
       }
     };
-    request.open('GET', 'http://localhost:5000/insert?name='+ name +'&email='+ email +'&password='+ password +'&admin=1');
+    request.open('GET', 'http://localhost:5000/insert?name='+ name +'&email='+ email +'&password='+ password +'&admin=1&stage=1');
     request.send();  
   }
+
+  refreshPage(){
+    window.location.reload(false);
+  }
+  ret
 
   render() {
     return (
@@ -97,7 +103,7 @@ class GenerateUser extends React.Component{
                 
               </div>
               <div className="actions">
-                <button onClick={() => {this.createUser(this.state.name, this.state.type, this.state.password); close();}} className="crear"> CREAR </button>
+                <button onClick={() => {this.createUser(this.state.name, this.state.email, this.state.password); close();}} className="crear"> CREAR </button>
                 <div class="terms3">
                     <p className="requirementc">*</p>
                     <p className="campos">Campos obligatorios.</p>

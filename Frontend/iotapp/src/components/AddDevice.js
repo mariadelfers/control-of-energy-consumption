@@ -10,13 +10,17 @@ class GenerateDevice extends React.Component{
     this.state = {
       name: '',
       type: '',
-      room: '1',
+      room: '',
       attempts: '0',
     };
     this.changeText = this.changeText.bind(this);
     this.changeRadio = this.changeRadio.bind(this);
   }
-
+  static getDerivedStateFromProps(props, state) {
+    return {
+      room: props.id_room,
+    };
+  }
   changeText(event) {
     this.setState({name: event.target.value});
   }
@@ -32,14 +36,14 @@ class GenerateDevice extends React.Component{
         return;
       }
       if (request.status === 200) {
-        console.log('success', request.responseText);
-        this.showAlertRepeatedName();
+        console.log('success');
+        this.createDevice(name, type, room);
       } else {
         console.warn('error');
-        this.createDevice(name, type, room);
+        this.showAlertRepeatedName();
       } 
     };
-    request.open('GET', 'http://localhost:5000/searchDevice?name_device=' + name);
+    request.open('GET', 'http://localhost:5000/searchDevice?name_device=' + name + '&id_room='+ room);
     request.send(); 
   }
 
@@ -197,10 +201,10 @@ ReactDOM.render(
 );
 
 
-export default function AddButton() {
+export default function AddButton({id_room}) {
 
   return (
-    <GenerateDevice />
+    <GenerateDevice  id_room={id_room}/>
   );
 }
 

@@ -21,54 +21,88 @@ CORS(app)
 #                          #
 ############################
 
+# @app.route("/login", methods=['GET'])
+# def Login():
+# 	mydb = mysql.connector.connect(**config)
 
+# 	mycursor = mydb.cursor()
+# 	username = request.args.get('username')
+# 	password = request.args.get('password')
+
+# 	salt="asdfghjkl"+password
+# 	b=bytes(salt, "utf8")
+# 	encriptado = hashlib.md5(b).hexdigest()
+
+
+# 	mycursor = mydb.cursor()
+# 	username = request.args.get('username')
+# 	password = request.args.get('password')
+
+
+# 	val = (username,)
+# 	mycursor.callproc('LoginAdministrador', val)
+# 	perfil = "Admin"
+# 	row = list(mycursor.stored_results())[0].fetchall()
+# 	a = True
+# 	if(len(row)==0):
+# 		val = (username, )
+# 		mycursor.callproc('LoginUser', val)
+# 		perfil = "User"
+# 		row = list(mycursor.stored_results())[0].fetchall()
+# 		if(len(row)==0):
+# 				a = False
+
+# 	print(row)
+# 	if a:
+# 		print(encriptado)
+# 		if(row[0][3] == encriptado):
+# 			return perfil, 200
+# 	return "", 401
 
 @app.route("/login", methods=['GET'])
 def Login():
 	mydb = mysql.connector.connect(**config)
 
 	mycursor = mydb.cursor()
-	username = request.args.get('username')
+	email = request.args.get('email')
 	password = request.args.get('password')
 
-	salt="asdfghjkl"+password
-	b=bytes(salt, "utf8")
+	salt = "asdfghjkl" + email
+	b = bytes(salt, "utf8")
 	encriptado = hashlib.md5(b).hexdigest()
 
-
 	mycursor = mydb.cursor()
-	username = request.args.get('username')
+	email = request.args.get('email')
 	password = request.args.get('password')
 
+	val = (email,)
+	sql = "SELECT * FROM user WHERE email = %s"
+	mycursor.execute(sql, val)
+	row = mycursor.fetchone()
 
-	val = (username,)
-	mycursor.callproc('LoginAdministrador', val)
-	perfil = "Admin"
-	row = list(mycursor.stored_results())[0].fetchall()
-	a = True
-	if(len(row)==0):
-		val = (username, )
-		mycursor.callproc('LoginUser', val)
-		perfil = "User"
-		row = list(mycursor.stored_results())[0].fetchall()
-		if(len(row)==0):
-				a = False
+	if(len(row) == 0):
+		return "", 404
 
-	print(row)
-	if a:
-		print(encriptado)
-		if(row[0][3] == encriptado):
-			return perfil, 200
-	return "", 401
+	val = (encriptado,)
+	mycursor.callproc('PasswordAdministrador', val)
+	row = mycursor.fetchone()
+
+	if(len(row) == 0):
+		return "", 400
+
+	return perfil, 200
+
+
 
 @app.route("/insert", methods=['GET'])
 def Insert():
 	mydb = mysql.connector.connect(**config)
-
 	mycursor = mydb.cursor()
+
 	name = request.args.get('name')
 	email = request.args.get('email')
 	password = request.args.get('password')
+	stage = request.args.get('stage')
 	admin = request.args.get('admin')
 
 
@@ -81,6 +115,16 @@ def Insert():
 		mycursor.callproc('insertUser', args)
 	except mysql.connector.IntegrityError:
 		return "409"
+
+	email = request.args.get('email')
+	sql = "SELECT id_user FROM user WHERE email = %s"
+	val = (email,)
+	mycursor.execute(sql, val)
+	id_user = mycursor.fetchone()
+
+	sql = "INSERT INTO user_has_stage (user_id_user, user_admin_id_admin, stage_id_stage) VALUES (%s,%s,%s)"
+	val = (id_user[0], admin, stage)
+	mycursor.execute(sql, val)
 	
 	print("entro a insert")
 	mydb.commit()
@@ -302,6 +346,55 @@ def ShowAllStage():
 	items["items"] = stage
 	return jsonify(items), 200
 
+@app.route("/stageCountDevices", methods=['GET'])
+def StageCountDevices():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	stage_id_stage = request.args.get('stage_id_stage')
+
+	val = (stage_id_stage,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT count(*) FROM device d JOIN room r ON d.room_id_room = r.id_room JOIN stage s ON r.stage_id_stage = s.id_stage AND s.id_stage = %s"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	items = {}
+	stage = []
+
+	while row is not None:
+		id_stage = {}
+		id_stage["devices"] = row[0]
+		stage.append(id_stage)
+		row = mycursor.fetchone()
+
+	items["items"] = stage
+	return jsonify(items), 200
+
+@app.route("/stageCountUsers", methods=['GET'])
+def StageCountUsers():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	stage_id_stage = request.args.get('stage_id_stage')
+
+	val = (stage_id_stage,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT count(*) FROM user_has_stage WHERE stage_id_stage = %s"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	items = {}
+	stage = []
+
+	while row is not None:
+		id_stage = {}
+		id_stage["users"] = row[0]
+		stage.append(id_stage)
+		row = mycursor.fetchone()
+
+	items["things"] = stage
+	return jsonify(items), 200
 
 #############################  ROOM   #################################
 
@@ -439,6 +532,29 @@ def CountDevices():
 	items["items"] = room
 	return jsonify(items), 200
 
+@app.route("/checkRoom", methods=['GET'])
+def CheckRoom():
+
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	name_room = request.args.get('name_room')
+
+	val = (name_device,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT name FROM room WHERE name = %s;"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	
+	while row is not None:
+		id_device = {}
+		id_device["name"] = row[0]
+		row = mycursor.fetchone()
+
+	return jsonify(id_device), 200
+
+
 @app.route("/getNameRoom", methods=['GET'])
 def GetNameRoom():
 	mydb = mysql.connector.connect(**config)
@@ -512,21 +628,18 @@ def SearchDevice():
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
 	name_device = request.args.get('name_device')
+	id_room = request.args.get('id_room')
 
-	val = (name_device,)
-	#mycursor.callproc('buscarStage', val)
-
-	sql = "SELECT name_device FROM device WHERE name_device = %s;"
+	val = (name_device, id_room)
+	sql = "SELECT * FROM device WHERE name_device = %s AND room_id_room = %s;"
 	mycursor.execute(sql, val)
-
 	row = mycursor.fetchone()
-	
-	while row is not None:
-		id_device = {}
-		id_device["name"] = row[0]
-		row = mycursor.fetchone()
 
-	return jsonify(id_device), 200
+	while row is not None:
+		return '', 400
+
+	return '', 200
+	
 
 
 @app.route("/modifyDevice", methods=['GET'])

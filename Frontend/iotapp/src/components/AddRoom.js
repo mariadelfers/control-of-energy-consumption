@@ -37,7 +37,7 @@ class GenerateRoom extends React.Component{
         this.createRoom(name, type, stage);
       } 
     };
-    request.open('GET', 'http://localhost:5000/searchRoom?name_room=' + name);
+    request.open('GET', 'http://localhost:5000/checkRoom?name_room=' + name);
     request.send(); 
   }
 

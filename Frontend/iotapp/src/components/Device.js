@@ -5,7 +5,6 @@ import Popup from 'reactjs-popup';
 export default function Device({ device: { id, type, name, state }, offDevice, disabledDevice }){
   var icon_type = "otro"
   var device_type = JSON.stringify(type);
-  console.log("Inside: ", device_type);
   // var value = '';
   // fetch("http://localhost:5000/checkType?id_type="+ device_type)
   // .then((response) => { return response.text() }) // change to return response.text()

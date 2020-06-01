@@ -3,7 +3,6 @@ import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
 import { connect } from 'react-redux';
-import DeviceScreen from './DeviceScreen';
 
 class RoomComponent extends React.Component{
   
@@ -158,7 +157,6 @@ export default function Room({ room: { id, type, name} }) {
   return (
     <div>
       <RoomComponent id_room={id} type_room={type} name_room={name} />
-      <DeviceScreen />
     </div>
   );
 }

@@ -2,17 +2,32 @@
 
 -- LoginAdministrador
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginAdministrador`(IN username VARCHAR(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginAdministrador`(IN email VARCHAR(45), IN password VARCHAR(255))
 BEGIN
-SELECT * FROM admin WHERE id_admin = username;
+SELECT * FROM admin WHERE email = email AND password =  password;
 END ;;
 DELIMITER ;
 
 -- LoginUser
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginUser`(IN username VARCHAR(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginUser`(IN email VARCHAR(45), IN password VARCHAR(255))
 BEGIN
-SELECT * FROM user WHERE username = username;
+SELECT * FROM user WHERE email = email AND password =  password;
+END ;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PasswordAdministrador`(IN password VARCHAR(255))
+BEGIN
+SELECT * FROM admin WHERE password =  password;
+END ;;
+DELIMITER ;
+
+-- LoginUser
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PasswordUser`(IN password VARCHAR(255))
+BEGIN
+SELECT * FROM user WHERE password =  password;
 END ;;
 DELIMITER ;
 

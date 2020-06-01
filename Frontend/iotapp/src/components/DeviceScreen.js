@@ -11,7 +11,7 @@ function getName(id){
       return;
     }
     if (request.status === 200) {
-      console.log('[*]', request.responseText);
+     // console.log('[*]', request.responseText);
       var device_name = request.responseText;
       device_name = JSON.stringify(device_name);
       device_name = device_name.toString(device_name);
@@ -23,12 +23,12 @@ function getName(id){
       console.warn('error');
     }
   };
-  request.open('GET', 'http://localhost:5000/getNameRoom?id_room=1');
+  request.open('GET', 'http://localhost:5000/getNameRoom?id_room='+id);
   request.send(); 
 }
 
-export function PureDeviceScreen({ error, room }) {
-  var id_room = JSON.stringify(room)
+export function PureDeviceScreen({ id_room, error, room }) {
+  //var id_room = JSON.stringify(room)
   if (error) {
     return (
       <div className="screen-error-device">
@@ -50,7 +50,7 @@ export function PureDeviceScreen({ error, room }) {
         </h1>
       </nav>
       <DeviceList room={id_room}/>
-      <AddButton addButton={{}} />
+      <AddButton id_room={id_room} />
     </div>
   );
 }

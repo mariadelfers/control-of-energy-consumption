@@ -23,7 +23,7 @@ export function PureRoomScreen({id_stage}) {
           <span className="screen-message">Salas</span>
         </h1>
       </nav>
-      <RoomList id_stage={id_stage}/>
+      <RoomList stage={id_stage}/>
       <AddButtonRoom addButtonRoom={{}} />
     </div>
   );

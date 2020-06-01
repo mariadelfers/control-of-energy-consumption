@@ -66,11 +66,18 @@ class ProfileComponent extends React.Component{
     const { error, isLoaded, items, user } = this.state;
 
     if (error) {
-      return <div className="Error">Error</div>;
+      return <div className="error">
+        <img className="error-icon" src={require('../icons/sadface.png')} alt="Icon"/>
+        <br></br>Error 
+        <br></br>Sin conexión
+        </div>;
       
     } 
     else if (!isLoaded) {
-      return <div>Cargando perfil...</div>;
+      return <div className="load-perfil">
+      <div class="loader-perfil"></div>
+      Cargando perfil
+      </div>;
     } 
     else {
 
