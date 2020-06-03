@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Stage from './Stage';
-import Controller from './Controller'
 import { connect } from 'react-redux';
+import RoomScreen from './RoomScreen';
 
 class GenerateStageList extends React.Component{
   constructor(props) {
@@ -73,7 +73,7 @@ class GenerateStageList extends React.Component{
                 <Stage stage={item}/>
               ))}
           </div>
-          <Controller  id={1}/>
+          <RoomScreen id_stage={1}/>
         </div>
       );
 

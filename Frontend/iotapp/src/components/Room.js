@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
-import { connect } from 'react-redux';
+import Controller from'./Controller.jsx';
+import DeviceScreen from './DeviceScreen.js';
+import { ReactComponent } from 'react';
 
 class RoomComponent extends React.Component{
   
@@ -12,8 +14,9 @@ class RoomComponent extends React.Component{
       id: '',
       name: '',
       type: '',
-      items: []
+      items: [],
     };
+    
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -98,49 +101,66 @@ class RoomComponent extends React.Component{
   refreshPage(){
     window.location.reload(false);
   }
-  ret
-  
+
+  handleClick(){
+    //console.log("Update content", this.state.id);
+    ReactDOM.unmountComponentAtNode(document.getElementById('device-screen'));
+    this.showDevices();
+  }
+
+  showDevices() {
+    ReactDOM.render(
+      <DeviceScreen id_room={this.state.id} />,
+      document.getElementById('device-screen')
+    );
+  }
+
   render() {
     const { items } = this.state;
       return (
         <div>
+          <div className="just-screen" id="device-screen"></div>
+          <button className={'room-item'} onClick={this.handleClick.bind(this)}>
+                <Popup trigger={
+                <div>
+                  <button className="delete" >
+                  <img className="delete-icon" src={require('../icons/cancel.png')} alt="Icon"/>
+                  </button>
+                </div>
+              } modal>
+                {close => (
+                  <div className="modal">
+                    <a className="close" onClick={close}>
+                      &times;
+                    </a>           
+                    <div className="content">
+                      <h1 className="pregunta">
+                        ¿Estás seguro de eliminar {this.state.name}?
+                      </h1>
+                    </div>
+                    <div className="actions">
+                      <button className="aceptar" onClick={() => { this.deleteRoom(); close();}}> Aceptar </button>
+                      <button className="cancelar" onClick={() => { close();}}> Cancelar </button>
+                    </div>
+                  </div>
+                )}
+              </Popup>
 
-        <Popup trigger={
-          <button className={`room-item`} >
-          <div class="terms">
-            <img className={`room-icon`} src={require('../icons/salas/' + this.getType() + '.png')} alt="Icon"/>
-            <h2 className="room-name">{this.state.name}
-            {items.map(d => (
-              <h1 className="device-count">
-                {d.devices} <p>Dispositivos</p> 
-              </h1>)
-            )}
-            </h2>
-          </div>
-          
+              <div class="terms">
+                <img className={`room-icon`} src={require('../icons/salas/' + this.getType() + '.png')} alt="Icon"/>
+                <h2 className="room-name">{this.state.name}
+                {items.map(d => (
+                  <h1 className="device-count">
+                    {d.devices} <p>Dispositivos</p> 
+                  </h1>)
+                )}
+                </h2>
+              </div>
+              
+          </button>
         
-        </button>
-        } modal>
-          {close => (
-            <div className="modal">
-              <a className="close" onClick={close}>
-                &times;
-              </a>           
-              <div className="content">
-                <div class="terms">
-                  <img className="icon-info" src={require('../icons/salas/'+ this.getType() + '.png')} alt="Icon"/>
-                    Nombre: {this.state.name} <br></br>
-                    Tipo: {this.getType()} <br></br>
-                    Sala: 
-                </div> 
-              </div>
-              <div className="actions">
-                <button className="eliminar" onClick={() => { this.deleteRoom(); close();}}> Eliminar </button>
-                <button className="ver" onClick={close}> Ver dispositivos </button>
-              </div>
-            </div>
-          )}
-        </Popup>
+
+        {/* {this.updateContent()} */}
         </div>
 
       );
@@ -153,7 +173,6 @@ ReactDOM.render(
 );
 
 export default function Room({ room: { id, type, name} }) {
-
   return (
     <div>
       <RoomComponent id_room={id} type_room={type} name_room={name} />

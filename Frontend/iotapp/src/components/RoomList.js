@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
-import Room from './Room';
+import Room from './Room.js';
 import { connect } from 'react-redux';
 
 class GenerateRoomList extends React.Component{

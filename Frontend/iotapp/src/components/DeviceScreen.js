@@ -1,66 +1,63 @@
 import React, { StrictMode } from 'react';
+import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import AddButton from './AddDevice';
 import DeviceList from './DeviceList';
+import Device from './Device';
 
-function getName(id){
-  var request = new XMLHttpRequest();
-  request.onreadystatechange = (e) => {
-    if (request.readyState !== 4) {
-      return;
-    }
-    if (request.status === 200) {
-     // console.log('[*]', request.responseText);
-      var device_name = request.responseText;
-      device_name = JSON.stringify(device_name);
-      device_name = device_name.toString(device_name);
-      device_name = device_name.substring(13, device_name.length-6);
-      var i = document.getElementById("name");
-      i.insertAdjacentHTML("afterbegin",
-      "<span> [ " + device_name + " ]</span>");
-    } else {
-      console.warn('error');
-    }
-  };
-  request.open('GET', 'http://localhost:5000/getNameRoom?id_room='+id);
-  request.send(); 
-}
+class GenerateDeviceScreen extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      id:'',
+      name:'',
+    };
+  }
+ 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      id: props.id_room 
+    };
+  }
 
-export function PureDeviceScreen({ id_room, error, room }) {
-  //var id_room = JSON.stringify(room)
-  if (error) {
-    return (
-      <div className="screen-error-device">
-        <div className="empty-message">
-          <div className="title-message">¡Oh no!</div>
-          <div className="message">Algo salió mal.</div>
+  componentDidMount() {
+    fetch("http://localhost:5000/getNameRoom?id_room=" + this.state.id)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          name: result.name
+        });        
+      },
+    )
+  }
+
+  render() {
+    return(
+      <div className="screen-device">
+        <div className="fondo">
+          <h1 className="screen-title">
+            <span className="screen-message">Dispositivos</span>
+            <span className="screen-place" id="name">[ {this.state.name} ]</span>
+          </h1>
         </div>
+        <DeviceList room={this.state.id}/>
+        <AddButton id_room={this.state.id} />
       </div>
     );
   }
-
+}
+ReactDOM.render(
+  <GenerateDeviceScreen />,
+  document.getElementById('root')
+);
+export default function DeviceScreen({ id_room }) {
   return (
-    <div className="screen-device">
-      <nav>
-        <h1 className="screen-title">
-          <span className="screen-message">Dispositivos</span>
-          {getName(id_room)}
-          <span className="screen-place" id="name"></span>
-        </h1>
-      </nav>
-      <DeviceList room={id_room}/>
-      <AddButton id_room={id_room} />
-    </div>
+    <GenerateDeviceScreen id_room={id_room}/>
   );
 }
 
-PureDeviceScreen.propTypes = {
-  error: PropTypes.string,
+DeviceScreen.propTypes = {
+  id_room: PropTypes.string.isRequired,
 };
 
-PureDeviceScreen.defaultProps = {
-  error: null,
-};
-
-export default connect(({ error }) => ({ error }))(PureDeviceScreen);

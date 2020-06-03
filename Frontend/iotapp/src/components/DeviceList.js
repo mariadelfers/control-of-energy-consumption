@@ -3,11 +3,9 @@ import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Device from './Device';
 import { connect } from 'react-redux';
-import { offDevice, disableDevice } from '../lib/redux_device';
 
 class GenerateDeviceList extends React.Component{
   
-
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +45,7 @@ class GenerateDeviceList extends React.Component{
   }
 
   render() {
-    const { empty, error, isLoaded, items } = this.state;
+    const { isLoaded, items } = this.state;
 
     if (!isLoaded) {
       return <div className="load">
@@ -86,7 +84,7 @@ ReactDOM.render(
 );
 
 
-export function PureDeviceList({ room, loading, devices, offDevice, disableDevice, addButton }) {
+export default function PureDeviceList({ room, loading, devices, offDevice, disableDevice, addButton }) {
   return (
     <div>
       <GenerateDeviceList id_room={room}/>
@@ -99,20 +97,8 @@ PureDeviceList.propTypes = {
     room: PropTypes.string.isRequired,
     loading: PropTypes.bool,
     devices: PropTypes.arrayOf(Device.propTypes.device).isRequired,
-    offDevice: PropTypes.func.isRequired,
-    disableDevice: PropTypes.func.isRequired,
   };
   
   PureDeviceList.defaultProps = {
     loading: false,
   };
-  
-  export default connect(
-    ({ devices }) => ({
-      devices: devices.filter(d => d.state === 'DEVICE_INBOX' || d.state === 'DEVICE_OFF'),
-    }),
-    dispatch => ({
-      deviceDisable: id => dispatch(disableDevice(id)),
-      offDevice: id => dispatch(offDevice(id)),
-    })
-  )(PureDeviceList);
