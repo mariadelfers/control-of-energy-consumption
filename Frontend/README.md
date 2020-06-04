@@ -22,17 +22,17 @@ La interfaz de usuario esta construida con React DOM, con la ayuda de diferentes
 
 El proyecto esta desarrollado por componentes.
 
-Profile
-	> User
-	> List Stage
-		> Stage
-			> ScreenRoom
-				>AddRoom
-				> ListRoom
-					> Room
-						> ScreenDevice
-							> AddRoom
-							> ListDevice
-								> Device
+*Profile
+	*User
+	*List Stage
+		*Stage
+			*ScreenRoom
+				*AddRoom
+				*ListRoom
+					*Room
+						*ScreenDevice
+							*AddDevice
+							*ListDevice
+								*Device
 
 	
