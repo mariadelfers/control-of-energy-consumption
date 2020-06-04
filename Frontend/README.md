@@ -22,7 +22,7 @@ La interfaz de usuario esta construida con React DOM, con la ayuda de diferentes
 
 El proyecto esta desarrollado por componentes.
 
-> Profile
+Profile
 	> User
 	> List Stage
 		> Stage
