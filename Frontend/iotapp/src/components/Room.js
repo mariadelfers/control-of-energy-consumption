@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDOM from'react-dom';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
-import Controller from'./Controller.jsx';
 import DeviceScreen from './DeviceScreen.js';
 import { ReactComponent } from 'react';
 
@@ -120,7 +119,7 @@ class RoomComponent extends React.Component{
       return (
         <div>
           <div className="just-screen" id="device-screen"></div>
-          <button className={'room-item'} onClick={this.handleClick.bind(this)}>
+          <button className="room-item" onClick={this.handleClick.bind(this)}>
                 <Popup trigger={
                 <div>
                   <button className="delete" >
@@ -148,19 +147,17 @@ class RoomComponent extends React.Component{
 
               <div class="terms">
                 <img className={`room-icon`} src={require('../icons/salas/' + this.getType() + '.png')} alt="Icon"/>
-                <h2 className="room-name">{this.state.name}
-                {items.map(d => (
-                  <h1 className="device-count">
-                    {d.devices} <p>Dispositivos</p> 
-                  </h1>)
-                )}
-                </h2>
+                <div>
+                  <h2 className="room-name">{this.state.name}</h2>
+                  {items.map(d => (
+                    <h1 className="device-count">
+                      {d.devices} Dispositivos
+                    </h1>)
+                  )}
+                </div>
               </div>
               
           </button>
-        
-
-        {/* {this.updateContent()} */}
         </div>
 
       );

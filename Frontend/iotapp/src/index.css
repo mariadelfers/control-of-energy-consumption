@@ -81,7 +81,7 @@ code {
 }
 .device-item {
   border-radius:  10px;
-  border: #000000;
+  border: #fa2626;
   padding:        10px 10px;
   margin:         15px;
   margin-top: 20px;
@@ -98,6 +98,7 @@ code {
   border-color: #8a8a8a;
   border-style: solid;
 }
+
 .device-icon {
   height:         50px;
   width:          50px;
@@ -288,28 +289,22 @@ code {
  .device-count{
   color: #006dff; 
   font-family: 'Raleway', Fallback, sans-serif;
-  font-size: 16px;
-  margin-top: 1px;
-  margin-left: 1px;
-  display: inline-block;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-left: 10px;
 }
-
-.device-count p {
-  font-size: 12px;
-  display: inline-flex;
-}
-
 
 .room-icon {
   height:         40px;
   width:          40px;
-  padding: 5px;
+  padding-left:   5px;
+  padding-top:   5px;
 }
-.room-item .room-name {
+.room-name {
   color:    rgb(151, 151, 151);
   font-family: 'Raleway', Fallback, sans-serif;
   font-size: 20px;
-  margin-left: 10px;
+  margin-left: 2px;
   margin-top: 0.5px;
 }
 
@@ -320,7 +315,12 @@ code {
   border-color: #c0c0c0;
   border-style: solid;
 }
-
+.room-item:active {
+  cursor:       pointer;
+  border-width: 2px;
+  border-color:  #004b9250;
+  border-style: solid;
+}
 /******************************
 *        Screen room          *
 ******************************/
@@ -888,6 +888,7 @@ code {
   padding: 10px 5px;
   font-family: 'Raleway', Fallback, sans-serif;
   font-size: 25px;
+  width: 800px;
   text-align: center;
 }
 .empty-icon {
@@ -909,9 +910,10 @@ code {
 }
 .loader {
   margin-left: 320px;
-  margin-bottom: 20px;
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  margin-top: 50px;
+  margin-bottom: 60px;
+  border: 15px solid #f3f3f3; /* Light grey */
+  border-top: 15px solid #3498db; /* Blue */
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -925,7 +927,8 @@ code {
 }
 .loader-perfil {
   margin-left: 600px;
-  margin-top: 320px;
+  margin-top: 220px;
+  margin-bottom: 20px;
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
@@ -1060,9 +1063,3 @@ code {
   height: 150px;
   display: flex;
 }
-
-/*********************************** 
-*                                  *
-*           LOGIN PAGE             *
-*                                  *
-************************************/

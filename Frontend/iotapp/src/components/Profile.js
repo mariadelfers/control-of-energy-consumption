@@ -76,7 +76,7 @@ class ProfileComponent extends React.Component{
     else if (!isLoaded) {
       return <div className="load-perfil">
       <div class="loader-perfil"></div>
-      Cargando perfil
+      Cargando monitor
       </div>;
     } 
     else {

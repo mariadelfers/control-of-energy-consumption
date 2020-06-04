@@ -50,7 +50,6 @@ class GenerateDeviceList extends React.Component{
     if (!isLoaded) {
       return <div className="load">
         <div class="loader"></div>
-        Cargando dispositivos
         </div>;
     } 
     else if (items.length == 0) {

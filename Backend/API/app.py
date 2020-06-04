@@ -539,7 +539,7 @@ def CheckRoom():
 	mycursor = mydb.cursor(buffered=True)
 	name_room = request.args.get('name_room')
 
-	val = (name_device,)
+	val = (name_room,)
 	#mycursor.callproc('buscarStage', val)
 
 	sql = "SELECT name FROM room WHERE name = %s;"
