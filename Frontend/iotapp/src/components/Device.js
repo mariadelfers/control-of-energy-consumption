@@ -86,7 +86,6 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
               <img className="icon-info" src={require('../icons/dispositivos/'+ icon_type +'.png')} alt="Icon"/>
                 Nombre: {name} <br></br>
                 Tipo: {getType(type)} <br></br>
-                Sala: 
             </div> 
           </div>
           <div className="actions">

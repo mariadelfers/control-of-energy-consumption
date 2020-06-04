@@ -6,6 +6,8 @@ import User from './User';
 import StageList from './StageList';
 import { connect } from 'react-redux';
 
+const textArray = ['dispositivos', 'cuartos', 'espacios', 'usuarios'];
+
 class ProfileComponent extends React.Component{
   constructor(props) {
     super(props);
@@ -14,7 +16,8 @@ class ProfileComponent extends React.Component{
       error: null,
       isLoaded: false,
       items: [],
-      user:[]
+      user:[],
+      textIdx: 0,
     };
   }
 
@@ -60,23 +63,38 @@ class ProfileComponent extends React.Component{
         });
       }
     )
+    this.timeout = setInterval(() => {
+      let currentIdx = this.state.textIdx;
+      this.setState({ textIdx: currentIdx + 1 });
+    }, 800);
+  }
+
+  componentDidUnmount() {
+    clearInterval(this.timeout);
+  }
+
+  refreshPage(){
+    window.location.reload(false);
   }
 
   render() {
     const { error, isLoaded, items, user } = this.state;
+    let textThatChanges = textArray[this.state.textIdx % textArray.length];
 
     if (error) {
       return <div className="error">
         <img className="error-icon" src={require('../icons/sadface.png')} alt="Icon"/>
         <br></br>Error 
         <br></br>Sin conexión
+        <br></br>
+        <button className="non-connection" onClick={() => this.refreshPage()}>Intentar de nuevo</button>
         </div>;
       
     } 
     else if (!isLoaded) {
       return <div className="load-perfil">
       <div class="loader-perfil"></div>
-      Cargando monitor
+      Cargando <span>{textThatChanges}</span>...
       </div>;
     } 
     else {

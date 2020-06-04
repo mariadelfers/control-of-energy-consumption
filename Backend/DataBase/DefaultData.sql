@@ -27,10 +27,8 @@ INSERT INTO `type` (`name_type`) VALUES
 
 -- STAGE
 INSERT INTO stage (name, admin_id_admin) VALUES("Mi casa", 1);
-INSERT INTO stage (name, admin_id_admin) VALUES("Trabajo", 1);
 -- ROOM
 INSERT INTO room (name, scenario_id_scenario, stage_id_stage) VALUES("Mi cuarto", 1, 1);
-INSERT INTO room (name, scenario_id_scenario, stage_id_stage) VALUES("Oficina", 8, 2);
 
 
 

@@ -879,7 +879,8 @@ code {
 *                                  *
 ************************************/
 .error{
-  padding: 250px 5px;
+  align-items: center;
+  padding: 220px 5px;
   font-family: 'Raleway', Fallback, sans-serif;
   font-size: 25px;
   text-align: center;
@@ -901,7 +902,19 @@ code {
   width:          80px;
   padding:         8px;
 }
-
+.non-connection{
+  background: #006dff;
+  color: #ffffff;
+  font-family: 'Raleway', Fallback, sans-serif;
+  font-size: 17px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  margin-left: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
 .load{
   padding: 10px 5px;
   font-family: 'Raleway', Fallback, sans-serif;

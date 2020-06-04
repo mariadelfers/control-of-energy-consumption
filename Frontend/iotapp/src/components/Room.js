@@ -134,7 +134,7 @@ class RoomComponent extends React.Component{
                     </a>           
                     <div className="content">
                       <h1 className="pregunta">
-                        ¿Estás seguro de eliminar {this.state.name}?
+                        ¿Estás seguro de eliminar "{this.state.name}"?
                       </h1>
                     </div>
                     <div className="actions">
