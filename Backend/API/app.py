@@ -330,7 +330,7 @@ def ShowAllStage():
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
 
-	sql = "SELECT * FROM stage"
+	sql = "SELECT * FROM stage WHERE status = '1'"
 	mycursor.execute(sql)
 	row = mycursor.fetchone()
 	
@@ -408,7 +408,7 @@ def InsertRoom():
 	id_stage = request.args.get('id_stage')
 
 	try:
-		sql = "INSERT INTO room (name, scenario_id_scenario, stage_id_stage) VALUES (%s,%s,%s)"
+		sql = "INSERT INTO room (name, status, scenario_id_scenario, stage_id_stage) VALUES (%s,1,%s,%s)"
 		val = (name, id_scenario, id_stage)
 		mycursor.execute(sql, val)
 	except mysql.connector.IntegrityError:
@@ -427,7 +427,7 @@ def DeleteRoom():
 	mycursor = mydb.cursor()
 	id_room = request.args.get('id_room')
 
-	sql = "DELETE FROM room WHERE id_room = %s"
+	sql = "UPDATE room SET status = 0 WHERE id_room = %s"
 	val = (id_room,)
 	mycursor.execute(sql, val)
 
@@ -489,7 +489,7 @@ def ShowAllRoom():
 	mycursor = mydb.cursor(buffered=True)
 
 	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM room"
+	sql = "SELECT * FROM room WHERE status = 1"
 	mycursor.execute(sql)
 	
 	row = mycursor.fetchone()

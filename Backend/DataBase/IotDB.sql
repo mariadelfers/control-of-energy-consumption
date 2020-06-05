@@ -80,6 +80,7 @@ DROP TABLE IF EXISTS `IotDB`.`room` ;
 CREATE TABLE IF NOT EXISTS `IotDB`.`room` (
   `id_room` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
+   `status` TINYBLOB NOT NULL,
   `scenario_id_scenario` INT NOT NULL,
   `stage_id_stage` INT NOT NULL,
   PRIMARY KEY (`id_room`),

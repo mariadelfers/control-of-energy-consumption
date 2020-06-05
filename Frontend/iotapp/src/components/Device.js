@@ -19,7 +19,40 @@ export default function Device({ device: { id, type, name, state }, offDevice, d
       break;
     case "4":
       icon_type = "TV";
-      break;  
+      break;
+    case "5":
+      icon_type = "Clima";
+      break;
+    case "6":
+      icon_type = "Impresora";
+      break;
+    case "7":
+      icon_type = "Lavadora";
+      break;
+    case "8":
+      icon_type = "Licuadora";
+      break;
+    case "9":
+      icon_type = "Modem";
+      break;
+    case "10":
+      icon_type = "PC";
+       break;
+    case "12":
+      icon_type = "Refrigerador";
+      break;
+    case "12":
+      icon_type = "Asistente";
+      break;
+    case "13":
+      icon_type = "Cafetera";
+      break;
+    case "14":
+      icon_type = "Microondas";
+      break;
+    case "15":
+      icon_type = "Secadora";
+      break;
     default:
       icon_type = "blank";
       break;

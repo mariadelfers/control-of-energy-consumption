@@ -162,6 +162,62 @@ class GenerateDevice extends React.Component{
                             <img className="icon-size" src={require('../icons/dispositivos/TV.png')} alt="Icon"/>
                             Televisión
                             </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-5"
+                            value="5" checked={this.state.type === "5"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-5">
+                            <img className="icon-size" src={require('../icons/dispositivos/Clima.png')} alt="Icon"/>
+                            <br></br>Clima
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-6"
+                            value="6" checked={this.state.type === "6"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-6">
+                            <img className="icon-size" src={require('../icons/dispositivos/Impresora.png')} alt="Icon"/>
+                            Impresora
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-7"
+                            value="7" checked={this.state.type === "7"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-7">
+                            <img className="icon-size" src={require('../icons/dispositivos/Lavadora.png')} alt="Icon"/>
+                            Lavadora
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-8"
+                            value="8" checked={this.state.type === "8"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-8">
+                            <img className="icon-size" src={require('../icons/dispositivos/Licuadora.png')} alt="Icon"/>
+                            Licuadora
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-10"
+                            value="10" checked={this.state.type === "10"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-10">
+                            <img className="icon-size" src={require('../icons/dispositivos/PC.png')} alt="Icon"/>
+                            Computadora
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-11"
+                            value="11" checked={this.state.type === "11"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-11">
+                            <img className="icon-size" src={require('../icons/dispositivos/Refrigerador.png')} alt="Icon"/>
+                            Refrigerador
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-13"
+                            value="13" checked={this.state.type === "13"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-13">
+                            <img className="icon-size" src={require('../icons/dispositivos/Cafetera.png')} alt="Icon"/>
+                            Cafetera
+                            </label>
+
+                            <input class="checkbox-tools" type="radio" name="tools" id="tool-14"
+                            value="14" checked={this.state.type === "14"} onChange={this.changeRadio}></input>
+                            <label class="for-checkbox-tools" for="tool-14">
+                            <img className="icon-size" src={require('../icons/dispositivos/Microondas.png')} alt="Icon"/>
+                            Microondas
+                            </label>
                   </div>		
 
                 </div>

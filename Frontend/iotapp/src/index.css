@@ -696,7 +696,7 @@ code {
 }
 
 .checkbox:checked ~ .background-color{
-   border-width: 3px;
+   border-width: 2px;
    border-color: #8a8a8a;
    border-style: solid;
 }
@@ -768,14 +768,14 @@ code {
 .checkbox-tools:checked + label{
 	background-color: transparent;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  border-width: 3px;
+  border-width: 2px;
   border-color: #8a8a8a;
   border-style: solid;
   
 }
 .checkbox-tools:not(:checked) + label:hover{
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  border-width: 3px;
+  border-width: 2px;
   border-color: #8a8a8a;
   border-style: solid;
 }
