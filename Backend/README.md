@@ -17,46 +17,42 @@ Para obtener informacion de la API se debe de realizar una peticion GET hacia cu
 
 > Administrador / Usuarios
 
-###### /login?username=&contrasena=
-###### /insert?name=&email=&username=&password=&date_register=&admin=
-###### /delete?username= 
-###### /modify?username=&name=&email=&status=
-###### /search?username=
+###### /login?email=&password=
+###### /insert?name=&email=&password=&admin=
+###### /delete?email= 
+###### /modify?email=&name=&email=
+###### /search?email=
 ###### /showAllUser
 
  Espacios
 
 > Stage
-###### /insertStage?id_stage=&name=&user=&admin=
+###### /insertStage?name=&user=&admin=
 ###### /deleteStage?id_stage= 
 ###### /searchStage?id_stage=
 ###### /modifyStage?id_stage=&name=
 ###### /showAllStage
-
-> Floor
-###### /insertFloor?id_floor=&name=&id_stage=
-###### /deleteFloor?id_floor= 
-###### /searchFloor?id_floor=
-###### /modify?id_floor=&name=
-###### /showAllFloor
+###### /getStage?id_stage=
+###### /stageCountDevices?id_stage=
+###### /stageCountUsers?id_stage=
 
 > Room
-###### /insertRoom?id_room=&name=&id_floor=&id_scenario=
+###### /insertRoom?name=&id_scenario=&id_stage
 ###### /deleteRoom?id_room= 
 ###### /searchRoom?id_room=
 ###### /modify?id_room=&name=&id_scenario=
 ###### /showAllRoom
+###### /countDevices?id_room=
+###### /checkRoom?name_room=
+###### /getNameRoom?id_room=
 
 > Dispositvos
 
-###### /insertProduct?id_product=&name=&description=&os=&id_device=&status=&brand=&model=&x=&y=&id_room=
-
-###### /insertSensor?id_sensor=&type=&firmware=&clasification=&id_device=&status=&brand=&model=&x=&y=&id_room=
-
+###### /insertDevice?name_device=&type_idtype=&id_room=
 ###### /deleteDevice?id_device=
 ###### /searchDevice?id_device=
-###### /type?type_device=
-###### /modifyDevice?id_device=&brand=&model=&x=&y=
+###### /modifyDevice?id_device=&name=&
+###### /checkType?id_type=&
 ###### /showAllDevice
 
 Regresa un flask.Response() y un status code 200. Se puede convertir en un JSON con JSON.parse(); la estructura de la respuesta depende de los parametros que se den.

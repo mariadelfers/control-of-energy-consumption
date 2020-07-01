@@ -94,7 +94,7 @@
     <script>
         function myFunction11() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertStage?id_stage=1&name=nameStage&user=mariaTest&admin=1';
+            const url='http://localhost:5000/insertStage?name=nameStage&user=mariaTest&admin=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
@@ -154,79 +154,13 @@
         }
     </script>
 
-     <!--     FLOOR   -->
-    <h2>Floor</h2>>
-    <button onclick="myFunction21()">Insertar</button>
-    <script>
-        function myFunction21() {
-            const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertFloor?id_floor=1&name=nameFloor&id_stage=1';
-            Http.open("GET", url);
-            Http.send();
-            Http.onreadystatechange=(e)=>{
-                console.log(Http.responseText)
-            }
-        }
-    </script>
-    <button onclick="myFunction22()">Borrar</button>
-    <script>
-        function myFunction22() {
-            const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/deleteFloor?id_floor=1';
-            Http.open("GET", url);
-            Http.send();
-            Http.onreadystatechange=(e)=>{
-                console.log(Http.responseText)
-            }
-        }
-    </script>
-
-    <button onclick="myFunction23()">Buscar</button>
-    <script>
-        function myFunction23() {
-            const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/searchFloor?id_floor=1';
-            Http.open("GET", url);
-            Http.send();
-            Http.onreadystatechange=(e)=>{
-                console.log(Http.responseText)
-            }
-        }
-    </script>
-
-    <button onclick="myFunction24()">Modificar</button>
-    <script>
-        function myFunction24() {
-            const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/modifyFloor?id_floor=1&name=newNameFloor';
-            Http.open("GET", url);
-            Http.send();
-            Http.onreadystatechange=(e)=>{
-                console.log(Http.responseText)
-            }
-        }
-    </script>
-
-    <button onclick="myFunction25()">Mostrar todos</button>
-    <script>
-        function myFunction25() {
-            const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/showAllFloor';
-            Http.open("GET", url);
-            Http.send();
-            Http.onreadystatechange=(e)=>{
-                console.log(Http.responseText)
-            }
-        }
-    </script>
-
-      <!--     ROOM   -->
+     <!--     ROOM   -->
     <h2>Room</h2>>
     <button onclick="myFunction31()">Insertar</button>
     <script>
         function myFunction31() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertRoom?id_room=1&name=nameRoom&id_floor=1&id_scenario=1';
+            const url='http://localhost:5000/insertRoom?name=nameRoom&id_scenario=1&id_stage=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
@@ -286,26 +220,27 @@
         }
     </script>
 
+     <button onclick="myFunction36()">Contar</button>
+    <script>
+        function myFunction36() {
+            const Http = new XMLHttpRequest();
+            const url='http://localhost:5000/countDevices?id_room=1';
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange=(e)=>{
+                console.log(Http.responseText)
+            }
+        }
+    </script>
+
 
     <!-- DISPOSITIVOS -->
     <h1>Dispositivos</h1>
-    <button onclick="myFunction10()">InsertarP</button>
+    <button onclick="myFunction10()">Insertar</button>
     <script>
         function myFunction10() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertProduct?id_product=1&name=nameProduct&description=desproducto&os=system&id_device=1&status=1&brand=marca&model=modelo&x=1&y=1&id_room=1';
-            Http.open("GET", url);
-            Http.send();
-            Http.onreadystatechange=(e)=>{
-                console.log(Http.responseText)
-            }
-        }
-    </script>
-    <button onclick="myFunction20()">InsertarS</button>
-    <script>
-        function myFunction20() {
-            const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/insertSensor?id_sensor=1&type=tipo&firmware=firm&clasification=clasificacion&id_device=2&status=1&brand=marca&model=modelo&x=2&y=2&id_room=1';
+            const url='http://localhost:5000/insertDevice?name_device=Prueba1&id_room=1&type_idtype=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{
@@ -314,7 +249,7 @@
         }
     </script>
 
-     <button onclick="myFunction30()">Borrar</button>
+    <button onclick="myFunction30()">Borrar</button>
     <script>
         function myFunction30() {
             const Http = new XMLHttpRequest();
@@ -326,8 +261,6 @@
             }
         }
     </script>
-
-
 
     <button onclick="myFunction40()">Buscar</button>
     <script>
@@ -342,18 +275,6 @@
         }
     </script>
 
-    <button onclick="myFunction50()">Filtrar</button>
-    <script>
-        function myFunction50() {
-            const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/type?type_device=sensor';
-            Http.open("GET", url);
-            Http.send();
-            Http.onreadystatechange=(e)=>{
-                console.log(Http.responseText)
-            }
-        }
-    </script>
 
     <button onclick="myFunction60()">Modificar</button>
     <script>
@@ -372,7 +293,20 @@
     <script>
         function myFunction70() {
             const Http = new XMLHttpRequest();
-            const url='http://localhost:5000/showAllDevice';
+            const url='http://localhost:5000/showAllDevice?id_room=1';
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange=(e)=>{
+                console.log(Http.responseText)
+            }
+        }
+    </script>
+
+    <button onclick="myFunction71()">Check type</button>
+    <script>
+        function myFunction71() {
+            const Http = new XMLHttpRequest();
+            const url='http://localhost:5000/checkType?id_type=1';
             Http.open("GET", url);
             Http.send();
             Http.onreadystatechange=(e)=>{

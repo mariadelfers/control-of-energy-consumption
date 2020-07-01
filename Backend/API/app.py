@@ -16,59 +16,93 @@ CORS(app)
 
 
 ############################
-# ADMINISTRADOR / USER     #
+#                          #
+#   ADMINISTRADOR / USER   #
+#                          #
 ############################
 
+# @app.route("/login", methods=['GET'])
+# def Login():
+# 	mydb = mysql.connector.connect(**config)
 
+# 	mycursor = mydb.cursor()
+# 	username = request.args.get('username')
+# 	password = request.args.get('password')
+
+# 	salt="asdfghjkl"+password
+# 	b=bytes(salt, "utf8")
+# 	encriptado = hashlib.md5(b).hexdigest()
+
+
+# 	mycursor = mydb.cursor()
+# 	username = request.args.get('username')
+# 	password = request.args.get('password')
+
+
+# 	val = (username,)
+# 	mycursor.callproc('LoginAdministrador', val)
+# 	perfil = "Admin"
+# 	row = list(mycursor.stored_results())[0].fetchall()
+# 	a = True
+# 	if(len(row)==0):
+# 		val = (username, )
+# 		mycursor.callproc('LoginUser', val)
+# 		perfil = "User"
+# 		row = list(mycursor.stored_results())[0].fetchall()
+# 		if(len(row)==0):
+# 				a = False
+
+# 	print(row)
+# 	if a:
+# 		print(encriptado)
+# 		if(row[0][3] == encriptado):
+# 			return perfil, 200
+# 	return "", 401
 
 @app.route("/login", methods=['GET'])
 def Login():
 	mydb = mysql.connector.connect(**config)
 
 	mycursor = mydb.cursor()
-	username = request.args.get('username')
+	email = request.args.get('email')
 	password = request.args.get('password')
 
-	salt="asdfghjkl"+password
-	b=bytes(salt, "utf8")
+	salt = "asdfghjkl" + email
+	b = bytes(salt, "utf8")
 	encriptado = hashlib.md5(b).hexdigest()
 
-
 	mycursor = mydb.cursor()
-	username = request.args.get('username')
+	email = request.args.get('email')
 	password = request.args.get('password')
 
+	val = (email,)
+	sql = "SELECT * FROM user WHERE email = %s"
+	mycursor.execute(sql, val)
+	row = mycursor.fetchone()
 
-	val = (username,)
-	mycursor.callproc('LoginAdministrador', val)
-	perfil = "Admin"
-	row = list(mycursor.stored_results())[0].fetchall()
-	a = True
-	if(len(row)==0):
-		val = (username, )
-		mycursor.callproc('LoginUser', val)
-		perfil = "User"
-		row = list(mycursor.stored_results())[0].fetchall()
-		if(len(row)==0):
-				a = False
+	if(len(row) == 0):
+		return "", 404
 
-	print(row)
-	if a:
-		print(encriptado)
-		if(row[0][3] == encriptado):
-			return perfil, 200
-	return "", 401
+	val = (encriptado,)
+	mycursor.callproc('PasswordAdministrador', val)
+	row = mycursor.fetchone()
+
+	if(len(row) == 0):
+		return "", 400
+
+	return perfil, 200
+
+
 
 @app.route("/insert", methods=['GET'])
 def Insert():
 	mydb = mysql.connector.connect(**config)
-
 	mycursor = mydb.cursor()
+
 	name = request.args.get('name')
 	email = request.args.get('email')
-	username = request.args.get('username')
 	password = request.args.get('password')
-	#date_register = request.args.get('date_register')
+	stage = request.args.get('stage')
 	admin = request.args.get('admin')
 
 
@@ -77,10 +111,20 @@ def Insert():
 	encriptado = hashlib.md5(b).hexdigest()
 
 	try:
-		args = (username, name, email, encriptado, admin)
+		args = (name, email, encriptado, admin)
 		mycursor.callproc('insertUser', args)
 	except mysql.connector.IntegrityError:
 		return "409"
+
+	email = request.args.get('email')
+	sql = "SELECT id_user FROM user WHERE email = %s"
+	val = (email,)
+	mycursor.execute(sql, val)
+	id_user = mycursor.fetchone()
+
+	sql = "INSERT INTO user_has_stage (user_id_user, user_admin_id_admin, stage_id_stage) VALUES (%s,%s,%s)"
+	val = (id_user[0], admin, stage)
+	mycursor.execute(sql, val)
 	
 	print("entro a insert")
 	mydb.commit()
@@ -121,67 +165,76 @@ def Modify():
 	return "", 200
 
 #Dado un username
-@app.route("/search", methods=['GET'])
+@app.route("/searchAdmin", methods=['GET'])
 def Search():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	username = request.args.get('username')
+	id_admin = request.args.get('id_admin')
 
-	val = (username,)
+	val = (id_admin,)
 	#mycursor.callproc('buscarUser', val)
-	sql = "SELECT username, name, email FROM user WHERE username = %s;"
+	sql = "SELECT name, email FROM admin WHERE id_admin = %s;"
 	mycursor.execute(sql, val)
 	row = mycursor.fetchone()
-	username = {}
-	if row is not None:
-		username["name"] = row[1]
-		username["email"] = row[2]
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(username)
+	user = {}
+	admin = []
+	while row is not None:
+		id_admin = {}
+		id_admin["name"] = row[0]
+		id_admin["email"] = row[1]
+		admin.append(id_admin)
+		row = mycursor.fetchone()
+
+	user["user"] = admin
+	return jsonify(user), 200
 
 @app.route("/showAllUser", methods=['GET'])
 def ShowAll():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
+	id_admin = request.args.get('id_admin')
 
-	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM user WHERE status = true"
-	mycursor.execute(sql)
-	
+	val = (id_admin,)
+	#mycursor.callproc('buscarUser', val)
+	sql = "SELECT name, email FROM user WHERE admin_id_admin = %s;"
+	mycursor.execute(sql, val)
 	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
-	user = {}
+
+	items = {}
+	admin = []
 	while row is not None:
-		username = {}
-		username["name"] = row[1]
-		username["email"] = row[2]
-		user[row[0]] = username
+		user = {}
+		user["name"] = row[0]
+		user["email"] = row[1]
+		admin.append(user)
 		row = mycursor.fetchone()
 
-	return jsonify(user), 200
-
+	items["items"] = admin
+	return jsonify(items), 200
 
 ############################
+#                          #
 #        ESPACIOS          #       
+#                          #
 ############################
 
-'''>>>>    STAGE  <<<<'''
+
+#############################  STAGE   #################################
 
 @app.route("/insertStage", methods=['GET'])
 def InsertStage():
 	mydb = mysql.connector.connect(**config)
 
 	mycursor = mydb.cursor()
-	id_stage = request.args.get('id_stage')
 	name = request.args.get('name')
 	user = request.args.get('user')
 	admin = request.args.get('admin')
 
 	try:
-		args = (id_stage, name, admin)
+		args = (name, admin)
 		mycursor.callproc('insertStage', args)
 	except mysql.connector.IntegrityError:
 		return "409"
@@ -214,21 +267,46 @@ def SearchStage():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	id_stage = request.args.get('id_stage')
+	id_admin = request.args.get('id_admin')
 
-	val = (id_stage,)
+	val = (id_admin,)
 	#mycursor.callproc('buscarStage', val)
 
-	sql = "SELECT id_stage, name FROM stage WHERE id_stage = %s;"
+	sql = "SELECT id_stage, name FROM stage WHERE admin_id_admin = %s;"
+	mycursor.execute(sql, val)
+	row = mycursor.fetchone()
+
+	items = {}
+	stage = []
+	while row is not None:
+		id_stage = {}
+		id_stage["id"] = row[0]
+		id_stage["name"] = row[1]
+		stage.append(id_stage)
+		row = mycursor.fetchone()
+
+	items["items"] = stage
+	return jsonify(items), 200
+
+@app.route("/getStage", methods=['GET'])
+def GetStage():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	id_admin = request.args.get('id_admin')
+
+	val = (id_admin,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT id_stage FROM stage WHERE admin_id_admin = %s"
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
 	id_stage = {}
-	if row is not None:
-		id_stage["name"] = row[1]
+	while row is not None:
+		id_stage["id"] = row[0]
+		row = mycursor.fetchone()
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(id_stage)
+	return jsonify(id_stage), 200
 
 
 @app.route("/modifyStage", methods=['GET'])
@@ -252,141 +330,86 @@ def ShowAllStage():
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
 
-	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM stage"
+	sql = "SELECT * FROM stage WHERE status = '1'"
 	mycursor.execute(sql)
-	
 	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
-	stage = {}
+	
+	items = {}
+	stage = []
 	while row is not None:
 		id_stage = {}
+		id_stage["id"] = row[0]
 		id_stage["name"] = row[1]
-		stage[row[0]] = id_stage
+		stage.append(id_stage)
 		row = mycursor.fetchone()
 
-	return jsonify(stage), 200
+	items["items"] = stage
+	return jsonify(items), 200
 
-'''>>>>   FLOOR   <<<<'''
-
-@app.route("/insertFloor", methods=['GET'])
-def InsertFloor():
-	mydb = mysql.connector.connect(**config)
-
-	mycursor = mydb.cursor()
-	id_floor = request.args.get('id_floor')
-	name = request.args.get('name')
-	id_stage = request.args.get('id_stage')
-
-	try:
-		# args = (id_floor, name, id_stage)
-		# mycursor.callproc('insertFloor', args)
-		sql = "INSERT INTO floor (id_floor, name, stage_id_stage) VALUES (%s,%s,%s)"
-		val = (id_floor, name, id_stage)
-		mycursor.execute(sql, val)
-	except mysql.connector.IntegrityError:
-		return "409"
-	
-	print("entro a insert")
-	mydb.commit()
-	print(mycursor.rowcount,"record inserted.")
-	return "200"
-
-
-@app.route("/deleteFloor", methods=['GET'])
-def DeleteFloor():
-
-	mydb = mysql.connector.connect(**config)
-	mycursor = mydb.cursor()
-	id_floor = request.args.get('id_floor')
-
-	sql = "DELETE FROM floor WHERE id_floor = %s"
-	val = (id_floor,)
-	mycursor.execute(sql, val)
-
-	print(mycursor.rowcount,"record deleted.")
-	mydb.commit()
-
-	return "."
-
-#Dado un id_floor
-@app.route("/searchFloor", methods=['GET'])
-def SearchFloor():
-
+@app.route("/stageCountDevices", methods=['GET'])
+def StageCountDevices():
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	id_floor = request.args.get('id_floor')
+	stage_id_stage = request.args.get('stage_id_stage')
 
-	val = (id_floor,)
+	val = (stage_id_stage,)
 	#mycursor.callproc('buscarStage', val)
 
-	sql = "SELECT id_floor, name, stage_id_stage FROM floor WHERE id_floor = %s;"
+	sql = "SELECT count(*) FROM device d JOIN room r ON d.room_id_room = r.id_room JOIN stage s ON r.stage_id_stage = s.id_stage AND s.id_stage = %s"
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
-	id_floor = {}
-	if row is not None:
-		id_floor["name"] = row[1]
-		id_floor["stage"] = row[2]
+	items = {}
+	stage = []
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(id_floor)
-
-
-@app.route("/modifyFloor", methods=['GET'])
-def ModifyFloor():
-	mydb = mysql.connector.connect(**config)
-	mycursor = mydb.cursor(buffered=True)
-
-	id_floor = request.args.get('id_floor')
-	name = request.args.get('name')
-
-	sql = "UPDATE floor SET name = %s WHERE id_floor = %s"
-	val = (name, id_floor)
-	mycursor.execute(sql, val)
-
-	mydb.commit()
-	return "", 200
-
-@app.route("/showAllFloor", methods=['GET'])
-def ShowAllFloor():
-
-	mydb = mysql.connector.connect(**config)
-	mycursor = mydb.cursor(buffered=True)
-
-	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM floor"
-	mycursor.execute(sql)
-	
-	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
-	floor = {}
 	while row is not None:
-		id_floor = {}
-		id_floor["name"] = row[1]
-		id_floor["stage"] = row[2]
-		floor[row[0]] = id_floor
+		id_stage = {}
+		id_stage["devices"] = row[0]
+		stage.append(id_stage)
 		row = mycursor.fetchone()
 
-	return jsonify(floor), 200
+	items["items"] = stage
+	return jsonify(items), 200
 
-'''>>>>   Room   <<<<'''
+@app.route("/stageCountUsers", methods=['GET'])
+def StageCountUsers():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	stage_id_stage = request.args.get('stage_id_stage')
+
+	val = (stage_id_stage,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT count(*) FROM user_has_stage WHERE stage_id_stage = %s"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	items = {}
+	stage = []
+
+	while row is not None:
+		id_stage = {}
+		id_stage["users"] = row[0]
+		stage.append(id_stage)
+		row = mycursor.fetchone()
+
+	items["things"] = stage
+	return jsonify(items), 200
+
+#############################  ROOM   #################################
 
 @app.route("/insertRoom", methods=['GET'])
 def InsertRoom():
 	mydb = mysql.connector.connect(**config)
 
 	mycursor = mydb.cursor()
-	id_room = request.args.get('id_room')
 	name = request.args.get('name')
-	id_floor = request.args.get('id_floor')
 	id_scenario = request.args.get('id_scenario')
+	id_stage = request.args.get('id_stage')
 
 	try:
-		# args = (id_floor, name, id_stage)
-		# mycursor.callproc('insertFloor', args)
-		sql = "INSERT INTO room (id_room, name, floor_id_floor, scenario_id_scenario) VALUES (%s,%s,%s,%s)"
-		val = (id_room, name, id_floor, id_scenario)
+		sql = "INSERT INTO room (name, status, scenario_id_scenario, stage_id_stage) VALUES (%s,1,%s,%s)"
+		val = (name, id_scenario, id_stage)
 		mycursor.execute(sql, val)
 	except mysql.connector.IntegrityError:
 		return "409"
@@ -404,7 +427,7 @@ def DeleteRoom():
 	mycursor = mydb.cursor()
 	id_room = request.args.get('id_room')
 
-	sql = "DELETE FROM room WHERE id_room = %s"
+	sql = "UPDATE room SET status = 0 WHERE id_room = %s"
 	val = (id_room,)
 	mycursor.execute(sql, val)
 
@@ -419,23 +442,28 @@ def SearchRoom():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	id_room = request.args.get('id_room')
+	id_stage = request.args.get('id_stage')
 
-	val = (id_room,)
+	val = (id_stage,)
 	#mycursor.callproc('buscarStage', val)
 
-	sql = "SELECT id_room, name, floor_id_floor, scenario_id_scenario FROM room WHERE id_room = %s;"
+	sql = "SELECT * FROM room WHERE stage_id_stage = %s;"
 	mycursor.execute(sql, val)
 
 	row = mycursor.fetchone()
-	id_room = {}
-	if row is not None:
+	items = {}
+	room = []
+	while row is not None:
+		id_room = {}
+		id_room["id"] = row[0]
 		id_room["name"] = row[1]
-		id_room["floor"] = row[2]
-		id_room["scenario"] = row[3]
+		id_room["type"] = row[2]
+		room.append(id_room)
+		row = mycursor.fetchone()
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(id_room)
+	items["items"] = room
+	return jsonify(items), 200
+
 
 
 @app.route("/modifyRoom", methods=['GET'])
@@ -461,102 +489,121 @@ def ShowAllRoom():
 	mycursor = mydb.cursor(buffered=True)
 
 	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM room"
+	sql = "SELECT * FROM room WHERE status = 1"
 	mycursor.execute(sql)
 	
 	row = mycursor.fetchone()
 	print(mycursor.rowcount,"record inserted.")
-	room = {}
+	items = {}
+	room = []
 	while row is not None:
 		id_room = {}
+		id_room["id"] = row[0]
 		id_room["name"] = row[1]
-		id_room["floor"] = row[2]
-		id_room["scenario"] = row[3]
-		room[row[0]] = id_room
+		id_room["type"] = row[2]
+		room.append(id_room)
 		row = mycursor.fetchone()
 
-	return jsonify(room), 200
+	items["items"] = room
+	return jsonify(items), 200
 
+@app.route("/countDevices", methods=['GET'])
+def CountDevices():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	id_room = request.args.get('id_room')
+
+	val = (id_room,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT count(*) FROM device WHERE room_id_room = %s AND status = 1"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	items = {}
+	room = []
+
+	while row is not None:
+		id_room = {}
+		id_room["devices"] = row[0]
+		room.append(id_room)
+		row = mycursor.fetchone()
+
+	items["items"] = room
+	return jsonify(items), 200
+
+@app.route("/checkRoom", methods=['GET'])
+def CheckRoom():
+
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	name_room = request.args.get('name_room')
+
+	val = (name_room,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT name FROM room WHERE name = %s;"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	
+	while row is not None:
+		id_device = {}
+		id_device["name"] = row[0]
+		row = mycursor.fetchone()
+
+	return jsonify(id_device), 200
+
+
+@app.route("/getNameRoom", methods=['GET'])
+def GetNameRoom():
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	id_room = request.args.get('id_room')
+
+	val = (id_room,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT name FROM room WHERE id_room = %s"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	while row is not None:
+		id_room = {}
+		id_room["name"] = row[0]
+		row = mycursor.fetchone()
+
+	return jsonify(id_room), 200
 
 ############################
-#      DISPOSITIVOS        #       
+#                          #
+#      DISPOSITIVOS        #
+#                          #       
 ############################
 
-@app.route("/insertProduct", methods=['GET'])
+@app.route("/insertDevice", methods=['GET'])
 def InsertProduct():
 	mydb = mysql.connector.connect(**config)
 
 	mycursor = mydb.cursor()
-	id_product = request.args.get('id_product')
-	name = request.args.get('name')
-	description = request.args.get('description')
-	os = request.args.get('os')
-	id_device = request.args.get('id_device')
-	status = request.args.get('status')
-	brand = request.args.get('brand')
-	model = request.args.get('model')
-	#time_register = request.args.get('time_register')
-	x = request.args.get('x')
-	y = request.args.get('y')
+	name_device = request.args.get('name_device')
+	type_idtype = request.args.get('type_idtype')
+	id_room = request.args.get('id_room')
+	status = '1'
 
-	# args = (id_floor, name, id_stage)
-	# mycursor.callproc('insertFloor', args)
 	try:
-		sql = "INSERT INTO device (id_device, status, brand, model, min_con, max_con, use_time, time_register, time_unsubcribe, x, y ) VALUES (%s,%s,%s,%s, NULL, NULL, NULL, NULL, NULL, %s, %s)"
-		val = (id_device, status, brand, model, x, y)
+		sql = "INSERT INTO device (name_device, status, type_idtype, room_id_room) VALUES (%s,%s,%s,%s)"
+		val = (name_device, status, type_idtype, id_room)
 		mycursor.execute(sql, val)
 	except mysql.connector.IntegrityError:
 		return "409"
 
-	try:
-		sql = "INSERT INTO product (id_product, name, description, os, device_id_device) VALUES (%s,%s,%s,%s,%s)"
-		val = (id_product, name, description, os, id_device)
-		mycursor.execute(sql, val)
-	except mysql.connector.IntegrityError:
-		return "409"
 		
 	print("entro a insert")
 	mydb.commit()
 	print(mycursor.rowcount,"record inserted.")
 	return "200"
 
-@app.route("/insertSensor", methods=['GET'])
-def InsertSensor():
-	mydb = mysql.connector.connect(**config)
-
-	mycursor = mydb.cursor()
-	id_sensor = request.args.get('id_sensor')
-	type_sensor = request.args.get('type')
-	firmware = request.args.get('firmware')
-	clasification = request.args.get('clasification')
-	id_device = request.args.get('id_device')
-	status = request.args.get('status')
-	brand = request.args.get('brand')
-	model = request.args.get('model')
-	#time_register = request.args.get('time_register')
-	x = request.args.get('x')
-	y = request.args.get('y')
-
-	# args = (id_floor, name, id_stage)
-	# mycursor.callproc('insertFloor', args)
-	try:
-		sql = "INSERT INTO device (id_device, status, brand, model, min_con, max_con, use_time, time_register, time_unsubcribe, x, y ) VALUES (%s,%s,%s,%s, NULL, NULL, NULL, NULL, NULL, %s, %s)"
-		val = (id_device, status, brand, model, x, y)
-		mycursor.execute(sql, val)
-	except mysql.connector.IntegrityError:
-		return "409"
-
-	try:
-		sql = "INSERT INTO sensor (id_sensor, type, firmware, clasification, device_id_device) VALUES (%s,%s,%s,%s,%s)"
-		val = (id_sensor, type_sensor, firmware, clasification, id_device)
-		mycursor.execute(sql, val)
-	except mysql.connector.IntegrityError:
-		return "409"
-		
-	print("entro a insert")
-	mydb.commit()
-	print(mycursor.rowcount,"record inserted.")
-	return "200"
 
 @app.route("/deleteDevice", methods=['GET'])
 def DeleteDevice():
@@ -580,51 +627,19 @@ def SearchDevice():
 
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
-	id_device = request.args.get('id_device')
+	name_device = request.args.get('name_device')
+	id_room = request.args.get('id_room')
 
-	val = (id_device,)
-	#mycursor.callproc('buscarStage', val)
-
-	sql = "SELECT id_device, brand, model FROM device WHERE id_device = %s;"
+	val = (name_device, id_room)
+	sql = "SELECT * FROM device WHERE name_device = %s AND room_id_room = %s;"
 	mycursor.execute(sql, val)
-
 	row = mycursor.fetchone()
-	id_device = {}
-	if row is not None:
-		id_device["brand"] = row[1]
-		id_device["model"] = row[2]
 
-	print(mycursor.rowcount,"record founded.")
-	return jsonify(id_device)
-
-@app.route("/type", methods=['GET'])
-def Type():
-
-	mydb = mysql.connector.connect(**config)
-	mycursor = mydb.cursor(buffered=True)
-	type_device = request.args.get('type_device')
-
-	if(type_device == "product"):
-		#mycursor.callproc('showUser')
-		sql = "SELECT * FROM product"
-		mycursor.execute(sql)
-	elif(type_device == "sensor"):
-		sql = "SELECT * FROM sensor"
-		mycursor.execute(sql)
-
-	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
-	device = {}
 	while row is not None:
-		device_id_device = {}
-		device_id_device["id"] = row[0]
-		device_id_device["name/type"] = row[1]
-		device_id_device["descrip/firm"] = row[2]
-		device_id_device["os/clas"] = row[3]
-		device[row[4]] = device_id_device
-		row = mycursor.fetchone()
+		return '', 400
 
-	return jsonify(device), 200
+	return '', 200
+	
 
 
 @app.route("/modifyDevice", methods=['GET'])
@@ -652,20 +667,47 @@ def ShowAllDevice():
 	mydb = mysql.connector.connect(**config)
 	mycursor = mydb.cursor(buffered=True)
 
-	#mycursor.callproc('showUser')
-	sql = "SELECT * FROM device WHERE status = 1"
-	mycursor.execute(sql)
+	id_room = request.args.get('id_room')
+	val = (id_room,)
+	sql = "SELECT * FROM device WHERE status = 1 AND room_id_room = %s"
+	mycursor.execute(sql,val)
 	
 	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
-	device = {}
+	items = {}
+	device = []
 	while row is not None:
 		id_device = {}
-		id_device["brand"] = row[2]
-		id_device["model"] = row[3]
-		id_device["x"] = row[9]
-		id_device["y"] = row[10]
-		device[row[0]] = id_device
+		id_device["id"] = row[0]
+		id_device["name"] = row[1]
+		id_device["type"] = row[3]
+		device.append(id_device)
 		row = mycursor.fetchone()
 
-	return jsonify(device), 200
+	items["items"] = device
+	return jsonify(items), 200
+
+#################################
+#                               #
+#      TIPO DE DISPOSITIVO      #
+#                               #       
+#################################
+@app.route("/checkType", methods=['GET'])
+def CheckType():
+
+	mydb = mysql.connector.connect(**config)
+	mycursor = mydb.cursor(buffered=True)
+	id_type = request.args.get('id_type')
+
+	val = (id_type,)
+	#mycursor.callproc('buscarStage', val)
+
+	sql = "SELECT name_type FROM type WHERE id_type = %s;"
+	mycursor.execute(sql, val)
+
+	row = mycursor.fetchone()
+	type_device = {}
+	if row is not None:
+		type_device["type"] = row[0]
+
+	
+	return jsonify(type_device)

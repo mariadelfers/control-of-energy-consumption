@@ -2,27 +2,42 @@
 
 -- LoginAdministrador
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginAdministrador`(IN username VARCHAR(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginAdministrador`(IN email VARCHAR(45), IN password VARCHAR(255))
 BEGIN
-SELECT * FROM admin WHERE id_admin = username;
+SELECT * FROM admin WHERE email = email AND password =  password;
 END ;;
 DELIMITER ;
 
 -- LoginUser
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginUser`(IN username VARCHAR(10))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LoginUser`(IN email VARCHAR(45), IN password VARCHAR(255))
 BEGIN
-SELECT * FROM user WHERE username = username;
+SELECT * FROM user WHERE email = email AND password =  password;
+END ;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PasswordAdministrador`(IN password VARCHAR(255))
+BEGIN
+SELECT * FROM admin WHERE password =  password;
+END ;;
+DELIMITER ;
+
+-- LoginUser
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PasswordUser`(IN password VARCHAR(255))
+BEGIN
+SELECT * FROM user WHERE password =  password;
 END ;;
 DELIMITER ;
 
 --Insertar un usuario 
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertUser`
-(IN username VARCHAR(20), IN name VARCHAR(45), IN email VARCHAR(45), IN encriptado VARCHAR(255), admin VARCHAR(20))
+(IN name VARCHAR(45), IN email VARCHAR(45), IN encriptado VARCHAR(255), admin VARCHAR(20))
 INSERT INTO user 
-(username, name, email, password, status, date_register, date_unsubscribe, admin_id_admin) 
-VALUES(username, name, email, encriptado, TRUE, NULL, NULL, admin) ;;
+(name, email, password, status, admin_id_admin) 
+VALUES(name, email, encriptado, TRUE, admin) ;;
 DELIMITER ;;
 
 --Mostrar todos los usuarios
@@ -44,10 +59,10 @@ DELIMITER ;
 --Insertar un nuevo stage
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertStage`
-(IN id_stage INT, IN name VARCHAR(45), IN admin VARCHAR(20))
+(IN name VARCHAR(45), IN admin VARCHAR(20))
 INSERT INTO stage
-(id_stage, name, admin_id_admin) 
-VALUES(id_stage, name, admin) ;;
+(name, admin_id_admin) 
+VALUES(name, admin) ;;
 DELIMITER ;;
 
 --Buscar stage dado un id_stage
