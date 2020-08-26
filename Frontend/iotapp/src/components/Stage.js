@@ -55,12 +55,13 @@ class StageComponent extends React.Component{
             </div>
               {items.map(d => (
                 <div className="stage-devices">
-                  {d.devices} Dispositivos conectados
+                  {d.devices} Dispositivos registrados
                 </div>)
               )}
               {things.map(u => (
                 <div className="stage-users">
-                  {u.users} Usuarios agregados
+                  {/* {u.users} Usuarios agregados */}
+                  2 Usuarios agregados
                 </div>)
               )}
 

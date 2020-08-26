@@ -493,14 +493,13 @@ def ShowAllRoom():
 	mycursor.execute(sql)
 	
 	row = mycursor.fetchone()
-	print(mycursor.rowcount,"record inserted.")
 	items = {}
 	room = []
 	while row is not None:
 		id_room = {}
 		id_room["id"] = row[0]
 		id_room["name"] = row[1]
-		id_room["type"] = row[2]
+		id_room["type"] = row[3]
 		room.append(id_room)
 		row = mycursor.fetchone()
 

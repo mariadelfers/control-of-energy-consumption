@@ -40,6 +40,9 @@ INSERT INTO `type` (`name_type`) VALUES
 INSERT INTO stage (name, admin_id_admin) VALUES("Mi casa", 1);
 -- ROOM
 INSERT INTO room (name, status, scenario_id_scenario, stage_id_stage) VALUES("Mi cuarto", 1, 1, 1);
+-- COLLABORATORS
+INSERT INTO user (name, email, password, status, admin_id_admin) VALUES("Maria", "maria@gmail.com", "hello", 1, 1);
+INSERT INTO user (name, email, password, status, admin_id_admin) VALUES("Hugo", "hugo@gmail.com", "hello", 1, 1);
 
 
 
