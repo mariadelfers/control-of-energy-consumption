@@ -1,101 +1,101 @@
-# Control del consumo eléctrico
+# Control of Energy Consumption
 
-_Proyecto desarrollado por estudiantes del Tec de Monterrey para el control del consumo eléctrico de tus aparatos eléctricos dentro de tu casa u oficina._
+_Web project developed by Tec de Monterrey students to control the electricity consumption of your electrical devices in your home or office._
 
 ## Comienzo 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+_These instructions will allow you to get a working copy of the project on your local machine for development and testing purposes._
 
 ### Pre-requisitos 📋
 
-_Instalar mariaDB_
+_Install mariaDB_
 ```
 $ pip pip install mariadb
 ```
 
-###### Entorno python
+###### Python environment
 
-_Instalar flask_
+_Install flask_
 ```
 $ pip install Flask
 ```
-_Instalar flask cors_
+_Install flask cors_
 ```
 $ pip install -U flask-cors
 ```
-_Instalar Mysql connector_
+_Install Mysql connector_
 ```
 $ pip install mysql-connector-python
 ```
 
-###### Entorno NodeJS
+###### NodeJS Environment
 
-_Instalar React_
+_Install React_
 ```
 > npm install --save react
 ```
-_Instalar Storybook_
+_Install Storybook_
 ```
 > npx -p @storybook/cli sb init
 ```
-_Agregar dependencias_
+_Add dependecies_
 ```
 > npm install @storybook/react --save-dev
 > npm install react react-dom --save
 > npm install babel-loader @babel/core --save-dev
 > npm install react-bootstrap bootstrap
 ```
-_Paquetes de storybook_
+_Add storybook packages_
 ```
 > npm i -D @storybook/addon-actions
 > yarn add @storybook/addon-knobs --dev
 ```
-_Pruebas automatizadas_
+_Automation Tests_
 ```
 yarn add --dev @storybook/addon-storyshots react-test-renderer
 ```
-_Para almacenar datos_
+_To store data_
 ```
 yarn add react-redux redux\
 ```
-_Librería React Router_
+_Add React Router library_
 ```
 npm install react-router-dom --save
 ```
-_Instalar Material UI_
+_Install Material UI_
 ```
 > npm install @material-ui/icons
 ```
-### Instalación 🔧
+### Installation 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+_A series of step-by-step examples that tells you what to run to get a running development environment_
 
-_Crear la base de datos dentro del entorno de MariaDB_
+_Create the database within the MariaDB environment_
 
 ```
 > mysql -u username -p < IotDB.sql
 ```
 
-_Iniciar interfaz_
+_Start interface_
 ```
 > npm start
 ```
 
-_Si hay problemas con las versiones_
+_If you have problems with the versions_
 ```
 > npm i -S core-js@2.5.7
 ```
 
-## Construido con 🛠️
+## Built with 🛠️
 
-* [Anaconda](https://www.anaconda.com/) - Ambiente de python
-* [Material-UI](https://material-ui.com/es/components/icons/) - Iconos
-* [NodeJS](https://nodejs.org/es/download/) - Entorno
-* [React](https://es.reactjs.org/docs/getting-started.html) - Biblioteca JS
+* [Anaconda](https://www.anaconda.com/) - Python Environment
+* [Material-UI](https://material-ui.com/es/components/icons/) - Icons
+* [NodeJS](https://nodejs.org/es/download/) - Node Environment
+* [React](https://es.reactjs.org/docs/getting-started.html) - JS Library
 * [Storybooks](https://storybook.js.org/docs/guides/guide-react/) - Componentes UI 
-* [Xampp](https://www.apachefriends.org/index.html) - Gestión de bases de datos
+* [Xampp](https://www.apachefriends.org/index.html) - Database management
 
-## Documentación extra
+## Design tools
 
 * [Balsamiq](https://balsamiq.cloud/s7tpyzs/pvvjfkp/rFA12) - Mockups
 * [Figma](https://www.figma.com/files/team/837081687303525522/ProyectoIntegrador) - Sketch UI
@@ -105,6 +105,4 @@ _Si hay problemas con las versiones_
 * **Maria Fernanda Hernández** - [FerEnriquez](https://github.com/FerEnriquez)
 * **Benny Ruíz** - [BennyRJZ](https://github.com/BennyRJZ)
 * **Erick Ceredo** - 
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
 
