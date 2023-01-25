@@ -2,11 +2,11 @@
 
 _Web project developed by Tec de Monterrey students to control the electricity consumption of your electrical devices in your home or office._
 
-## Comienzo 🚀
+##  Start 🚀
 
 _These instructions will allow you to get a working copy of the project on your local machine for development and testing purposes._
 
-### Pre-requisitos 📋
+### Pre-requirements 
 
 _Install mariaDB_
 ```
